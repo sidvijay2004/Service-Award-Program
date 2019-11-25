@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.vts.vtsbackend.entity;
+package org.vts.vtsbackend.model;
 
 /**
  * @author sidVijay
