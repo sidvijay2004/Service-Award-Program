@@ -26,4 +26,28 @@ public class StudentService {
   public List<Student> findAll() {
     return students;
   }
+  
+  public Student deleteById(int id) {
+	  Student student = findById(id);
+
+	    if (student == null)
+	      return null;
+
+	    if (students.remove(student)) {
+	      return student;
+	    }
+
+	    return null;
+	  }
+  
+	public Student findById(int id) {
+		for (Student student : students) {
+			if (student.getStudentId() == id) {
+				return student;
+			}
+		}
+
+		return null;
+	}
+
 }

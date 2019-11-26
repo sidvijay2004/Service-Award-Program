@@ -10,6 +10,7 @@ class ListStudents extends Component {
             students: [],
             message: null
           }
+          this.deleteStudentClicked = this.deleteStudentClicked.bind(this)
           this.refreshStudents = this.refreshStudents.bind(this)
       }
 
@@ -26,10 +27,24 @@ class ListStudents extends Component {
                   }
               )
       }
+      deleteStudentClicked(id) {
+        this.setState({ message: `Delete of student ${id} starting` })
+
+          StudentService.deleteStudent(id)
+          .then(
+              response => {
+                  this.setState({ message: `Delete of student ${id} Successful` })
+                  this.refreshStudents()
+              }
+          )
+
+      }
     render() {
         return (
             <div className="container">
                 <h3>Student List</h3>
+                {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
+
                 <div className="container">
                 <table border = "3">
                 <thead>
@@ -53,7 +68,10 @@ class ListStudents extends Component {
                                     <td>{student.email}</td>
                                     <td>{student.age}</td>
                                     <td>{student.grade}</td>
+                                    <td><button className="btn btn-warning" onClick={() => this.deleteStudentClicked(student.studentId)}>Delete</button></td>
+
                                 </tr>
+
                         )
                     }
                 </tbody>
