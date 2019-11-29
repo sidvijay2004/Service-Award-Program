@@ -11,7 +11,11 @@ class ListStudents extends Component {
             message: null
           }
           this.deleteStudentClicked = this.deleteStudentClicked.bind(this)
+          this.updateStudentClicked = this.updateStudentClicked.bind(this)
+          this.addStudentClicked = this.addStudentClicked.bind(this)
           this.refreshStudents = this.refreshStudents.bind(this)
+
+
       }
 
       componentDidMount() {
@@ -39,6 +43,16 @@ class ListStudents extends Component {
           )
 
       }
+
+      addStudentClicked() {
+        this.props.history.push(`/courses/-1`)
+    }
+
+    updateStudentClicked(id) {
+      console.log('update ' + id)
+      this.props.history.push(`/students/${id}`)
+      }
+
     render() {
         return (
             <div className="container">
@@ -55,6 +69,8 @@ class ListStudents extends Component {
                         <th>Email</th>
                         <th>Age</th>
                         <th>Grade</th>
+                        <th>Delete</th>
+                        <th>Update</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,6 +85,7 @@ class ListStudents extends Component {
                                     <td>{student.age}</td>
                                     <td>{student.grade}</td>
                                     <td><button className="btn btn-warning" onClick={() => this.deleteStudentClicked(student.studentId)}>Delete</button></td>
+                                    <td><button className="btn btn-success" onClick={() => this.updateStudentClicked(student.studentId)}>Update</button></td>
 
                                 </tr>
 
@@ -77,6 +94,11 @@ class ListStudents extends Component {
                 </tbody>
 
                   </table>
+
+                <div className="row">
+                      <button className="btn btn-success" onClick={this.addStudentClicked}>Add</button>
+                </div>
+
                 </div>
             </div>
         )

@@ -9,7 +9,12 @@ class StudentService {
         return axios.get(`${BACKEND_HOST}/StudentList`);
     }
 
+    getStudent(id) {
+      return axios.get(`${BACKEND_HOST}/students/${id}`);
+    }
+
     deleteStudent(id) {
+
     return axios.delete(`${BACKEND_HOST}/students/${id}`);
   }
 

@@ -38,4 +38,9 @@ public class StudentController {
 
     return ResponseEntity.notFound().build();
   }
+  
+  @GetMapping("/students/{id}")
+  public Student getStudent(@PathVariable int id) {
+    return studentService.findById(id);
+  }
 }
