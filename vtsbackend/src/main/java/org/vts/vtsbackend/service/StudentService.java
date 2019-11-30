@@ -27,6 +27,27 @@ public class StudentService {
     return students;
   }
   
+  public Student save(Student student) {
+	  
+	  System.out.println(student);
+	  
+	  if (student.getStudentId() == -1 || student.getStudentId() == 0) {
+		  System.out.println("Inside if condit");
+
+		  
+		  student.setStudentId(++idCounter);
+		  students.add(student);
+		  
+	  } else {
+		  
+		  System.out.println("Inside else condit");
+
+	    deleteById(student.getStudentId());
+	    students.add(student);
+	  }
+	  return student;
+	}
+  
   public Student deleteById(int id) {
 	  Student student = findById(id);
 

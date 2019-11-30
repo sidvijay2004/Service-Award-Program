@@ -17,6 +17,13 @@ class StudentService {
 
     return axios.delete(`${BACKEND_HOST}/students/${id}`);
   }
+  updateStudent(id, student) {
+      return axios.put(`${BACKEND_HOST}/students/${id}`, student);
+  }
+
+  createStudent(student) {
+      return axios.post(`${BACKEND_HOST}/students/`, student);
+  }
 
 }
 
