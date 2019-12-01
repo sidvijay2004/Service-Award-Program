@@ -45,7 +45,7 @@ class ListStudents extends Component {
       }
 
       addStudentClicked() {
-        this.props.history.push(`/courses/-1`)
+        this.props.history.push(`/students/-1`)
     }
 
     updateStudentClicked(id) {

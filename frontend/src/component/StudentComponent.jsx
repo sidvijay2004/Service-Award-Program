@@ -15,6 +15,7 @@ class StudentComponent extends Component {
             age: '',
             grade: ''
         }
+        this.handleGradeChange = this.handleGradeChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
   }
@@ -50,6 +51,10 @@ class StudentComponent extends Component {
       return errors
     }
 
+    handleGradeChange(event) {
+      this.setState({grade: event.target.value});
+    }
+
     onSubmit(values) {
 
         let student = {
@@ -66,14 +71,14 @@ class StudentComponent extends Component {
             console.log("id = -1");
 
             StudentService.createStudent(student)
-                .then(() => this.props.history.push('/StudentList'))
+                .then(() => this.props.history.push('/ListStudents'))
         } else {
 
           console.log("id: " + this.state.id);
           console.log("Student id = " + student.id);
 
             StudentService.updateStudent(this.state.id, student)
-                .then(() => this.props.history.push('/StudentList'))
+                .then(() => this.props.history.push('/ListStudents'))
         }
 
       console.log(values);
@@ -81,6 +86,8 @@ class StudentComponent extends Component {
 
 
     }
+
+
       render() {
         let { firstName, lastName, email, age, grade, id } = this.state
 
@@ -125,8 +132,17 @@ class StudentComponent extends Component {
                                     <Field className="form-control" type="text" name="age" />
                                 </fieldset>
                                 <fieldset className="form-group">
-                                    <label>Grade: </label>
-                                    <Field className="form-control" type="text" name="grade" />
+                                    <label>Grade:
+
+                                      <select value={this.state.grade} onChange={this.handleGradeChange}>
+                                        <option value="9">9th Grade</option>
+                                        <option value="10">10th Grade</option>
+                                        <option value="11">11th Grade</option>
+                                        <option value="12">12th Grade</option>
+                                      </select>
+
+                                      </label>
+
                                 </fieldset>
                                 <button className="btn btn-success" type="submit">Save</button>
                             </Form>
