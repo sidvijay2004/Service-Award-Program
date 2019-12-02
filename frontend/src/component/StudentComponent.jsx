@@ -41,6 +41,12 @@ class StudentComponent extends Component {
 
     validate(values) {
       let errors = {}
+
+      if (values.firstName == "") {
+
+        errors.firstName = 'Please enter a first name'
+      }
+
       console.log("Checking age:" + values.age);
       if ((values.age < 13) || (values.age > 19)) {
         console.log("2 Checking age:" + values.age);
@@ -52,7 +58,10 @@ class StudentComponent extends Component {
     }
 
     handleGradeChange(event) {
+      console.log("Before Last Name:" + this.state.lastName);
       this.setState({grade: event.target.value});
+      console.log("After Last Name:" + this.state.lastName);
+
     }
 
     onSubmit(values) {
@@ -109,6 +118,8 @@ class StudentComponent extends Component {
                     {
                         (props) => (
                             <Form>
+                                <ErrorMessage name="firstName" component="div"
+                                       className="alert alert-warning" />
                                 <ErrorMessage name="age" component="div"
                                        className="alert alert-warning" />
                                 <fieldset className="form-group">
