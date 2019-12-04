@@ -42,13 +42,29 @@ class StudentComponent extends Component {
     validate(values) {
       let errors = {}
 
-      if (values.firstName == "") {
+      console.log("Inside Validate condition");
 
-        errors.firstName = 'Please enter a first name'
+      if ((values.firstName == "")) {
+
+        errors.firstName = 'Please finish completing the first name field'
+      }
+      if ((values.lastName == "")) {
+
+        errors.lastName = 'Please finish completing the last name field'
+      }
+      if ((values.email == "")) {
+
+        errors.email = 'Please finish completing the email field'
+      }
+      if ((values.age == "")) {
+        console.log("Inside age loop:" + values.age);
+
+        errors.age = 'Please finish completing the age field'
       }
 
       console.log("Checking age:" + values.age);
-      if ((values.age < 13) || (values.age > 19)) {
+
+      if ((values.age * 1 == values.age) && ((values.age < 13) || (values.age > 19))) {
         console.log("2 Checking age:" + values.age);
 
         errors.age = 'Enter an age for a teenager'
@@ -120,8 +136,13 @@ class StudentComponent extends Component {
                             <Form>
                                 <ErrorMessage name="firstName" component="div"
                                        className="alert alert-warning" />
+                                <ErrorMessage name="lastName" component="div"
+                                        className="alert alert-warning" />
+                                <ErrorMessage name="email" component="div"
+                                        className="alert alert-warning" />
                                 <ErrorMessage name="age" component="div"
                                        className="alert alert-warning" />
+
                                 <fieldset className="form-group">
                                     <label>Id</label>
                                     <Field className="form-control" type="text" name="id" disabled />
