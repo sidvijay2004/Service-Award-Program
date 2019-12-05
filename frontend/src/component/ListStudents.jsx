@@ -66,6 +66,7 @@ class ListStudents extends Component {
                         <th>Id</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th>Student Number</th>
                         <th>Email</th>
                         <th>Age</th>
                         <th>Grade</th>
@@ -81,6 +82,7 @@ class ListStudents extends Component {
                                     <td>{student.studentId}</td>
                                     <td>{student.firstName}</td>
                                     <td>{student.lastName}</td>
+                                    <td>{student.studentNum}</td>
                                     <td>{student.email}</td>
                                     <td>{student.age}</td>
                                     <td>{student.grade}</td>

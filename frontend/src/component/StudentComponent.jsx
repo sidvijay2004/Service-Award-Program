@@ -11,6 +11,7 @@ class StudentComponent extends Component {
             id: this.props.match.params.id,
             firstName: '',
             lastName: '',
+            studentNum: '',
             email: '',
             age: '',
             grade: ''
@@ -32,6 +33,7 @@ class StudentComponent extends Component {
             .then(response => this.setState({
               firstName: response.data.firstName,
               lastName: response.data.lastName,
+              studentNum: response.data.studentNum,
               email: response.data.email,
               age: response.data.age,
               grade: response.data.grade
@@ -46,28 +48,32 @@ class StudentComponent extends Component {
 
       if ((values.firstName == "")) {
 
-        errors.firstName = 'Please finish completing the first name field'
+        errors.firstName = 'Please enter first name'
       }
       if ((values.lastName == "")) {
 
-        errors.lastName = 'Please finish completing the last name field'
+        errors.lastName = 'Please enter last name'
+      }
+      if ((values.studentNum == "")) {
+
+        errors.studentNum = 'Please enter student number'
       }
       if ((values.email == "")) {
 
-        errors.email = 'Please finish completing the email field'
+        errors.email = 'Please enter email'
       }
       if ((values.age == "")) {
         console.log("Inside age loop:" + values.age);
 
-        errors.age = 'Please finish completing the age field'
+        errors.age = 'Please enter age'
       }
 
       console.log("Checking age:" + values.age);
 
-      if ((values.age * 1 == values.age) && ((values.age < 13) || (values.age > 19))) {
+      if ((values.age * 1 == values.age) && ((values.age < 12) || (values.age > 22))) {
         console.log("2 Checking age:" + values.age);
 
-        errors.age = 'Enter an age for a teenager'
+        errors.age = 'Enter an age between 12 and 22'
       }
 
       return errors
@@ -78,6 +84,7 @@ class StudentComponent extends Component {
       this.setState({grade: event.target.value});
       console.log("After Last Name:" + this.state.lastName);
 
+
     }
 
     onSubmit(values) {
@@ -86,6 +93,7 @@ class StudentComponent extends Component {
             id: this.state.id,
             firstName: values.firstName,
             lastName: values.lastName,
+            studentNum: values.studentNum,
             email: values.email,
             age: values.age,
             grade: values.grade
@@ -114,7 +122,7 @@ class StudentComponent extends Component {
 
 
       render() {
-        let { firstName, lastName, email, age, grade, id } = this.state
+        let { firstName, lastName, studentNum, email, age, grade, id } = this.state
 
 
     return (
@@ -123,7 +131,7 @@ class StudentComponent extends Component {
 
             <div className="container">
                 <Formik
-                    initialValues={{firstName, lastName, email, age, grade, id}}
+                    initialValues={{firstName, lastName, studentNum, email, age, grade, id}}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
@@ -137,6 +145,8 @@ class StudentComponent extends Component {
                                 <ErrorMessage name="firstName" component="div"
                                        className="alert alert-warning" />
                                 <ErrorMessage name="lastName" component="div"
+                                        className="alert alert-warning" />
+                                <ErrorMessage name="studentNum" component="div"
                                         className="alert alert-warning" />
                                 <ErrorMessage name="email" component="div"
                                         className="alert alert-warning" />
@@ -154,6 +164,10 @@ class StudentComponent extends Component {
                                 <fieldset className="form-group">
                                     <label>Last Name: </label>
                                     <Field className="form-control" type="text" name="lastName" />
+                                </fieldset>
+                                <fieldset className="form-group">
+                                    <label>Student Number: </label>
+                                    <Field className="form-control" type="text" name="studentNum" />
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Email: </label>

@@ -8,30 +8,36 @@ package org.vts.vtsbackend.model;
  *
  */
 public class Student {
-	private int studentId;
-	private String firstName;
-	private String lastName;
-	private String email;
-	private int age;
-	private int grade;
-	
 	/**
 	 * @param studentId
 	 * @param firstName
 	 * @param lastName
+	 * @param studentNum
 	 * @param email
 	 * @param age
 	 * @param grade
 	 */
-	public Student(int studentId, String firstName, String lastName, String email, int age, int grade) {
+	public Student(int studentId, String firstName, String lastName, String studentNum, String email, int age,
+			int grade) {
 		super();
 		this.studentId = studentId;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.studentNum = studentNum;
 		this.email = email;
 		this.age = age;
 		this.grade = grade;
 	}
+	private int studentId;
+	private String firstName;
+	private String lastName;
+	private String studentNum;
+	private String email;
+	private int age;
+	private int grade;
+	
+
+
 	/**
 	 * @return the studentId
 	 */
@@ -68,6 +74,18 @@ public class Student {
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	/**
+	 * @return the studentNum
+	 */
+	public String getStudentNum() {
+		return studentNum;
+	}
+	/**
+	 * @param studentNum the studentNum to set
+	 */
+	public void setStudentNum(String studentNum) {
+		this.studentNum = studentNum;
 	}
 	/**
 	 * @return the email
@@ -115,6 +133,7 @@ public class Student {
 		result = prime * result + grade;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
 		result = prime * result + studentId;
+		result = prime * result + ((studentNum == null) ? 0 : studentNum.hashCode());
 		return result;
 	}
 	@Override
@@ -147,12 +166,17 @@ public class Student {
 			return false;
 		if (studentId != other.studentId)
 			return false;
+		if (studentNum == null) {
+			if (other.studentNum != null)
+				return false;
+		} else if (!studentNum.equals(other.studentNum))
+			return false;
 		return true;
 	}
 	@Override
 	public String toString() {
-		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + ", age=" + age + ", grade=" + grade + "]";
+		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", studentNum=" + studentNum + ", email=" + email + ", age=" + age + ", grade=" + grade + "]";
 	}
 
 }
