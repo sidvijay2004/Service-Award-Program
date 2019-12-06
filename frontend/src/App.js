@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import './App.css';
-import AdminHomePage from './component/AdminHomePage';
+import Login from './component/Login';
+
 
 class App extends Component {
   render () {
     return (
       <div className="container">
-        <AdminHomePage />
+        <Login/>
+
         </div>
     );
   }
