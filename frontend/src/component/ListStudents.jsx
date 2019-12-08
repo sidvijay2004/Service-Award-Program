@@ -5,6 +5,9 @@ import StudentService from '../service/StudentService';
 class ListStudents extends Component {
 
       constructor(props) {
+
+        console.log("Inside List Students Construct");
+
           super(props)
           this.state = {
             students: [],

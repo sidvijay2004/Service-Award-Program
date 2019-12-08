@@ -39,6 +39,8 @@ class StudentComponent extends Component {
               grade: response.data.grade
 
             }))
+            console.log("this state Last Name:" + this.state.lastName);
+
     }
 
     validate(values) {
@@ -124,6 +126,7 @@ class StudentComponent extends Component {
       render() {
         let { firstName, lastName, studentNum, email, age, grade, id } = this.state
 
+        console.log("render state Last Name:" + this.state.lastName);
 
     return (
         <div>

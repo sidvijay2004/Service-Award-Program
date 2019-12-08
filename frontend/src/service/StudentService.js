@@ -6,7 +6,7 @@ const BACKEND_HOST = 'http://localhost:8080'
 class StudentService {
 
     getAllStudents() {
-        return axios.get(`${BACKEND_HOST}/StudentList`);
+        return axios.get(`${BACKEND_HOST}/ListStudents`);
     }
 
     getStudent(id) {

@@ -26,7 +26,7 @@ public class StudentController {
   @Autowired
   private StudentService studentService;
 
-  @GetMapping("/StudentList")
+  @GetMapping("/ListStudents")
   public List<Student> getAllStudents(String username) {
 	System.out.println("Inside Get All students method");
     return studentService.findAll();
