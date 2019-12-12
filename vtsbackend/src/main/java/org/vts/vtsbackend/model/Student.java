@@ -17,22 +17,35 @@ public class Student {
 	 * @param age
 	 * @param grade
 	 */
-	public Student(int studentId, String firstName, String lastName, String studentNum, String email, int age,
-			int grade) {
+
+	private int studentId;
+	private String firstName;
+	private String lastName;
+	private String studentNum;
+	private String email;
+	private String password;
+	/**
+	 * @param studentId
+	 * @param firstName
+	 * @param lastName
+	 * @param studentNum
+	 * @param email
+	 * @param password
+	 * @param age
+	 * @param grade
+	 */
+	public Student(int studentId, String firstName, String lastName, String studentNum, String email, String password,
+			int age, int grade) {
 		super();
 		this.studentId = studentId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.studentNum = studentNum;
 		this.email = email;
+		this.password = password;
 		this.age = age;
 		this.grade = grade;
 	}
-	private int studentId;
-	private String firstName;
-	private String lastName;
-	private String studentNum;
-	private String email;
 	private int age;
 	private int grade;
 	
@@ -100,6 +113,18 @@ public class Student {
 		this.email = email;
 	}
 	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
+	}
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	/**
 	 * @return the age
 	 */
 	public int getAge() {
@@ -132,6 +157,7 @@ public class Student {
 		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result + grade;
 		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + studentId;
 		result = prime * result + ((studentNum == null) ? 0 : studentNum.hashCode());
 		return result;
@@ -164,6 +190,11 @@ public class Student {
 				return false;
 		} else if (!lastName.equals(other.lastName))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
 		if (studentId != other.studentId)
 			return false;
 		if (studentNum == null) {
@@ -176,7 +207,8 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [studentId=" + studentId + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", studentNum=" + studentNum + ", email=" + email + ", age=" + age + ", grade=" + grade + "]";
+				+ ", studentNum=" + studentNum + ", email=" + email + ", password=" + password + ", age=" + age
+				+ ", grade=" + grade + "]";
 	}
 
 }
