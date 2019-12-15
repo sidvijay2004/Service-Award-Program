@@ -46,6 +46,9 @@ public class Student {
 		this.age = age;
 		this.grade = grade;
 	}
+	public Student() {
+		super();
+	}
 	private int age;
 	private int grade;
 	

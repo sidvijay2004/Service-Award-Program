@@ -1,6 +1,7 @@
 package org.vts.vtsbackend.controller;
 
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class StudentController {
   private StudentService studentService;
 
   @GetMapping("/ListStudents")
-  public List<Student> getAllStudents(String username) {
+  public List<Student> getAllStudents(String username) throws SQLException {
 	System.out.println("Inside Get All students method");
     return studentService.findAll();
   }
