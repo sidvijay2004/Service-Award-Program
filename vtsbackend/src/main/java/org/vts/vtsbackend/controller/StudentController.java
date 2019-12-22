@@ -52,7 +52,7 @@ public class StudentController {
   }
   @PutMapping("/students/{id}")
   public ResponseEntity<Student> updateStudent(@PathVariable int id,
-      @RequestBody Student student) {
+      @RequestBody Student student) throws SQLException {
 	  
 	  student.setStudentId(id);
 	  
@@ -68,7 +68,7 @@ public class StudentController {
     return new ResponseEntity<Student>(studentUpdated, HttpStatus.OK);
   }
   @PostMapping("/students")
-  public ResponseEntity<Void> createStudent(@RequestBody Student student) {
+  public ResponseEntity<Void> createStudent(@RequestBody Student student) throws SQLException {
 	  
 	  System.out.println("Inside Post method");
 

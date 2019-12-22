@@ -1,7 +1,6 @@
 package org.vts.vtsbackend.service;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,6 +45,7 @@ public class StudentService {
 			while (rs.next()) {
 				System.out.print("Column 1 returned ");
 				Student student = new Student();
+				student.setStudentId(rs.getInt("id"));
 				student.setFirstName(rs.getString("first_name"));
 				student.setLastName(rs.getString("last_name"));
 				student.setStudentNum(rs.getString("student_num"));
@@ -77,7 +77,7 @@ public class StudentService {
 		return students;
 	}
 
-	public Student save(Student student) {
+	public Student save(Student student) throws SQLException {
 
 		System.out.println(student);
 
@@ -86,21 +86,19 @@ public class StudentService {
 
 			insertStudent(student);
 
-//		  student.setStudentId(++idCounter);
-//		  students.add(student);
 
 		} else {
 
 			System.out.println("Inside else condit");
 
-			deleteById(student.getStudentId());
-			students.add(student);
+			updateStudent(student);
+
 		}
 		return student;
 	}
 
 	public Connection dbConnect() throws SQLException {
-		String url = "jdbc:postgresql://localhost:5432/SAMDB";
+		String url = "jdbc:postgresql://localhost:5432/postgres";
 
 		String user = "postgres";
 
@@ -116,7 +114,7 @@ public class StudentService {
 
 	}
 
-	public void insertStudent(Student student) {
+	public void insertStudent(Student student) throws SQLException {
 
 		student.setPassword("xyz");
 		String SQL = "INSERT INTO student(first_name,last_name,student_num ,email,password,age,grade,created_on,last_login) "
@@ -155,8 +153,48 @@ public class StudentService {
 			}
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
+			throw ex;
 		}
-//      return id;
+
+	}
+
+
+	public int updateStudent(Student student) throws SQLException {
+
+		String SQL = "UPDATE student "
+				+ "SET first_name = ? "
+				+ ",last_name = ? "
+				+ ",student_num = ? "
+				+ ", email = ? "
+				+ ", age = ? "
+				+ ", grade = ? "
+				+ "WHERE id = ?";
+
+
+		int affectedrows = 0;
+
+		try (
+				Connection conn = dbConnect();
+			 PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+
+
+			pstmt.setString(1, student.getFirstName());
+			pstmt.setString(2, student.getLastName());
+			pstmt.setString(3, student.getStudentNum());
+			pstmt.setString(4, student.getEmail());
+			pstmt.setLong(5, student.getAge());
+			pstmt.setLong(6, student.getGrade());
+			pstmt.setInt(7, student.getStudentId());
+
+
+
+			affectedrows = pstmt.executeUpdate();
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			throw ex;
+		}
+		return affectedrows;
 	}
 
 	public Student deleteById(int id) {
