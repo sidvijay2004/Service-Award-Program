@@ -26,11 +26,14 @@ class ListStudents extends Component {
       }
 
       refreshStudents() {
+        console.log("Iside refresh stud");
+
           StudentService.getAllStudents()
               .then(
                   response => {
                       console.log(response);
                       this.setState({ students: response.data})
+
                   }
               )
       }
@@ -41,7 +44,9 @@ class ListStudents extends Component {
           .then(
               response => {
                   this.setState({ message: `Delete of student ${id} Successful` })
-                  this.refreshStudents()
+                  console.log("Before REfresh ");
+                  this.refreshStudents();
+                  console.log("Iside delete");
               }
           )
 

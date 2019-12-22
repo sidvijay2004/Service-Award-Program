@@ -34,16 +34,16 @@ public class StudentController {
   }
   
   @DeleteMapping("/students/{id}")
-  public ResponseEntity<Void> deleteStudent(@PathVariable int id) {
+  public ResponseEntity<Void> deleteStudent(@PathVariable int id) throws SQLException {
 		System.out.println("Inside Delete students");
 	  
-    Student student = studentService.deleteById(id);
+    int affectedRows = studentService.deleteById(id);
 
-    if (student != null) {
+    if (affectedRows > 0) {
       return ResponseEntity.noContent().build();
     }
 
-    return ResponseEntity.notFound().build();
+      return ResponseEntity.notFound().build();
   }
   
   @GetMapping("/students/{id}")

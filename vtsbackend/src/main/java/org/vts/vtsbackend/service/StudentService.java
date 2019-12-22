@@ -197,18 +197,39 @@ public class StudentService {
 		return affectedrows;
 	}
 
-	public Student deleteById(int id) {
-		Student student = findById(id);
+	public int deleteById(int id) throws SQLException {
+		String SQL = "DELETE FROM student WHERE id = ?";
 
-		if (student == null)
-			return null;
+		int affectedrows = 0;
 
-		if (students.remove(student)) {
-			return student;
+		try (Connection conn = dbConnect();
+			 PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+
+			pstmt.setInt(1, id);
+
+			affectedrows = pstmt.executeUpdate();
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			throw ex;
 		}
 
-		return null;
+
+		return affectedrows;
 	}
+
+//	public Student deleteById(int id) {
+//		Student student = findById(id);
+//
+//		if (student == null)
+//			return null;
+//
+//		if (students.remove(student)) {
+//			return student;
+//		}
+//
+//		return null;
+//	}
 
 	public Student findById(int id) {
 		for (Student student : students) {
