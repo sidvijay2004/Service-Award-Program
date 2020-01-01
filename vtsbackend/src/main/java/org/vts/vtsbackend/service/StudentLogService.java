@@ -1,19 +1,14 @@
 package org.vts.vtsbackend.service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 import org.vts.vtsbackend.model.Student;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
-public class StudentService {
+public class StudentLogService {
 
 	private static List<Student> students = new ArrayList<>();
 	private static int idCounter = 0;
