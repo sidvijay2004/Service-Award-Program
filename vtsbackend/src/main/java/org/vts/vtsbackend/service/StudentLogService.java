@@ -1,7 +1,7 @@
 package org.vts.vtsbackend.service;
 
 import org.springframework.stereotype.Service;
-import org.vts.vtsbackend.model.Student;
+import org.vts.vtsbackend.model.StudentLog;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,36 +10,34 @@ import java.util.List;
 @Service
 public class StudentLogService {
 
-	private static List<Student> students = new ArrayList<>();
+	private static List<StudentLog> studentLogs = new ArrayList<>();
 	private static int idCounter = 0;
 
 
 
-	public List<Student> findAll() throws SQLException {
+	public List<StudentLog> findAll() throws SQLException {
 		PreparedStatement st = null;
 		Connection conn = dbConnect();
-		List<Student> students = new ArrayList<>();
+		List<StudentLog> studentLogs = new ArrayList<>();
 
 
 		try {
-			st = conn.prepareStatement("SELECT * FROM student order by first_name");
+			st = conn.prepareStatement("SELECT * FROM student_Log order by id");
 
 
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				System.out.print("Column 1 returned ");
-				Student student = new Student();
-				student.setStudentId(rs.getInt("id"));
-				student.setFirstName(rs.getString("first_name"));
-				student.setLastName(rs.getString("last_name"));
-				student.setStudentNum(rs.getString("student_num"));
-				student.setEmail(rs.getString("email"));
-				student.setPassword(rs.getString("password"));
-				student.setAge(rs.getInt("age"));
-				student.setGrade(rs.getInt("grade"));
+				StudentLog studentLog = new StudentLog();
+				studentLog.setId(rs.getInt("id"));
+				studentLog.setStudentId(rs.getInt("student_id"));
+				studentLog.setActivityDate(rs.getString("activity_date"));
+				studentLog.setDescription(rs.getString("description"));
+				studentLog.setLoggedHours(rs.getInt("logged_hours"));
 
 
-				students.add(student);
+
+				studentLogs.add(studentLog);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -53,27 +51,27 @@ public class StudentLogService {
 		}
 
 
-		return students;
+		return studentLogs;
 	}
 
-	public Student save(Student student) throws SQLException {
+	public StudentLog save(StudentLog studentLog) throws SQLException {
 
-		System.out.println(student);
+		System.out.println(studentLog);
 
-		if (student.getStudentId() == -1 || student.getStudentId() == 0) {
+		if (studentLog.getId() == -1 || studentLog.getId() == 0) {
 			System.out.println("Inside if condit");
 
-			insertStudent(student);
+			insertStudentLog(studentLog);
 
 
 		} else {
 
 			System.out.println("Inside else condit");
 
-			updateStudent(student);
+			updateStudentLog(studentLog);
 
 		}
-		return student;
+		return studentLog;
 	}
 
 	public Connection dbConnect() throws SQLException {
@@ -93,26 +91,21 @@ public class StudentLogService {
 
 	}
 
-	public void insertStudent(Student student) throws SQLException {
+	public void insertStudentLog(StudentLog studentLog) throws SQLException {
 
-		student.setPassword("xyz");
-		String SQL = "INSERT INTO student(first_name,last_name,student_num ,email,password,age,grade,created_on,last_login) "
-				+ "VALUES(?,?,?,?,?,?,?,?,?)";
+		String SQL = "INSERT INTO student_Log(id, student_id, activity_date, description,logged_hours) "
+				+ "VALUES(?,?,?,?,?)";
 
 		// long id = 0;
 
 		try (Connection conn = dbConnect();
 			 PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
-			pstmt.setString(1, student.getFirstName());
-			pstmt.setString(2, student.getLastName());
-			pstmt.setString(3, student.getStudentNum());
-			pstmt.setString(4, student.getEmail());
-			pstmt.setString(5, student.getPassword());
-			pstmt.setLong(6, student.getAge());
-			pstmt.setLong(7, student.getGrade());
-			pstmt.setTimestamp(8, getCurrentTimeStamp());
-			pstmt.setTimestamp(9, getCurrentTimeStamp());
+			pstmt.setInt(1, studentLog.getId());
+			pstmt.setInt(2, studentLog.getStudentId());
+			pstmt.setString(3, studentLog.getActivityDate());
+			pstmt.setString(4, studentLog.getDescription());
+			pstmt.setInt(5, studentLog.getLoggedHours());
 
 			int affectedRows = pstmt.executeUpdate();
 			// check the affected rows
@@ -138,16 +131,15 @@ public class StudentLogService {
 	}
 
 
-	public int updateStudent(Student student) throws SQLException {
+	public int updateStudentLog(StudentLog studentLog) throws SQLException {
 
-		String SQL = "UPDATE student "
-				+ "SET first_name = ? "
-				+ ",last_name = ? "
-				+ ",student_num = ? "
-				+ ", email = ? "
-				+ ", age = ? "
-				+ ", grade = ? "
-				+ "WHERE id = ?";
+		String SQL = "UPDATE student_Log "
+				+ "SET id = ? "
+				+ ",student_id = ? "
+				+ ",activity_date = ? "
+				+ ", description = ? "
+				+ ", logged_hours = ? ";
+
 
 
 		int affectedrows = 0;
@@ -157,13 +149,11 @@ public class StudentLogService {
 				PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
 
-			pstmt.setString(1, student.getFirstName());
-			pstmt.setString(2, student.getLastName());
-			pstmt.setString(3, student.getStudentNum());
-			pstmt.setString(4, student.getEmail());
-			pstmt.setLong(5, student.getAge());
-			pstmt.setLong(6, student.getGrade());
-			pstmt.setInt(7, student.getStudentId());
+			pstmt.setInt(1, studentLog.getId());
+			pstmt.setInt(2, studentLog.getStudentId());
+			pstmt.setString(3, studentLog.getActivityDate());
+			pstmt.setString(4, studentLog.getDescription());
+			pstmt.setInt(5, studentLog.getLoggedHours());
 
 
 			affectedrows = pstmt.executeUpdate();
@@ -176,7 +166,7 @@ public class StudentLogService {
 	}
 
 	public int deleteById(int id) throws SQLException {
-		String SQL = "DELETE FROM student WHERE id = ?";
+		String SQL = "DELETE FROM student_Log WHERE id = ?";
 
 		int affectedrows = 0;
 
@@ -196,43 +186,40 @@ public class StudentLogService {
 		return affectedrows;
 	}
 
-//	public Student deleteById(int id) {
-//		Student student = findById(id);
+//	public StudentLog deleteById(int id) {
+//		StudentLog studentLog = findById(id);
 //
-//		if (student == null)
+//		if (studentLog == null)
 //			return null;
 //
-//		if (students.remove(student)) {
-//			return student;
+//		if (studentLogs.remove(studentLog)) {
+//			return studentLog;
 //		}
 //
 //		return null;
 //	}
 
-	public Student findById(int id) throws SQLException {
+	public StudentLog findById(int id) throws SQLException {
 		PreparedStatement st = null;
 		Connection conn = dbConnect();
 
 
 		try {
-			st = conn.prepareStatement("SELECT * FROM student where id = ?");
+			st = conn.prepareStatement("SELECT * FROM student_Log where id = ?");
 			st.setInt(1, id);
 
 
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				System.out.print("Column 1 returned ");
-				Student student = new Student();
-				student.setStudentId(rs.getInt("id"));
-				student.setFirstName(rs.getString("first_name"));
-				student.setLastName(rs.getString("last_name"));
-				student.setStudentNum(rs.getString("student_num"));
-				student.setEmail(rs.getString("email"));
-				student.setPassword(rs.getString("password"));
-				student.setAge(rs.getInt("age"));
-				student.setGrade(rs.getInt("grade"));
+				StudentLog studentLog = new StudentLog();
+				studentLog.setId(rs.getInt("id"));
+				studentLog.setStudentId(rs.getInt("student_id"));
+				studentLog.setActivityDate(rs.getString("activity_date"));
+				studentLog.setDescription(rs.getString("description"));
+				studentLog.setLoggedHours(rs.getInt("logged_hours"));
 
-				return student;
+				return studentLog;
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -24,6 +24,8 @@ public class Student {
 	private String studentNum;
 	private String email;
 	private String password;
+	private int age;
+	private int grade;
 	/**
 	 * @param studentId
 	 * @param firstName
@@ -49,8 +51,8 @@ public class Student {
 	public Student() {
 		super();
 	}
-	private int age;
-	private int grade;
+
+
 	
 
 
