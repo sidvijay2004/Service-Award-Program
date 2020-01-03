@@ -61,6 +61,10 @@ class ListStudents extends Component {
       this.props.history.push(`/students/${id}`)
       }
 
+    listHours(id) {
+        this.props.history.push(`/ListStudentLogs/${id}`)
+        }
+
     render() {
         return (
             <div className="container">
@@ -80,6 +84,7 @@ class ListStudents extends Component {
                         <th>Grade</th>
                         <th>Delete</th>
                         <th>Update</th>
+                        <th>Hours</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,6 +101,7 @@ class ListStudents extends Component {
                                     <td>{student.grade}</td>
                                     <td><button className="btn btn-warning" onClick={() => this.deleteStudentClicked(student.studentId)}>Delete</button></td>
                                     <td><button className="btn btn-success" onClick={() => this.updateStudentClicked(student.studentId)}>Update</button></td>
+                                    <td><button className="btn btn-success" onClick={() => this.listHours(student.studentId)}>Hours</button></td>
 
                                 </tr>
 

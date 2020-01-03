@@ -15,6 +15,46 @@ public class StudentLogService {
 
 
 
+	public List<StudentLog> findByStudentId(int studentId) throws SQLException {
+		PreparedStatement st = null;
+		Connection conn = dbConnect();
+		List<StudentLog> studentLogs = new ArrayList<>();
+
+
+		try {
+			st = conn.prepareStatement("SELECT * FROM student_Log where student_id = ? order by activity_date desc");
+
+			st.setInt(1, studentId);
+
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				System.out.print("Column 1 returned ");
+				StudentLog studentLog = new StudentLog();
+				studentLog.setId(rs.getInt("id"));
+				studentLog.setStudentId(rs.getInt("student_id"));
+				studentLog.setActivityDate(rs.getString("activity_date"));
+				studentLog.setDescription(rs.getString("description"));
+				studentLog.setLoggedHours(rs.getInt("logged_hours"));
+
+
+
+				studentLogs.add(studentLog);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (st != null) {
+				st.close();
+			}
+			conn.close();
+		}
+
+
+		return studentLogs;
+	}
+
 	public List<StudentLog> findAll() throws SQLException {
 		PreparedStatement st = null;
 		Connection conn = dbConnect();
@@ -53,6 +93,7 @@ public class StudentLogService {
 
 		return studentLogs;
 	}
+
 
 	public StudentLog save(StudentLog studentLog) throws SQLException {
 
@@ -93,19 +134,19 @@ public class StudentLogService {
 
 	public void insertStudentLog(StudentLog studentLog) throws SQLException {
 
-		String SQL = "INSERT INTO student_Log(id, student_id, activity_date, description,logged_hours) "
-				+ "VALUES(?,?,?,?,?)";
+		String SQL = "INSERT INTO student_Log(student_id, activity_date, description,logged_hours) "
+				+ "VALUES(?,?,?,?)";
 
 		// long id = 0;
 
 		try (Connection conn = dbConnect();
 			 PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
-			pstmt.setInt(1, studentLog.getId());
-			pstmt.setInt(2, studentLog.getStudentId());
-			pstmt.setString(3, studentLog.getActivityDate());
-			pstmt.setString(4, studentLog.getDescription());
-			pstmt.setInt(5, studentLog.getLoggedHours());
+			int i = 1;
+			pstmt.setInt(i++, studentLog.getStudentId());
+			pstmt.setString(i++, studentLog.getActivityDate());
+			pstmt.setString(i++, studentLog.getDescription());
+			pstmt.setInt(i++, studentLog.getLoggedHours());
 
 			int affectedRows = pstmt.executeUpdate();
 			// check the affected rows
@@ -134,12 +175,11 @@ public class StudentLogService {
 	public int updateStudentLog(StudentLog studentLog) throws SQLException {
 
 		String SQL = "UPDATE student_Log "
-				+ "SET id = ? "
-				+ ",student_id = ? "
+				+ "SET student_id = ? "
 				+ ",activity_date = ? "
 				+ ", description = ? "
-				+ ", logged_hours = ? ";
-
+				+ ", logged_hours = ? "
+				+ " WHERE id = ?";
 
 
 		int affectedrows = 0;
@@ -149,12 +189,12 @@ public class StudentLogService {
 				PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
 
-			pstmt.setInt(1, studentLog.getId());
-			pstmt.setInt(2, studentLog.getStudentId());
-			pstmt.setString(3, studentLog.getActivityDate());
-			pstmt.setString(4, studentLog.getDescription());
-			pstmt.setInt(5, studentLog.getLoggedHours());
 
+			pstmt.setInt(1, studentLog.getStudentId());
+			pstmt.setString(2, studentLog.getActivityDate());
+			pstmt.setString(3, studentLog.getDescription());
+			pstmt.setInt(4, studentLog.getLoggedHours());
+			pstmt.setInt(5, studentLog.getId());
 
 			affectedrows = pstmt.executeUpdate();
 

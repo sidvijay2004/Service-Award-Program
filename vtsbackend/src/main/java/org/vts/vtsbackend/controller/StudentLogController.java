@@ -21,10 +21,17 @@ public class StudentLogController {
     private StudentLogService studentLogService;
 
     @GetMapping("/ListStudentLogs")
-    public List<StudentLog> getAllStudentLogs(String username) throws SQLException {
+    public List<StudentLog> getAllStudentLogs() throws SQLException {
         System.out.println("Inside Get All studentLogs method");
         return studentLogService.findAll();
     }
+
+    @GetMapping("/ListStudentLogs/{studentId}")
+    public List<StudentLog> getAllStudentLogs(@PathVariable int studentId) throws SQLException {
+        System.out.println("Inside Get All getAllStudentLogs method");
+        return studentLogService.findByStudentId(studentId);
+    }
+
 
     @DeleteMapping("/studentLogs/{id}")
     public ResponseEntity<Void> deleteStudentLog(@PathVariable int id) throws SQLException {

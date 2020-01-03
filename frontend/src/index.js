@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
 import * as serviceWorker from './serviceWorker';
 import ListStudents from './component/ListStudents';
+import ListStudentLogs from './component/ListStudentLogs';
 import StudentComponent from './component/StudentComponent';
+import StudentLogComponent from './component/StudentLogComponent';
 import Login from './component/Login';
 
 const routing = (
@@ -17,7 +19,10 @@ const routing = (
       <Route path="/" exact component={Login} />
       <Route path="/Login" exact component={Login} />
       <Route path="/ListStudents" exact component={ListStudents} />
+      <Route path="/ListStudentLogs/:id" exact component={ListStudentLogs} />
       <Route path="/Students/:id" component={StudentComponent} />
+      <Route path="/studentLogs/:id" component={StudentLogComponent} />
+
   </Switch>
 
   </>
