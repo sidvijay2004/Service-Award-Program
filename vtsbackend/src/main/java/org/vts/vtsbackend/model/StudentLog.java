@@ -17,14 +17,16 @@ public class StudentLog {
 	private Date activityDate;
 	private String description;
 	private int loggedHours;
+	private String category;
 
 
-	public StudentLog(int id, int studentId, Date activityDate, String description, int loggedHours) {
+	public StudentLog(int id, int studentId, Date activityDate, String description, int loggedHours, String category) {
 		this.id = id;
 		this.studentId = studentId;
 		this.activityDate = activityDate;
 		this.description = description;
 		this.loggedHours = loggedHours;
+		this.category = category;
 	}
 
 	public StudentLog() {
@@ -71,19 +73,23 @@ public class StudentLog {
 		this.loggedHours = loggedHours;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 	@Override
 	public String toString() {
 		return "StudentLog{" +
 				"id=" + id +
 				", studentId=" + studentId +
-				", activityDate='" + activityDate + '\'' +
+				", activityDate=" + activityDate +
 				", description='" + description + '\'' +
 				", loggedHours=" + loggedHours +
+				", category='" + category + '\'' +
 				'}';
 	}
-
-
-
-
-
 }

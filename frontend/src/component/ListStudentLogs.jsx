@@ -83,6 +83,7 @@ class ListStudentLogs extends Component {
                         <th>Activity Date</th>
                         <th>Description</th>
                         <th>Logged Hours</th>
+                        <th>Category of Service</th>
                         <th></th>
                         <th></th>
 
@@ -99,6 +100,7 @@ class ListStudentLogs extends Component {
                                     <td>{studentLog.activityDate}</td>
                                     <td>{studentLog.description}</td>
                                     <td>{studentLog.loggedHours}</td>
+                                    <td>{studentLog.category}</td>
                                     <td><button className="btn btn-warning" onClick={() => this.deleteStudentLogClicked(studentLog.id)}>Delete</button></td>
                                     <td><button className="btn btn-success" onClick={() => this.updateStudentLogClicked(studentLog.id)}>Update</button></td>
 

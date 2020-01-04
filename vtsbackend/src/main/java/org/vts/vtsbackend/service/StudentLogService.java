@@ -35,6 +35,8 @@ public class StudentLogService {
 				studentLog.setActivityDate(rs.getDate("activity_date"));
 				studentLog.setDescription(rs.getString("description"));
 				studentLog.setLoggedHours(rs.getInt("logged_hours"));
+				studentLog.setCategory(rs.getString("category"));
+
 
 
 
@@ -73,7 +75,7 @@ public class StudentLogService {
 				studentLog.setStudentId(rs.getInt("student_id"));
 				studentLog.setActivityDate(rs.getDate("activity_date"));
 				studentLog.setDescription(rs.getString("description"));
-				studentLog.setLoggedHours(rs.getInt("logged_hours"));
+				studentLog.setCategory(rs.getString("category"));
 
 
 
@@ -134,8 +136,8 @@ public class StudentLogService {
 
 	public void insertStudentLog(StudentLog studentLog) throws SQLException {
 
-		String SQL = "INSERT INTO student_Log(student_id, activity_date, description,logged_hours) "
-				+ "VALUES(?,?,?,?)";
+		String SQL = "INSERT INTO student_Log(student_id, activity_date, description,logged_hours, category) "
+				+ "VALUES(?,?,?,?,?)";
 
 		// long id = 0;
 
@@ -147,6 +149,8 @@ public class StudentLogService {
 			pstmt.setDate(i++, studentLog.getActivityDate());
 			pstmt.setString(i++, studentLog.getDescription());
 			pstmt.setInt(i++, studentLog.getLoggedHours());
+			pstmt.setString(i++, studentLog.getCategory());
+
 
 			int affectedRows = pstmt.executeUpdate();
 			// check the affected rows
@@ -179,6 +183,7 @@ public class StudentLogService {
 				+ ",activity_date = ? "
 				+ ", description = ? "
 				+ ", logged_hours = ? "
+				+ ", category = ? "
 				+ " WHERE id = ?";
 
 
@@ -194,7 +199,9 @@ public class StudentLogService {
 			pstmt.setDate(2, studentLog.getActivityDate());
 			pstmt.setString(3, studentLog.getDescription());
 			pstmt.setInt(4, studentLog.getLoggedHours());
-			pstmt.setInt(5, studentLog.getId());
+			pstmt.setString(5, studentLog.getCategory());
+			pstmt.setInt(6, studentLog.getId());
+
 
 			affectedrows = pstmt.executeUpdate();
 
@@ -242,6 +249,7 @@ public class StudentLogService {
 	public StudentLog findById(int id) throws SQLException {
 		PreparedStatement st = null;
 		Connection conn = dbConnect();
+		System.out.print("Inside Find by Id ="+id);
 
 
 		try {
@@ -258,6 +266,8 @@ public class StudentLogService {
 				studentLog.setActivityDate(rs.getDate("activity_date"));
 				studentLog.setDescription(rs.getString("description"));
 				studentLog.setLoggedHours(rs.getInt("logged_hours"));
+				studentLog.setCategory(rs.getString("category"));
+
 
 				return studentLog;
 			}

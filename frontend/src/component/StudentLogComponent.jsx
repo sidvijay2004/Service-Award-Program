@@ -12,7 +12,9 @@ class StudentLogComponent extends Component {
             studentId: this.props.match.params.studentId,
             activityDate: '',
             description: '',
-            loggedHours: ''
+            loggedHours: '',
+            category: ''
+
 
         }
         this.onSubmit = this.onSubmit.bind(this)
@@ -33,6 +35,7 @@ class StudentLogComponent extends Component {
               activityDate: response.data.activityDate,
               description: response.data.description,
               loggedHours: response.data.loggedHours,
+              category: response.data.category,
 
 
             }))
@@ -60,6 +63,10 @@ class StudentLogComponent extends Component {
 
         errors.loggedHours = 'Please enter the time of service preformed'
       }
+      if ((values.category == "")) {
+
+        errors.category = 'Please enter the category type of service preformed'
+      }
 
       return errors
     }
@@ -73,6 +80,8 @@ class StudentLogComponent extends Component {
             activityDate: values.activityDate,
             description: values.description,
             loggedHours: values.loggedHours,
+            category: values.category,
+
 
         }
 
@@ -99,7 +108,7 @@ class StudentLogComponent extends Component {
 
 
       render() {
-        let { id, studentId, activityDate, description, loggedHours} = this.state
+        let { id, studentId, activityDate, description, loggedHours, category} = this.state
 
 
     return (
@@ -108,7 +117,7 @@ class StudentLogComponent extends Component {
 
             <div className="container">
                 <Formik
-                    initialValues={{id, studentId, activityDate, description, loggedHours}}
+                    initialValues={{id, studentId, activityDate, description, loggedHours, category}}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
@@ -126,6 +135,8 @@ class StudentLogComponent extends Component {
                                 <ErrorMessage name="description" component="div"
                                         className="alert alert-warning" />
                                 <ErrorMessage name="loggedHours" component="div"
+                                        className="alert alert-warning" />
+                                <ErrorMessage name="category" component="div"
                                         className="alert alert-warning" />
 
                                 <fieldset className="form-group">
@@ -147,7 +158,12 @@ class StudentLogComponent extends Component {
                                     <label>Hours Logged: </label>
                                     <Field className="form-control" type="text" name="loggedHours" />
                                 </fieldset>
+                                <fieldset className="form-group">
+                                    <label>Category of Service: </label>
+                                    <Field className="form-control" type="text" name="category" />
+                                </fieldset>
                                 <button className="btn btn-success" type="submit">Save</button>
+
                             </Form>
                         )
                     }
