@@ -3,12 +3,23 @@
  */
 package org.vts.vtsbackend.model;
 
+
+import java.sql.Date;
+
 /**
  * @author sidVijay
  *
  */
 public class StudentLog {
-	public StudentLog(int id, int studentId, String activityDate, String description, int loggedHours) {
+
+	private int id;
+	private int studentId;
+	private Date activityDate;
+	private String description;
+	private int loggedHours;
+
+
+	public StudentLog(int id, int studentId, Date activityDate, String description, int loggedHours) {
 		this.id = id;
 		this.studentId = studentId;
 		this.activityDate = activityDate;
@@ -36,11 +47,11 @@ public class StudentLog {
 		this.studentId = studentId;
 	}
 
-	public String getActivityDate() {
+	public Date getActivityDate() {
 		return activityDate;
 	}
 
-	public void setActivityDate(String activityDate) {
+	public void setActivityDate(Date activityDate) {
 		this.activityDate = activityDate;
 	}
 
@@ -72,11 +83,7 @@ public class StudentLog {
 	}
 
 
-	private int id;
-	private int studentId;
-	private String activityDate;
-	private String description;
-	private int loggedHours;
+
 
 
 }

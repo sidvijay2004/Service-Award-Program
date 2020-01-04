@@ -8,7 +8,6 @@ class StudentComponent extends Component {
         super(props)
 
         this.state = {
-            id: this.props.match.params.id,
             firstName: '',
             lastName: '',
             studentNum: '',

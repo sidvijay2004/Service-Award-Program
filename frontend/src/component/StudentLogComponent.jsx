@@ -9,7 +9,7 @@ class StudentLogComponent extends Component {
 
         this.state = {
             id: this.props.match.params.id,
-            studentId: '',
+            studentId: this.props.match.params.studentId,
             activityDate: '',
             description: '',
             loggedHours: ''
@@ -129,12 +129,11 @@ class StudentLogComponent extends Component {
                                         className="alert alert-warning" />
 
                                 <fieldset className="form-group">
-                                    <label>Id</label>
-                                    <Field className="form-control" type="text" name="id" disabled />
+
+                                    <Field className="form-control" type="text" name="id" hidden />
                                 </fieldset>
                                 <fieldset className="form-group">
-                                    <label>Student Id: </label>
-                                    <Field className="form-control" type="text" name="studentId"   />
+                                    <Field className="form-control" type="text" name="studentId"  hidden />
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Activity Date: </label>

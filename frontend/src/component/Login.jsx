@@ -106,7 +106,7 @@ class Login extends Component {
                               </fieldset>
                               <fieldset className="form-group">
                                   <label>Password: </label>
-                                  <Field className="form-control" type="text" name="password"   />
+                                  <Field className="form-control" type="password" name="password"   />
                               </fieldset>
 
                               <button className="btn btn-success" type="Submit">Submit</button>

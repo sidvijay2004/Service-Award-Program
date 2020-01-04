@@ -21,7 +21,7 @@ const routing = (
       <Route path="/ListStudents" exact component={ListStudents} />
       <Route path="/ListStudentLogs/:id" exact component={ListStudentLogs} />
       <Route path="/Students/:id" component={StudentComponent} />
-      <Route path="/studentLogs/:id" component={StudentLogComponent} />
+      <Route path="/studentLogs/:id/:studentId" component={StudentLogComponent} />
 
   </Switch>
 

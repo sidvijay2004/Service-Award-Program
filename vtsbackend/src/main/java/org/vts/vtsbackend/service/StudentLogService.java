@@ -32,7 +32,7 @@ public class StudentLogService {
 				StudentLog studentLog = new StudentLog();
 				studentLog.setId(rs.getInt("id"));
 				studentLog.setStudentId(rs.getInt("student_id"));
-				studentLog.setActivityDate(rs.getString("activity_date"));
+				studentLog.setActivityDate(rs.getDate("activity_date"));
 				studentLog.setDescription(rs.getString("description"));
 				studentLog.setLoggedHours(rs.getInt("logged_hours"));
 
@@ -71,7 +71,7 @@ public class StudentLogService {
 				StudentLog studentLog = new StudentLog();
 				studentLog.setId(rs.getInt("id"));
 				studentLog.setStudentId(rs.getInt("student_id"));
-				studentLog.setActivityDate(rs.getString("activity_date"));
+				studentLog.setActivityDate(rs.getDate("activity_date"));
 				studentLog.setDescription(rs.getString("description"));
 				studentLog.setLoggedHours(rs.getInt("logged_hours"));
 
@@ -144,7 +144,7 @@ public class StudentLogService {
 
 			int i = 1;
 			pstmt.setInt(i++, studentLog.getStudentId());
-			pstmt.setString(i++, studentLog.getActivityDate());
+			pstmt.setDate(i++, studentLog.getActivityDate());
 			pstmt.setString(i++, studentLog.getDescription());
 			pstmt.setInt(i++, studentLog.getLoggedHours());
 
@@ -191,7 +191,7 @@ public class StudentLogService {
 
 
 			pstmt.setInt(1, studentLog.getStudentId());
-			pstmt.setString(2, studentLog.getActivityDate());
+			pstmt.setDate(2, studentLog.getActivityDate());
 			pstmt.setString(3, studentLog.getDescription());
 			pstmt.setInt(4, studentLog.getLoggedHours());
 			pstmt.setInt(5, studentLog.getId());
@@ -255,7 +255,7 @@ public class StudentLogService {
 				StudentLog studentLog = new StudentLog();
 				studentLog.setId(rs.getInt("id"));
 				studentLog.setStudentId(rs.getInt("student_id"));
-				studentLog.setActivityDate(rs.getString("activity_date"));
+				studentLog.setActivityDate(rs.getDate("activity_date"));
 				studentLog.setDescription(rs.getString("description"));
 				studentLog.setLoggedHours(rs.getInt("logged_hours"));
 
