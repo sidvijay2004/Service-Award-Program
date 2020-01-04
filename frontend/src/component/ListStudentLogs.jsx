@@ -83,6 +83,9 @@ class ListStudentLogs extends Component {
                         <th>Activity Date</th>
                         <th>Description</th>
                         <th>Logged Hours</th>
+                        <th></th>
+                        <th></th>
+
 
                     </tr>
                 </thead>

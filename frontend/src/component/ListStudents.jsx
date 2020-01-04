@@ -75,16 +75,16 @@ class ListStudents extends Component {
                 <table border = "3">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Student Number</th>
                         <th>Email</th>
                         <th>Age</th>
                         <th>Grade</th>
-                        <th>Delete</th>
-                        <th>Update</th>
-                        <th>Hours</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -92,7 +92,6 @@ class ListStudents extends Component {
                         this.state.students.map(
                             student =>
                                 <tr key={student.studentId}>
-                                    <td>{student.studentId}</td>
                                     <td>{student.firstName}</td>
                                     <td>{student.lastName}</td>
                                     <td>{student.studentNum}</td>

@@ -8,6 +8,7 @@ class StudentComponent extends Component {
         super(props)
 
         this.state = {
+            id: this.props.match.params.id,
             firstName: '',
             lastName: '',
             studentNum: '',
@@ -15,6 +16,7 @@ class StudentComponent extends Component {
             age: '',
             grade: ''
         }
+        this.handleChange = this.handleChange.bind(this)
         this.handleGradeChange = this.handleGradeChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
@@ -80,12 +82,18 @@ class StudentComponent extends Component {
       return errors
     }
 
+    handleChange(evt) {
+      console.log("2 Checking evt.target.name:" + evt.target.name);
+
+      const value =
+        evt.target.type === "checkbox" ? evt.target.checked : evt.target.value;
+        this.setState({[evt.target.name]: evt.target.value});
+    }
+
     handleGradeChange(event) {
       console.log("Before Last Name:" + this.state.lastName);
       this.setState({grade: event.target.value});
       console.log("After Last Name:" + this.state.lastName);
-
-
     }
 
     onSubmit(values) {
@@ -156,28 +164,27 @@ class StudentComponent extends Component {
                                        className="alert alert-warning" />
 
                                 <fieldset className="form-group">
-                                    <label>Id</label>
-                                    <Field className="form-control" type="text" name="id" disabled />
+                                    <Field className="form-control" type="text" name="id" hidden />
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>First Name: </label>
-                                    <Field className="form-control" type="text" name="firstName"   />
+                                    <Field className="form-control" type="text" name="firstName"  onChange={this.handleChange} />
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Last Name: </label>
-                                    <Field className="form-control" type="text" name="lastName" />
+                                    <Field className="form-control" type="text" name="lastName" onChange={this.handleChange}/>
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Student Number: </label>
-                                    <Field className="form-control" type="text" name="studentNum" />
+                                    <Field className="form-control" type="text" name="studentNum" onChange={this.handleChange}/>
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Email: </label>
-                                    <Field className="form-control" type="text" name="email" />
+                                    <Field className="form-control" type="text" name="email" onChange={this.handleChange}/>
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Age: </label>
-                                    <Field className="form-control" type="text" name="age" />
+                                    <Field className="form-control" type="text" name="age" onChange={this.handleChange} />
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Grade:
