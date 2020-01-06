@@ -26,6 +26,8 @@ public class ReportService {
 	}
 
 	public List<StudentReport> getMonthlyReport(int studentId) throws SQLException {
+		System.out.println("SstudentId = " + studentId);
+
 		PreparedStatement st = null;
 		Connection conn = dbConnect();
 		List<StudentReport> studentReports = new ArrayList<>();
@@ -50,6 +52,10 @@ public class ReportService {
 				studentReport.setPeriod(rs.getString("period"));
 				studentReport.setTotalHours(rs.getInt("total_hours"));
 				studentReports.add(studentReport);
+
+
+
+				System.out.println("Student Report" + studentReport);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

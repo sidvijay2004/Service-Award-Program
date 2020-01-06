@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import StudentLogService from '../service/StudentLogService';
+import ReportService from '../service/ReportService';
+
 
 
 class ListStudentLogs extends Component {
@@ -61,6 +63,7 @@ class ListStudentLogs extends Component {
         this.props.history.push(`/studentLogs/-1/${this.state.studentId}`)
     }
 
+
     updateStudentLogClicked(id) {
       console.log('update ' + id)
       console.log("this.state.studentId= " + this.state.studentId);
@@ -115,6 +118,8 @@ class ListStudentLogs extends Component {
                 <div className="row">
                       <button className="btn btn-success" onClick={this.addStudentLogClicked}>Add</button>
                 </div>
+
+
 
                 </div>
             </div>

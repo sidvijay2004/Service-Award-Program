@@ -8,6 +8,8 @@ import ListStudentLogs from './component/ListStudentLogs';
 import StudentComponent from './component/StudentComponent';
 import StudentLogComponent from './component/StudentLogComponent';
 import Login from './component/Login';
+import StudentReportMonthly from './component/StudentReportMonthly';
+
 
 const routing = (
 
@@ -22,6 +24,8 @@ const routing = (
       <Route path="/ListStudentLogs/:id" exact component={ListStudentLogs} />
       <Route path="/Students/:id" component={StudentComponent} />
       <Route path="/studentLogs/:id/:studentId" component={StudentLogComponent} />
+      <Route path="/monthlyStudentReport/:studentId" component={StudentReportMonthly} />
+
 
   </Switch>
 
