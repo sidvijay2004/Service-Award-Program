@@ -19,7 +19,13 @@ public class ReportController {
     @GetMapping("/monthlyStudentReport/{studentId}")
     public List<StudentReport> getStudentMonthlyReport(@PathVariable int studentId) throws SQLException {
         System.out.println("Inside Get All getStudentMonthlyReport method");
-        return reportService.getMonthlyReport(studentId);
+        return reportService.getMonthlyStudentReport(studentId);
+    }
+
+    @GetMapping("/weeklyStudentReport/{studentId}")
+    public List<StudentReport> getStudentWeeklyReport(@PathVariable int studentId) throws SQLException {
+        System.out.println("Inside Get All getStudentWeeklyReport method");
+        return reportService.getWeeklyStudentReport(studentId);
     }
 
 

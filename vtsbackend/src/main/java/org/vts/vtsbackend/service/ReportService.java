@@ -25,20 +25,41 @@ public class ReportService {
 		return DriverManager.getConnection(url, user, password);
 	}
 
-	public List<StudentReport> getMonthlyReport(int studentId) throws SQLException {
+	public List<StudentReport> getMonthlyStudentReport(int studentId) throws SQLException {
 		System.out.println("SstudentId = " + studentId);
 
+		return getStudentReports(studentId, "M");
+	}
+	public List<StudentReport> getWeeklyStudentReport(int studentId) throws SQLException {
+		System.out.println("SstudentId = " + studentId);
+
+		return getStudentReports(studentId, "W");
+	}
+
+
+
+	private List<StudentReport> getStudentReports(int studentId, String type) throws SQLException {
 		PreparedStatement st = null;
 		Connection conn = dbConnect();
 		List<StudentReport> studentReports = new ArrayList<>();
 
+		String period = "IYYY-MM";
+
+		if(type.equals("W")){
+			period = "IYYY-IW";
+		}
+
+
+		String sql = "select first_name, last_name, to_char(activity_date, '" + period + "') as period, sum (logged_hours) as total_hours" +
+					" from student_log a, student b" +
+					" where a.student_id = b.id and b.id = ?" +
+					" group by first_name, last_name, period" +
+					" order by 1,2,3";
+
+
 
 		try {
-			st = conn.prepareStatement("select first_name, last_name, to_char(activity_date, 'YYYY-MM') as period, sum (logged_hours) as total_hours" +
-							" from student_log a, student b" +
-							" where a.student_id = b.id and b.id = ?" +
-							" group by first_name, last_name, period" +
-							" order by 1,2,3");
+			st = conn.prepareStatement(sql);
 
 
 			st.setInt(1, studentId);
@@ -72,4 +93,4 @@ public class ReportService {
 		return studentReports;
 	}
 
-	}
+}

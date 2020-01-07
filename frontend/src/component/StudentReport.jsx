@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReportService from '../service/ReportService';
 
 
-class StudentReportMonthly extends Component {
+class StudentReport extends Component {
 
   constructor(props) {
 
@@ -10,6 +10,7 @@ class StudentReportMonthly extends Component {
       this.state = {
         studentReports: [],
         studentId: this.props.match.params.studentId,
+        name: '',
         message: null
       }
       this.refreshStudents = this.refreshStudents.bind(this)
@@ -24,6 +25,7 @@ class StudentReportMonthly extends Component {
   refreshStudents() {
     console.log("Iside refresh stud");
 
+
       ReportService.getStudentMonthlyReport(this.state.studentId)
           .then(
               response => {
@@ -34,10 +36,22 @@ class StudentReportMonthly extends Component {
           )
   }
 
+  getWeeklyReport(studentId) {
+
+    ReportService.getStudentWeeklyReport(this.state.studentId)
+        .then(
+            response => {
+                console.log(response);
+                this.setState({ studentReports: response.data})
+
+            }
+        )
+      }
+
 render() {
     return (
         <div className="container">
-            <h3>Student Report student.firstName</h3>
+            <h3>Student Report</h3>
             {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
 
             <div className="container">
@@ -78,4 +92,4 @@ render() {
 }
 
 
-export default StudentReportMonthly
+export default StudentReport
