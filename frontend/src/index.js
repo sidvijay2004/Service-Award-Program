@@ -15,7 +15,7 @@ const routing = (
 
 <Router>
 <>
-   <h1>Admin Home Page</h1>
+   <h1>Admin</h1>
 
   <Switch>
       <Route path="/" exact component={Login} />

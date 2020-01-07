@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import StudentService from '../service/StudentService';
+import ReportService from '../service/ReportService';
+
 
 
 class ListStudents extends Component {
@@ -36,6 +38,10 @@ class ListStudents extends Component {
 
                   }
               )
+      }
+
+      studentReport(studentId) {
+        this.props.history.push(`/monthlyStudentReport/${studentId}`)
       }
       deleteStudentClicked(id) {
         this.setState({ message: `Delete of student ${id} starting` })
@@ -84,6 +90,7 @@ class ListStudents extends Component {
                         <th></th>
                         <th></th>
                         <th></th>
+                        <th></th>
 
                     </tr>
                 </thead>
@@ -101,6 +108,8 @@ class ListStudents extends Component {
                                     <td><button className="btn btn-warning" onClick={() => this.deleteStudentClicked(student.studentId)}>Delete</button></td>
                                     <td><button className="btn btn-success" onClick={() => this.updateStudentClicked(student.studentId)}>Update</button></td>
                                     <td><button className="btn btn-success" onClick={() => this.listHours(student.studentId)}>Hours</button></td>
+                                    <td><button className="btn btn-success" onClick={() => this.studentReport(student.studentId)}>Monthly Report</button></td>
+
 
                                 </tr>
 
@@ -110,9 +119,14 @@ class ListStudents extends Component {
 
                   </table>
 
+
+
                 <div className="row">
                       <button className="btn btn-success" onClick={this.addStudentClicked}>Add</button>
                 </div>
+
+
+
 
                 </div>
             </div>
