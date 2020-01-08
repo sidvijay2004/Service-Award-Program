@@ -41,7 +41,7 @@ class ListStudents extends Component {
       }
 
       studentReport(studentId) {
-        this.props.history.push(`/StudentReport/${studentId}`)
+        this.props.history.push(`/StudentReport/${studentId}?period=m`)
       }
       deleteStudentClicked(id) {
         this.setState({ message: `Delete of student ${id} starting` })
