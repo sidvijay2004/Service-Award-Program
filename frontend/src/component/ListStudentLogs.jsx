@@ -20,6 +20,8 @@ class ListStudentLogs extends Component {
           this.updateStudentLogClicked = this.updateStudentLogClicked.bind(this)
           this.addStudentLogClicked = this.addStudentLogClicked.bind(this)
           this.refreshStudentLogs = this.refreshStudentLogs.bind(this)
+          this.gotoListStudents = this.gotoListStudents.bind(this)
+
 
 
       }
@@ -71,6 +73,10 @@ class ListStudentLogs extends Component {
       this.props.history.push(`/studentLogs/${id}/${this.state.studentId}`)
       }
 
+      // gotoListStudents() {
+      //   this.props.history.push(`/ListStudents`)
+      //   }
+
     render() {
         return (
             <div className="container">
@@ -117,12 +123,15 @@ class ListStudentLogs extends Component {
 
                 <div className="row">
                       <button className="btn btn-success" onClick={this.addStudentLogClicked}>Add</button>
-                </div>
-
-
+                      <button className="btn btn-success" onClick={this.gotoListStudents}>Student List</button>
 
                 </div>
+
+
             </div>
+
+            </div>
+
         )
     }
 }

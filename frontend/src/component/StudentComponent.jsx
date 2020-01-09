@@ -20,6 +20,7 @@ class StudentComponent extends Component {
         this.handleGradeChange = this.handleGradeChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
+        this.gotoListStudents = this.gotoListStudents.bind(this)
   }
 
   componentDidMount() {
@@ -95,6 +96,11 @@ class StudentComponent extends Component {
       this.setState({grade: event.target.value});
       console.log("After Last Name:" + this.state.lastName);
     }
+
+
+      gotoListStudents() {
+        this.props.history.push(`/ListStudents`)
+        }
 
     onSubmit(values) {
 
@@ -200,6 +206,8 @@ class StudentComponent extends Component {
 
                                 </fieldset>
                                 <button className="btn btn-success" type="submit">Save</button>
+                                <button className="btn btn-success" onClick={this.gotoListStudents}>Cancel</button>
+
                             </Form>
                         )
                     }

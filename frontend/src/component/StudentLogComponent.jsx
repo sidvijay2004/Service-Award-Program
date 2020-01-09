@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import StudentLogService from '../service/StudentLogService';
 
+
 class StudentLogComponent extends Component {
 
   constructor(props) {
@@ -35,7 +36,7 @@ class StudentLogComponent extends Component {
               activityDate: response.data.activityDate,
               description: response.data.description,
               loggedHours: response.data.loggedHours,
-              category: response.data.category,
+              category: response.data.category
 
 
             }))
@@ -80,7 +81,7 @@ class StudentLogComponent extends Component {
             activityDate: values.activityDate,
             description: values.description,
             loggedHours: values.loggedHours,
-            category: values.category,
+            category: values.category
 
 
         }
