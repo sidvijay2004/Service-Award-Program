@@ -9,6 +9,8 @@ import StudentComponent from './component/StudentComponent';
 import StudentLogComponent from './component/StudentLogComponent';
 import Login from './component/Login';
 import StudentReport from './component/StudentReport';
+import ServiceAward from './component/ServiceAward';
+
 
 
 const routing = (
@@ -24,7 +26,9 @@ const routing = (
       <Route path="/ListStudentLogs/:id" exact component={ListStudentLogs} />
       <Route path="/Students/:id" component={StudentComponent} />
       <Route path="/studentLogs/:id/:studentId" component={StudentLogComponent} />
-      <Route path="/StudentReport/:studentId" component={StudentReport} />
+      <Route path="/StudentReport/:studentId?period=m" component={StudentReport} />
+      <Route path="/StudentReport/:studentId?period=w" component={StudentReport} />
+      <Route path="/getStudentTotalHours" component={ServiceAward} />
 
 
 

@@ -73,9 +73,9 @@ class ListStudentLogs extends Component {
       this.props.history.push(`/studentLogs/${id}/${this.state.studentId}`)
       }
 
-      // gotoListStudents() {
-      //   this.props.history.push(`/ListStudents`)
-      //   }
+      gotoListStudents() {
+        this.props.history.push(`/ListStudents`)
+        }
 
     render() {
         return (

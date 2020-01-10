@@ -14,6 +14,12 @@ class ReportService {
       return axios.get(`${BACKEND_HOST}/weeklyStudentReport/${studentId}`);
     }
 
+    getStudentTotalHours() {
+      return axios.get(`${BACKEND_HOST}/getStudentTotalHours`);
+    }
+
+
+
 }
 
 export default new ReportService()

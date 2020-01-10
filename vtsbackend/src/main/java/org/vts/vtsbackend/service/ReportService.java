@@ -51,10 +51,10 @@ public class ReportService {
 
 
 		String sql = "select first_name, last_name, to_char(activity_date, '" + period + "') as period, sum (logged_hours) as total_hours" +
-					" from student_log a, student b" +
-					" where a.student_id = b.id and b.id = ?" +
-					" group by first_name, last_name, period" +
-					" order by 1,2,3";
+				" from student_log a, student b" +
+				" where a.student_id = b.id and b.id = ?" +
+				" group by first_name, last_name, period" +
+				" order by 1,2,3";
 
 
 
@@ -76,6 +76,45 @@ public class ReportService {
 
 
 
+				System.out.println("Student Report" + studentReport);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (st != null) {
+				st.close();
+			}
+			conn.close();
+		}
+
+
+		return studentReports;
+	}
+
+	public List<StudentReport> getStudentTotalHours() throws SQLException {
+		PreparedStatement st = null;
+		Connection conn = dbConnect();
+		List<StudentReport> studentReports = new ArrayList<>();
+
+		String sql = "select first_name, last_name, sum (logged_hours) as total_hours" +
+				" from student_log a, student b" +
+				" where a.student_id = b.id" +
+				" group by first_name, last_name" +
+				" order by 1,2,3";
+
+		try {
+			st = conn.prepareStatement(sql);
+
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				System.out.print("Column 1 returned ");
+				StudentReport studentReport = new StudentReport();
+				studentReport.setFirstName(rs.getString("first_name"));
+				studentReport.setLastName(rs.getString("last_name"));
+				studentReport.setTotalHours(rs.getInt("total_hours"));
+				studentReports.add(studentReport);
 				System.out.println("Student Report" + studentReport);
 			}
 		} catch (SQLException e) {
