@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import StudentService from '../service/StudentService';
 import ReportService from '../service/ReportService';
 
+// const ReactTable = window.ReactTable.default;
 
 
 class ListStudents extends Component {
@@ -120,6 +121,10 @@ class ListStudents extends Component {
 
                   </table>
 
+
+                  <div>
+
+  			</div>
 
 
                 <div className="row">

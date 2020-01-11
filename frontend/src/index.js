@@ -8,6 +8,7 @@ import ListStudentLogs from './component/ListStudentLogs';
 import StudentComponent from './component/StudentComponent';
 import StudentLogComponent from './component/StudentLogComponent';
 import Login from './component/Login';
+import StartPage from './component/StartPage';
 import StudentLogin from './component/StudentLogin';
 import StudentReport from './component/StudentReport';
 import ServiceAward from './component/ServiceAward';
@@ -21,7 +22,7 @@ const routing = (
    <h1>Admin</h1>
 
   <Switch>
-      <Route path="/" exact component={Login} />
+      <Route path="/" exact component={StartPage} />
       <Route path="/Login" exact component={Login} />
       <Route path="/StudentLogin" exact component={StudentLogin} />
       <Route path="/ListStudents" exact component={ListStudents} />

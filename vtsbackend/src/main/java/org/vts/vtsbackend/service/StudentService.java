@@ -247,4 +247,67 @@ public class StudentService {
 		return null;
 
 	}
+
+	public List<Student> search(String searchText) throws SQLException {
+		PreparedStatement st = null;
+		Connection conn = DatabseUtil.dbConnect();
+		List<Student> students = new ArrayList<>();
+
+		int searchInt = 0;
+
+		if (searchText != null) {
+			try {
+				searchInt = Integer.parseInt(searchText);
+
+			} catch (NumberFormatException nfe){
+
+			}
+		}
+
+		try {
+
+			st = conn.prepareStatement("SELECT *" +
+					" FROM student" +
+					" WHERE" +
+					" LOWER(first_name) like LOWER(?) or" +
+					" LOWER(last_name) like LOWER(?) or" +
+					" LOWER(email) like LOWER(?) or" +
+					" age = ? or" +
+					" grade = ?");
+
+			st.setString(1, "%" + searchText + "%" );
+			st.setString(2, "%" + searchText + "%" );
+			st.setString(3, "%" + searchText + "%" );
+			st.setInt(4, searchInt);
+			st.setInt(5, searchInt);
+
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				System.out.print("Column 1 returned ");
+				Student student = new Student();
+				student.setStudentId(rs.getInt("id"));
+				student.setFirstName(rs.getString("first_name"));
+				student.setLastName(rs.getString("last_name"));
+				student.setStudentNum(rs.getString("student_num"));
+				student.setEmail(rs.getString("email"));
+				student.setAge(rs.getInt("age"));
+				student.setGrade(rs.getInt("grade"));
+
+
+				students.add(student);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (st != null) {
+				st.close();
+			}
+			conn.close();
+		}
+
+
+		return students;
+	}
 }

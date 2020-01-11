@@ -28,7 +28,7 @@ public class LoginService {
         PreparedStatement st = null;
         Connection conn = DatabseUtil.dbConnect();
 
-		System.out.println("Inside student login id:" + idx);
+		System.out.println("Inside student login id:" + id);
 
         try {
             st = conn.prepareStatement("select * " +
