@@ -14,6 +14,14 @@ class LoginService {
                       }
                     });
   }
+  isValidStudentLogin(username, password) {
+      return axios.get(`${BACKEND_HOST}/studentLogin/`, {
+                  params: {
+                    username: username,
+                    password: password
+                      }
+                    });
+  }
 
 }
 

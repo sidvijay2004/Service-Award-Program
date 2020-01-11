@@ -38,7 +38,9 @@ class StudentComponent extends Component {
               studentNum: response.data.studentNum,
               email: response.data.email,
               age: response.data.age,
-              grade: response.data.grade
+              grade: response.data.grade,
+              password: response.data.password
+
 
             }))
             console.log("this state Last Name:" + this.state.lastName);
@@ -111,7 +113,9 @@ class StudentComponent extends Component {
             studentNum: values.studentNum,
             email: values.email,
             age: values.age,
-            grade: values.grade
+            grade: values.grade,
+            password: values.password
+
 
         }
 
@@ -137,7 +141,7 @@ class StudentComponent extends Component {
 
 
       render() {
-        let { firstName, lastName, studentNum, email, age, grade, id } = this.state
+        let { firstName, lastName, studentNum, email, age, grade, password, id } = this.state
 
         console.log("render state Last Name:" + this.state.lastName);
 
@@ -147,7 +151,7 @@ class StudentComponent extends Component {
 
             <div className="container">
                 <Formik
-                    initialValues={{firstName, lastName, studentNum, email, age, grade, id}}
+                    initialValues={{firstName, lastName, studentNum, email, age, grade, password, id}}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
@@ -186,7 +190,7 @@ class StudentComponent extends Component {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Email: </label>
-                                    <Field className="form-control" type="text" name="email" onChange={this.handleChange}/>
+                                    <Field className="form-control" type="email" name="email" onChange={this.handleChange}/>
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Age: </label>
@@ -204,6 +208,10 @@ class StudentComponent extends Component {
 
                                       </label>
 
+                                </fieldset>
+                                <fieldset className="form-group">
+                                    <label>Password: </label>
+                                    <Field className="form-control" type="text" name="password" onChange={this.handleChange} />
                                 </fieldset>
                                 <button className="btn btn-success" type="submit">Save</button>
                                 <button className="btn btn-success" onClick={this.gotoListStudents}>Cancel</button>

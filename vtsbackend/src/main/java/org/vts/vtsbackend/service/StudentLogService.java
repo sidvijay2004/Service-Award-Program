@@ -2,6 +2,7 @@ package org.vts.vtsbackend.service;
 
 import org.springframework.stereotype.Service;
 import org.vts.vtsbackend.model.StudentLog;
+import org.vts.vtsbackend.util.DatabseUtil;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class StudentLogService {
 
 	public List<StudentLog> findByStudentId(int studentId) throws SQLException {
 		PreparedStatement st = null;
-		Connection conn = dbConnect();
+		Connection conn = DatabseUtil.dbConnect();
 		List<StudentLog> studentLogs = new ArrayList<>();
 
 
@@ -59,14 +60,11 @@ public class StudentLogService {
 
 	public List<StudentLog> findAll() throws SQLException {
 		PreparedStatement st = null;
-		Connection conn = dbConnect();
+		Connection conn = DatabseUtil.dbConnect();
 		List<StudentLog> studentLogs = new ArrayList<>();
-
 
 		try {
 			st = conn.prepareStatement("SELECT * FROM student_Log order by id");
-
-
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				System.out.print("Column 1 returned ");
@@ -76,9 +74,6 @@ public class StudentLogService {
 				studentLog.setActivityDate(rs.getDate("activity_date"));
 				studentLog.setDescription(rs.getString("description"));
 				studentLog.setCategory(rs.getString("category"));
-
-
-
 				studentLogs.add(studentLog);
 			}
 		} catch (SQLException e) {
@@ -91,47 +86,25 @@ public class StudentLogService {
 			}
 			conn.close();
 		}
-
-
 		return studentLogs;
 	}
 
-
 	public StudentLog save(StudentLog studentLog) throws SQLException {
-
-		System.out.println(studentLog);
-
 		if (studentLog.getId() == -1 || studentLog.getId() == 0) {
 			System.out.println("Inside if condit");
-
 			insertStudentLog(studentLog);
 
-
 		} else {
-
 			System.out.println("Inside else condit");
-
 			updateStudentLog(studentLog);
 
 		}
 		return studentLog;
 	}
 
-	public Connection dbConnect() throws SQLException {
-		String url = "jdbc:postgresql://localhost:5432/postgres";
-
-		String user = "postgres";
-
-		String password = "falcons";
-
-		return DriverManager.getConnection(url, user, password);
-	}
-
 	private static java.sql.Timestamp getCurrentTimeStamp() {
-
 		java.util.Date today = new java.util.Date();
 		return new java.sql.Timestamp(today.getTime());
-
 	}
 
 	public void insertStudentLog(StudentLog studentLog) throws SQLException {
@@ -141,7 +114,8 @@ public class StudentLogService {
 
 		// long id = 0;
 
-		try (Connection conn = dbConnect();
+		try (
+				Connection conn = DatabseUtil.dbConnect();
 			 PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
 			int i = 1;
@@ -154,20 +128,7 @@ public class StudentLogService {
 
 			int affectedRows = pstmt.executeUpdate();
 			// check the affected rows
-			if (affectedRows > 0) {
 
-				System.out.println("Row added");
-
-				// get the ID back
-//              try (ResultSet rs = pstmt.getGeneratedKeys()) {
-//                  if (rs.next()) {
-//                      id = rs.getLong(1);
-//                  }
-//              } catch (SQLException ex) {
-//                  System.out.println(ex.getMessage());
-//              }
-
-			}
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
 			throw ex;
@@ -190,19 +151,14 @@ public class StudentLogService {
 		int affectedrows = 0;
 
 		try (
-				Connection conn = dbConnect();
+				Connection conn = DatabseUtil.dbConnect();
 				PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-
-
-
 			pstmt.setInt(1, studentLog.getStudentId());
 			pstmt.setDate(2, studentLog.getActivityDate());
 			pstmt.setString(3, studentLog.getDescription());
 			pstmt.setInt(4, studentLog.getLoggedHours());
 			pstmt.setString(5, studentLog.getCategory());
 			pstmt.setInt(6, studentLog.getId());
-
-
 			affectedrows = pstmt.executeUpdate();
 
 		} catch (SQLException ex) {
@@ -217,7 +173,8 @@ public class StudentLogService {
 
 		int affectedrows = 0;
 
-		try (Connection conn = dbConnect();
+		try (
+				Connection conn = DatabseUtil.dbConnect();
 			 PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
 			pstmt.setInt(1, id);
@@ -233,22 +190,9 @@ public class StudentLogService {
 		return affectedrows;
 	}
 
-//	public StudentLog deleteById(int id) {
-//		StudentLog studentLog = findById(id);
-//
-//		if (studentLog == null)
-//			return null;
-//
-//		if (studentLogs.remove(studentLog)) {
-//			return studentLog;
-//		}
-//
-//		return null;
-//	}
-
 	public StudentLog findById(int id) throws SQLException {
 		PreparedStatement st = null;
-		Connection conn = dbConnect();
+		Connection conn = DatabseUtil.dbConnect();
 		System.out.print("Inside Find by Id ="+id);
 
 

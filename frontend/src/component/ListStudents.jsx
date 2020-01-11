@@ -92,6 +92,7 @@ class ListStudents extends Component {
                         <th></th>
                         <th></th>
 
+
                     </tr>
                 </thead>
                 <tbody>

@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.vts.vtsbackend.model.Student;
+import org.vts.vtsbackend.util.DatabseUtil;
 
 @Service
 public class StudentService {
@@ -22,7 +23,7 @@ public class StudentService {
 
 	public List<Student> findAll() throws SQLException {
 		PreparedStatement st = null;
-		Connection conn = dbConnect();
+		Connection conn = DatabseUtil.dbConnect();
 		List<Student> students = new ArrayList<>();
 
 
@@ -81,16 +82,6 @@ public class StudentService {
 		return student;
 	}
 
-	public Connection dbConnect() throws SQLException {
-		String url = "jdbc:postgresql://localhost:5432/postgres";
-
-		String user = "postgres";
-
-		String password = "falcons";
-
-		return DriverManager.getConnection(url, user, password);
-	}
-
 	private static java.sql.Timestamp getCurrentTimeStamp() {
 
 		java.util.Date today = new java.util.Date();
@@ -99,14 +90,13 @@ public class StudentService {
 	}
 
 	public void insertStudent(Student student) throws SQLException {
-
-		student.setPassword("xyz");
 		String SQL = "INSERT INTO student(first_name,last_name,student_num ,email,password,age,grade,created_on,last_login) "
 				+ "VALUES(?,?,?,?,?,?,?,?,?)";
 
 		// long id = 0;
 
-		try (Connection conn = dbConnect();
+		try (
+				Connection conn = DatabseUtil.dbConnect();
 			 PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
 			pstmt.setString(1, student.getFirstName());
@@ -152,13 +142,14 @@ public class StudentService {
 				+ ", email = ? "
 				+ ", age = ? "
 				+ ", grade = ? "
+				+ ", password = ? "
 				+ "WHERE id = ?";
 
 
 		int affectedrows = 0;
 
 		try (
-				Connection conn = dbConnect();
+				Connection conn = DatabseUtil.dbConnect();
 				PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
 
@@ -168,7 +159,8 @@ public class StudentService {
 			pstmt.setString(4, student.getEmail());
 			pstmt.setLong(5, student.getAge());
 			pstmt.setLong(6, student.getGrade());
-			pstmt.setInt(7, student.getStudentId());
+			pstmt.setString(7, student.getPassword());
+			pstmt.setInt(8, student.getStudentId());
 
 
 			affectedrows = pstmt.executeUpdate();
@@ -185,7 +177,8 @@ public class StudentService {
 
 		int affectedrows = 0;
 
-		try (Connection conn = dbConnect();
+		try (
+				Connection conn = DatabseUtil.dbConnect();
 			 PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
 			pstmt.setInt(1, id);
@@ -216,7 +209,7 @@ public class StudentService {
 
 	public Student findById(int id) throws SQLException {
 		PreparedStatement st = null;
-		Connection conn = dbConnect();
+		Connection conn = DatabseUtil.dbConnect();
 
 
 		try {
