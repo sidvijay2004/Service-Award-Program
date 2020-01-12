@@ -33,6 +33,12 @@ public class StudentController {
         return studentService.findAll();
     }
 
+    @GetMapping("/searchStudents")
+    public List<Student> searchStudents(String searchText) throws SQLException {
+        System.out.println("Inside searchStudents searchStudents: " + searchText );
+        return studentService.search(searchText);
+    }
+
     @DeleteMapping("/students/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable int id) throws SQLException {
         System.out.println("Inside Delete students");

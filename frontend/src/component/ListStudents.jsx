@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import {useTable, useFilters, userGlobaalFilter } from 'react-table';
 import StudentService from '../service/StudentService';
 import ReportService from '../service/ReportService';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 
 // const ReactTable = window.ReactTable.default;
 
@@ -20,8 +23,7 @@ class ListStudents extends Component {
           this.updateStudentClicked = this.updateStudentClicked.bind(this)
           this.addStudentClicked = this.addStudentClicked.bind(this)
           this.refreshStudents = this.refreshStudents.bind(this)
-
-
+          this.handleSearchChange = this.handleSearchChange.bind(this)
       }
 
       componentDidMount() {
@@ -72,13 +74,42 @@ class ListStudents extends Component {
         this.props.history.push(`/ListStudentLogs/${id}`)
         }
 
+    handleSearchChange(event) {
+      console.log("Inside handleSearchChange:event.target.value=" + event.target.value);
+
+        StudentService.searchStudents(event.target.value)
+            .then(
+                response => {
+                    console.log(response);
+                    this.setState({ students: response.data})
+
+                }
+            )
+
+    }
+
     render() {
         return (
             <div className="container">
                 <h3>Student List</h3>
                 {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
 
+
+
+
+                <form onSubmit={this.handleSubmit}>
+                <label>
+                  Search:
+                  <input type="text" value={this.state.value} onChange={this.handleSearchChange} />
+                </label>
+              </form>
+
+
                 <div className="container">
+
+
+
+
                 <table border = "3">
                 <thead>
                     <tr>
@@ -114,6 +145,8 @@ class ListStudents extends Component {
 
 
                                 </tr>
+
+
 
                         )
                     }
