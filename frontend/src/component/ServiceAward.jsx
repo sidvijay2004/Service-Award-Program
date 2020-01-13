@@ -20,6 +20,7 @@ class ServiceAward extends Component {
       this.refreshStudentReport();
   }
 
+
   refreshStudentReport() {
     console.log("Iside refresh stud");
       ReportService.getStudentTotalHours()
@@ -47,6 +48,8 @@ render() {
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Total Hours</th>
+                    <th>Award</th>
+
 
                 </tr>
             </thead>
@@ -58,6 +61,7 @@ render() {
                                 <td>{student.firstName}</td>
                                 <td>{student.lastName}</td>
                                 <td>{student.totalHours}</td>
+                                <td>{student.awardLevel}</td>
 
                             </tr>
 

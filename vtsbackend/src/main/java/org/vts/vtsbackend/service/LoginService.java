@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vts.vtsbackend.model.Student;
 import org.vts.vtsbackend.util.DatabseUtil;
@@ -14,7 +15,8 @@ import org.vts.vtsbackend.util.DatabseUtil;
 @Service
 public class LoginService {
 
-
+    @Autowired
+    private DatabseUtil DatabseUtil;
     public boolean isValidLogin(String username, String password) throws Exception {
         System.out.println("Username: " + username + " \n Password:" + password);
         if (username.equals("admin") && password.equals("test")) {

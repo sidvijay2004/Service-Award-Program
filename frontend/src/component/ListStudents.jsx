@@ -24,6 +24,8 @@ class ListStudents extends Component {
           this.addStudentClicked = this.addStudentClicked.bind(this)
           this.refreshStudents = this.refreshStudents.bind(this)
           this.handleSearchChange = this.handleSearchChange.bind(this)
+          this.studAwardClicked = this.studAwardClicked.bind(this)
+
       }
 
       componentDidMount() {
@@ -64,6 +66,10 @@ class ListStudents extends Component {
       addStudentClicked() {
         this.props.history.push(`/students/-1`)
     }
+
+    studAwardClicked() {
+      this.props.history.push(`/getStudentTotalHours`)
+  }
 
     updateStudentClicked(id) {
       console.log('update ' + id)
@@ -163,9 +169,9 @@ class ListStudents extends Component {
                 <div className="row">
                       <button className="btn btn-success" onClick={this.addStudentClicked}>Add</button>
                 </div>
-
-
-
+                <div className="row">
+                      <button className="btn btn-success" onClick={this.studAwardClicked}>Student Award Report</button>
+                </div>
 
                 </div>
             </div>

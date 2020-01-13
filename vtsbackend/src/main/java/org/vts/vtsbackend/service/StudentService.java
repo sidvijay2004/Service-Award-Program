@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vts.vtsbackend.model.Student;
 import org.vts.vtsbackend.util.DatabseUtil;
@@ -19,7 +20,8 @@ public class StudentService {
 	private static List<Student> students = new ArrayList<>();
 	private static int idCounter = 0;
 
-
+	@Autowired
+	private DatabseUtil DatabseUtil;
 
 	public List<Student> findAll() throws SQLException {
 		PreparedStatement st = null;
@@ -253,7 +255,7 @@ public class StudentService {
 		Connection conn = DatabseUtil.dbConnect();
 		List<Student> students = new ArrayList<>();
 
-		int searchInt = 0;
+		int searchInt = -1;
 
 		if (searchText != null) {
 			try {
@@ -273,7 +275,9 @@ public class StudentService {
 					" LOWER(last_name) like LOWER(?) or" +
 					" LOWER(email) like LOWER(?) or" +
 					" age = ? or" +
-					" grade = ?");
+					" grade = ? " +
+					" ORDER BY first_name,last_name "
+			);
 
 			st.setString(1, "%" + searchText + "%" );
 			st.setString(2, "%" + searchText + "%" );
@@ -293,7 +297,7 @@ public class StudentService {
 				student.setAge(rs.getInt("age"));
 				student.setGrade(rs.getInt("grade"));
 
-
+				System.out.println("Inside search Student = " + student);
 				students.add(student);
 			}
 		} catch (SQLException e) {

@@ -5,7 +5,14 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ListStudents from './ListStudents';
 import LoginService from '../service/LoginService';
 
-class StudentLogin extends Component {
+
+
+
+class Login extends Component {
+
+
+
+
       constructor(props) {
             super(props)
 
@@ -18,20 +25,31 @@ class StudentLogin extends Component {
             this.onSubmit = this.onSubmit.bind(this)
             this.validate = this.validate.bind(this)
       }
-        componentDidMount() {
 
-          }
+
+      componentDidMount() {
+
+        }
+
         validate(values) {
           let errors = {}
+
           console.log("Inside Validate condition");
+
           if ((values.username == "")) {
+
             errors.username = 'Please enter username'
           }
           if ((values.password == "")) {
+
             errors.password = 'Please enter password'
           }
+
           return errors
         }
+
+
+
 
   onSubmit(values) {
     let errors = {}
@@ -40,26 +58,24 @@ class StudentLogin extends Component {
           let username = values.username;
           let password = values.password;
 
-          LoginService.isValidStudentLogin(username, password)
-            .then((response) => {
-              console.log('response:' + response)
-              console.log('response.data.id:' + response.data.studentId)
 
-              this.props.history.push(`/ListStudentLogs/${response.data.studentId}`)
-
-
+          LoginService.isValidLogin(username, password)
+            .then(response => response.data)
+            .then((data) => {
+            this.props.history.push('/ListStudents')
           }).catch(() => {
                 this.setState({ isInvalidLogin: true })
 
-                errors.password = 'Please enter the correct username and/or password'
+                errors.password = 'Please enter the correct username ande/or password'
                 return errors
             })
-
 }
 
   render() {
     let { username, password } = this.state
+
     return (
+      //<div>
       <div>
           <h1>Login Info</h1>
 
@@ -81,6 +97,8 @@ class StudentLogin extends Component {
                               <ErrorMessage name="password" component="div"
                                       className="alert alert-warning" />
                               {this.state.isInvalidLogin && <div className="alert alert-warning">Invalid Login</div>}
+
+
 
                               <fieldset className="form-group">
                                   <label>Username:</label>
@@ -106,4 +124,4 @@ class StudentLogin extends Component {
   }
 }
 
-export default StudentLogin
+export default Login

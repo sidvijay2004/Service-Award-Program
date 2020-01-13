@@ -29,7 +29,13 @@ public class LoginController {
 	@GetMapping("/studentLogin")
 	public Student validateStudent (String username, String password) throws Exception {
 		try {
-			return loginService.isValidStudentLogin(username, password);
+			Student student =  loginService.isValidStudentLogin(username, password);
+			if(student == null){
+				throw new Exception("Invalid Login");
+			}
+			else{
+				return student;
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

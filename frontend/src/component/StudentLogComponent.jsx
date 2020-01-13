@@ -37,8 +37,6 @@ class StudentLogComponent extends Component {
               description: response.data.description,
               loggedHours: response.data.loggedHours,
               category: response.data.category
-
-
             }))
 
     }
@@ -149,7 +147,7 @@ class StudentLogComponent extends Component {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Activity Date: </label>
-                                    <Field className="form-control" type="text" name="activityDate" />
+                                    <Field className="form-control" type="date" name="activityDate" />
                                 </fieldset>
                                 <fieldset className="form-group">
                                     <label>Description: </label>

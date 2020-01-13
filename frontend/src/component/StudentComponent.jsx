@@ -14,7 +14,7 @@ class StudentComponent extends Component {
             studentNum: '',
             email: '',
             age: '',
-            grade: ''
+            grade: '9'
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleGradeChange = this.handleGradeChange.bind(this)

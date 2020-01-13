@@ -1,5 +1,6 @@
 package org.vts.vtsbackend.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vts.vtsbackend.model.StudentReport;
 import org.vts.vtsbackend.util.DatabseUtil;
@@ -13,7 +14,8 @@ public class ReportService {
 
 	private static List<StudentReport> studentReports = new ArrayList<>();
 	private static int idCounter = 0;
-
+	@Autowired
+	private DatabseUtil DatabseUtil;
 	public List<StudentReport> getMonthlyStudentReport(int studentId) throws SQLException {
 		System.out.println("SstudentId = " + studentId);
 
@@ -78,7 +80,7 @@ public class ReportService {
 
 		String sql = "select first_name, last_name, sum (logged_hours) as total_hours" +
 				" from student_log a, student b" +
-				" where a.student_id = b.id" +
+				" where a.student_id = b.id " +
 				" group by first_name, last_name" +
 				" order by 1,2,3";
 

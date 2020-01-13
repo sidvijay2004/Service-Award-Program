@@ -1,5 +1,6 @@
 package org.vts.vtsbackend.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vts.vtsbackend.model.StudentLog;
 import org.vts.vtsbackend.util.DatabseUtil;
@@ -13,7 +14,8 @@ public class StudentLogService {
 
 	private static List<StudentLog> studentLogs = new ArrayList<>();
 	private static int idCounter = 0;
-
+	@Autowired
+	private DatabseUtil DatabseUtil;
 
 
 	public List<StudentLog> findByStudentId(int studentId) throws SQLException {

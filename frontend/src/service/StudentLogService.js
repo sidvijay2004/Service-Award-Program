@@ -2,6 +2,7 @@ import axios from 'axios'
 
 
 const BACKEND_HOST = 'http://localhost:8080'
+// const BACKEND_HOST = 'http://3.12.7.5:8080'
 
 class StudentLogService {
 

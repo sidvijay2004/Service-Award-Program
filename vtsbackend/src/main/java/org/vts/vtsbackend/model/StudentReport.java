@@ -17,14 +17,15 @@ public class StudentReport {
 	private String lastName;
 	private String period;
 	private int totalHours;
+	private String awardLevel = "none";
 
-	public StudentReport(String firstName, String lastName, String period, int totalHours) {
+	public StudentReport(String firstName, String lastName, String period, int totalHours, String awardLevel) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.period = period;
 		this.totalHours = totalHours;
+		this.awardLevel = awardLevel;
 	}
-
 	public StudentReport(){
 		super();
 	}
@@ -59,6 +60,23 @@ public class StudentReport {
 
 	public void setTotalHours(int totalHours) {
 		this.totalHours = totalHours;
+		if(totalHours >= 500){
+			awardLevel = "CSA Achievement";
+		}
+		else if(totalHours >= 200){
+			awardLevel = "CSA Service";
+		}
+		else if(totalHours >= 50){
+			awardLevel = "CSA Community";
+		}
+	}
+
+	public String getAwardLevel() {
+		return awardLevel;
+	}
+
+	public void setAwardLevel(String awardLevel) {
+		this.awardLevel = awardLevel;
 	}
 
 	@Override
@@ -68,6 +86,7 @@ public class StudentReport {
 				", lastName='" + lastName + '\'' +
 				", period='" + period + '\'' +
 				", totalHours=" + totalHours +
+				", awardLevel='" + awardLevel + '\'' +
 				'}';
 	}
 }

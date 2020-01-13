@@ -13,6 +13,7 @@ import StudentLogin from './component/StudentLogin';
 import StudentReport from './component/StudentReport';
 import ServiceAward from './component/ServiceAward';
 
+//const BACKEND_HOST = 'http://localhost:8080'
 
 
 const routing = (
