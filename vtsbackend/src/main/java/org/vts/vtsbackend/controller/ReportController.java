@@ -29,9 +29,9 @@ public class ReportController {
     }
 
     @GetMapping("/getStudentTotalHours")
-    public List<StudentReport> getStudentTotalHours() throws SQLException {
+    public List<StudentReport> getStudentTotalHours(String awardLevel) throws SQLException {
         System.out.println("Inside Get All getStudentWeeklyReport method");
-        return reportService.getStudentTotalHours();
+        return reportService.getStudentTotalHours(awardLevel);
     }
 
 

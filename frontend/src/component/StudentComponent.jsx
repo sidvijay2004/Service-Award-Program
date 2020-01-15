@@ -96,7 +96,7 @@ class StudentComponent extends Component {
     handleGradeChange(event) {
       console.log("Before Last Name:" + this.state.lastName);
       this.setState({grade: event.target.value});
-      console.log("After Last Name:" + this.state.lastName);
+      console.log("event.target.value" + event.target.value);
     }
 
 

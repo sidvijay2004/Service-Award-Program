@@ -73,7 +73,7 @@ public class ReportService {
 		return studentReports;
 	}
 
-	public List<StudentReport> getStudentTotalHours() throws SQLException {
+	public List<StudentReport> getStudentTotalHours(String awardLevel) throws SQLException {
 		PreparedStatement st = null;
 		Connection conn = DatabseUtil.dbConnect();
 		List<StudentReport> studentReports = new ArrayList<>();
@@ -86,7 +86,6 @@ public class ReportService {
 
 		try {
 			st = conn.prepareStatement(sql);
-
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
 				System.out.print("Column 1 returned ");
@@ -94,7 +93,11 @@ public class ReportService {
 				studentReport.setFirstName(rs.getString("first_name"));
 				studentReport.setLastName(rs.getString("last_name"));
 				studentReport.setTotalHours(rs.getInt("total_hours"));
-				studentReports.add(studentReport);
+
+				if((studentReport.getAwardLevel()).equals(awardLevel) || awardLevel.equals("all")){
+					studentReports.add(studentReport);
+				}
+
 				System.out.println("Student Report" + studentReport);
 			}
 		} catch (SQLException e) {
@@ -107,8 +110,6 @@ public class ReportService {
 			}
 			conn.close();
 		}
-
-
 		return studentReports;
 	}
 

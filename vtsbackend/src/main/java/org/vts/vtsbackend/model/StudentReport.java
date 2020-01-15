@@ -18,6 +18,9 @@ public class StudentReport {
 	private String period;
 	private int totalHours;
 	private String awardLevel = "none";
+	public static String CSA_ACHIEVEMENT = "CSA Achievement";
+	public static String CSA_SERVICE = "CSA Service";
+	public static String CSA_COMMUNITY = "CSA Community";
 
 	public StudentReport(String firstName, String lastName, String period, int totalHours, String awardLevel) {
 		this.firstName = firstName;
@@ -61,13 +64,13 @@ public class StudentReport {
 	public void setTotalHours(int totalHours) {
 		this.totalHours = totalHours;
 		if(totalHours >= 500){
-			awardLevel = "CSA Achievement";
+			awardLevel = CSA_ACHIEVEMENT;
 		}
 		else if(totalHours >= 200){
-			awardLevel = "CSA Service";
+			awardLevel = CSA_SERVICE;
 		}
 		else if(totalHours >= 50){
-			awardLevel = "CSA Community";
+			awardLevel = CSA_COMMUNITY;
 		}
 	}
 

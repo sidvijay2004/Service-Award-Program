@@ -15,8 +15,12 @@ class ReportService {
       return axios.get(`${BACKEND_HOST}/weeklyStudentReport/${studentId}`);
     }
 
-    getStudentTotalHours() {
-      return axios.get(`${BACKEND_HOST}/getStudentTotalHours`);
+    getStudentTotalHours(awardLevel) {
+      return axios.get(`${BACKEND_HOST}/getStudentTotalHours/`, {
+                  params: {
+                    awardLevel: awardLevel
+                      }
+                    });
     }
 
 
