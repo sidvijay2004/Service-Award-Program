@@ -4,7 +4,10 @@
 package org.vts.vtsbackend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.sql.Date;
+
 
 /**
  * @author sidVijay
@@ -23,6 +26,7 @@ public class StudentLog {
 	public StudentLog(int id, int studentId, Date activityDate, String description, int loggedHours, String category) {
 		this.id = id;
 		this.studentId = studentId;
+		//@JsonFormat(timezone = "US/est", pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSZ")
 		this.activityDate = activityDate;
 		this.description = description;
 		this.loggedHours = loggedHours;

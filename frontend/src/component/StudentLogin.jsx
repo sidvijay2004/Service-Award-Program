@@ -4,6 +4,9 @@ import { Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ListStudents from './ListStudents';
 import LoginService from '../service/LoginService';
+import UserProfile from '../UserProfile';
+import Header from "../Header";
+
 
 class StudentLogin extends Component {
       constructor(props) {
@@ -45,6 +48,12 @@ class StudentLogin extends Component {
               console.log('response:' + response)
               console.log('response.data.id:' + response.data.studentId)
 
+              UserProfile.setName(response.data.firstName + " " + response.data.lastName);
+              UserProfile.setLoginType('student');
+
+              console.log('userprofile.getName' + UserProfile.getName())
+              console.log('userprofile.getLoginType' + UserProfile.getLoginType())
+            //  console.log('userprofile.isLoggedIn' + UserProfile.isLoggedIn())
               this.props.history.push(`/ListStudentLogs/${response.data.studentId}`)
 
 
@@ -60,8 +69,9 @@ class StudentLogin extends Component {
   render() {
     let { username, password } = this.state
     return (
+
       <div>
-          <h1>Login Info</h1>
+          <h3>Login Info</h3>
 
           <div className="container">
               <Formik

@@ -39,7 +39,7 @@ class StartPage extends Component {
     return (
       //<div>
       <div>
-          <h1>Select Type of Login</h1>
+          <h3>Select Type of Login:</h3>
 
           <div className="container">
               <Formik>

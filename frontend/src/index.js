@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+
 import './App.css';
 import * as serviceWorker from './serviceWorker';
 import ListStudents from './component/ListStudents';
@@ -12,6 +14,7 @@ import StartPage from './component/StartPage';
 import StudentLogin from './component/StudentLogin';
 import StudentReport from './component/StudentReport';
 import ServiceAward from './component/ServiceAward';
+import Header from "./Header";
 
 //const BACKEND_HOST = 'http://localhost:8080'
 
@@ -20,7 +23,10 @@ const routing = (
 
 <Router>
 <>
-   <h1>Admin</h1>
+   <h1>Service Award Program</h1>
+
+    <Header />
+          <hr />
 
   <Switch>
       <Route path="/" exact component={StartPage} />
