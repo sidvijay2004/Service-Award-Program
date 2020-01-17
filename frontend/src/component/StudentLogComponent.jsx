@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import StudentLogService from '../service/StudentLogService';
+import Header from "../Header";
 
 
 class StudentLogComponent extends Component {
@@ -108,9 +109,12 @@ class StudentLogComponent extends Component {
 
       render() {
         let { id, studentId, activityDate, description, loggedHours, category} = this.state
-
-
+        
     return (
+      <React.Fragment>
+      <Header />
+      <hr />
+
         <div>
             <h3>StudentLog</h3>
 
@@ -170,6 +174,8 @@ class StudentLogComponent extends Component {
 
             </div>
         </div>
+        </React.Fragment>
+
     )
     }
 

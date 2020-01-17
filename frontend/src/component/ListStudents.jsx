@@ -3,6 +3,7 @@ import {useTable, useFilters, userGlobaalFilter } from 'react-table';
 import StudentService from '../service/StudentService';
 import ReportService from '../service/ReportService';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import Header from "../Header";
 
 
 // const ReactTable = window.ReactTable.default;
@@ -25,6 +26,7 @@ class ListStudents extends Component {
           this.refreshStudents = this.refreshStudents.bind(this)
           this.handleSearchChange = this.handleSearchChange.bind(this)
           this.studAwardClicked = this.studAwardClicked.bind(this)
+          this.studentReport = this.studentReport.bind(this)
 
       }
 
@@ -46,6 +48,7 @@ class ListStudents extends Component {
       }
 
       studentReport(studentId) {
+        console.log('studentReport studentId' + studentId)
         this.props.history.push(`/StudentReport/${studentId}?period=m`)
       }
       deleteStudentClicked(id) {
@@ -54,7 +57,7 @@ class ListStudents extends Component {
           StudentService.deleteStudent(id)
           .then(
               response => {
-                  this.setState({ message: `Delete of student ${id} Successful` })
+                  this.setState({ message: `Delete is Successful` })
                   console.log("Before REfresh ");
                   this.refreshStudents();
                   console.log("Iside delete");
@@ -96,6 +99,10 @@ class ListStudents extends Component {
 
     render() {
         return (
+          <React.Fragment>
+          <Header />
+          <hr />
+
             <div className="container">
                 <h3>Student List</h3>
                 {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
@@ -175,6 +182,9 @@ class ListStudents extends Component {
 
                 </div>
             </div>
+
+            </React.Fragment>
+
         )
     }
 }

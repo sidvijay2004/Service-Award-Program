@@ -8,6 +8,7 @@ class ReportService {
 
 
     getStudentMonthlyReport(studentId) {
+      console.log('getStudentMonthlyReport studentId' + studentId)
       return axios.get(`${BACKEND_HOST}/monthlyStudentReport/${studentId}`);
     }
 

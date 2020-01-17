@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReportService from '../service/ReportService';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import Header from "../Header";
 
 
 class ServiceAward extends Component {
@@ -22,7 +23,7 @@ class ServiceAward extends Component {
   }
 
   componentDidMount() {
-      this.refreshStudentReport('all');
+      this.refreshStudentReport(this.state.awardLevel);
   }
 
   handleAwardChange(event) {
@@ -46,6 +47,10 @@ class ServiceAward extends Component {
 
 render() {
     return (
+      <React.Fragment>
+      <Header />
+      <hr />
+
         <div className="container">
             <h3>Student Report</h3>
             {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
@@ -104,6 +109,7 @@ render() {
 
             </div>
         </div>
+        </React.Fragment>
     )
 }
 }

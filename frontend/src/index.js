@@ -25,9 +25,6 @@ const routing = (
 <>
    <h1>Service Award Program</h1>
 
-    <Header />
-          <hr />
-
   <Switch>
       <Route path="/" exact component={StartPage} />
       <Route path="/Login" exact component={Login} />
@@ -36,8 +33,8 @@ const routing = (
       <Route path="/ListStudentLogs/:id" exact component={ListStudentLogs} />
       <Route path="/Students/:id" component={StudentComponent} />
       <Route path="/studentLogs/:id/:studentId" component={StudentLogComponent} />
-      <Route path="/StudentReport/:studentId?period=m" component={StudentReport} />
-      <Route path="/StudentReport/:studentId?period=w" component={StudentReport} />
+      <Route path="/StudentReport/:studentId" component={StudentReport} />
+      // <Route path="/StudentReport/:studentId?period=w" component={StudentReport} />
       <Route path="/getStudentTotalHours" component={ServiceAward} />
 
 

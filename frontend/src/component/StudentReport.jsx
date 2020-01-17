@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import ReportService from '../service/ReportService';
 import queryString from 'query-string'
-
-
+import Header from "../Header";
 
 class StudentReport extends Component {
 
@@ -25,6 +24,7 @@ class StudentReport extends Component {
   }
 
   componentDidMount() {
+    console.log('componentDidMount')
       this.refreshStudentReport();
   }
 
@@ -90,6 +90,10 @@ class StudentReport extends Component {
 
 render() {
     return (
+      <React.Fragment>
+      <Header />
+      <hr />
+
         <div className="container">
             <h3>Student Report</h3>
             {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
@@ -155,6 +159,8 @@ render() {
 
             </div>
         </div>
+        </React.Fragment>
+
     )
 }
 }

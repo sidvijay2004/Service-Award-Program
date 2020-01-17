@@ -4,15 +4,11 @@ import { Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ListStudents from './ListStudents';
 import LoginService from '../service/LoginService';
-
-
+import UserProfile from '../UserProfile';
+import Header from "../Header";
 
 
 class Login extends Component {
-
-
-
-
       constructor(props) {
             super(props)
 
@@ -48,9 +44,6 @@ class Login extends Component {
           return errors
         }
 
-
-
-
   onSubmit(values) {
     let errors = {}
 
@@ -62,11 +55,13 @@ class Login extends Component {
           LoginService.isValidLogin(username, password)
             .then(response => response.data)
             .then((data) => {
+              UserProfile.setName("Admin");
+              UserProfile.setLoginType('admin');
             this.props.history.push('/ListStudents')
           }).catch(() => {
                 this.setState({ isInvalidLogin: true })
 
-                errors.password = 'Please enter the correct username ande/or password'
+                errors.password = 'Please enter the correct username and/or password'
                 return errors
             })
 }

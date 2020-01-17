@@ -5,11 +5,12 @@ import UserProfile from './UserProfile';
 function Header() {
 
   let button;
-
-if (UserProfile.isLoggedIn) {
+console.log("inside UserProfile.getLoginType="+UserProfile.getLoginType())
+if (UserProfile.getLoginType() === "student" || UserProfile.getLoginType() === "admin") {
   button =   <NavLink activeClassName="active" to="/"> Logout </NavLink>
 }
   return (
+
     <nav>
       <NavLink exact activeClassName="active" to="/">
         Home
@@ -23,4 +24,5 @@ if (UserProfile.isLoggedIn) {
     </nav>
   );
 }
+
 export default Header;

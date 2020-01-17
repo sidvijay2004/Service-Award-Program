@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import StudentLogService from '../service/StudentLogService';
 import ReportService from '../service/ReportService';
-
-
+import UserProfile from '../UserProfile';
+import Header from "../Header";
+import StudentListButton from "../StudentListButton";
 
 class ListStudentLogs extends Component {
 
@@ -50,7 +51,7 @@ class ListStudentLogs extends Component {
           StudentLogService.deleteStudentLog(id)
           .then(
               response => {
-                  this.setState({ message: `Delete of studentLog ${id} Successful` })
+                  this.setState({ message: `Delete is Successful!!!` })
                   console.log("Before REfresh ");
                   this.refreshStudentLogs();
                   console.log("Iside delete");
@@ -79,6 +80,11 @@ class ListStudentLogs extends Component {
 
     render() {
         return (
+
+          <React.Fragment>
+          <Header />
+          <hr />
+
             <div className="container">
                 <h3>StudentLog List</h3>
                 {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
@@ -122,8 +128,7 @@ class ListStudentLogs extends Component {
                   </table>
 
                 <div className="row">
-                      <button className="btn btn-success" onClick={this.addStudentLogClicked}>Add</button>
-                      <button className="btn btn-success" onClick={this.gotoListStudents}>Student List</button>
+                        <button className="btn btn-success" onClick={this.addStudentLogClicked}>Add</button>
 
                 </div>
 
@@ -132,6 +137,7 @@ class ListStudentLogs extends Component {
 
             </div>
 
+            </React.Fragment>
         )
     }
 }

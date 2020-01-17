@@ -5,13 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import StudentLogin from './StudentLogin';
 import Login from './Login';
 
-
-
-
 class StartPage extends Component {
-
-
-
 
       constructor(props) {
             super(props)
@@ -19,7 +13,6 @@ class StartPage extends Component {
             this.adLogin = this.adLogin.bind(this)
             this.studLogin = this.studLogin.bind(this)
       }
-
 
       componentDidMount() {
 

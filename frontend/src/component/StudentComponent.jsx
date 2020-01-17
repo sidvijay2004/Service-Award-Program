@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import StudentService from '../service/StudentService';
+import Header from "../Header";
 
 class StudentComponent extends Component {
 
@@ -146,7 +147,11 @@ class StudentComponent extends Component {
         console.log("render state Last Name:" + this.state.lastName);
 
     return (
-        <div>
+      <React.Fragment>
+      <Header />
+      <hr />
+
+          <div>
             <h3>Student</h3>
 
             <div className="container">
@@ -223,6 +228,8 @@ class StudentComponent extends Component {
 
             </div>
         </div>
+        </React.Fragment>
+
     )
     }
 
