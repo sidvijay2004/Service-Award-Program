@@ -16,6 +16,7 @@ class ListStudentLogs extends Component {
             //studentId: this.props.match.params.id,
             studentId: UserProfile.getStudentId(),
             studentLogs: [],
+            totHours: 0,
             message: null
         }
         console.log("1/18 studentId: " + this.state.studentId)
@@ -87,15 +88,13 @@ class ListStudentLogs extends Component {
                 <hr />
 
                 <div className="container">
-                    <h3>{UserProfile.getName()} Activity List</h3>
+                    <h3>{UserProfile.getName()}'s Activity List</h3>
                     {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
 
                     <div className="container">
                         <table border="3">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Student Id</th>
                                     <th>Activity Date</th>
                                     <th>Description</th>
                                     <th>Logged Hours</th>
@@ -111,15 +110,13 @@ class ListStudentLogs extends Component {
                                     this.state.studentLogs.map(
                                         studentLog =>
                                             <tr key={studentLog.id}>
-                                                <td>{studentLog.id}</td>
-                                                <td>{studentLog.studentId}</td>
                                                 <td>{studentLog.activityDate}</td>
                                                 <td>{studentLog.description}</td>
                                                 <td>{studentLog.loggedHours}</td>
                                                 <td>{studentLog.category}</td>
                                                 <td><button className="btn btn-warning" onClick={() => this.deleteStudentLogClicked(studentLog.id)}>Delete</button></td>
                                                 <td><button className="btn btn-success" onClick={() => this.updateStudentLogClicked(studentLog.id)}>Update</button></td>
-
+                                                <td hidden>{this.state.totHours += studentLog.loggedHours}</td>
                                             </tr>
 
                                     )
@@ -127,7 +124,13 @@ class ListStudentLogs extends Component {
                             </tbody>
 
                         </table>
+                            
+                            <div>
 
+                                <b>Total Hours = {this.state.totHours} </b>
+
+                            </div>
+                
                         <div className="row">
                             <button className="btn btn-success" onClick={this.addStudentLogClicked}>Add</button>
 

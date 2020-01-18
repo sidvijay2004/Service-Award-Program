@@ -48,9 +48,10 @@ class ListStudents extends Component {
               )
       }
 
-      studentReport(studentId) {
-        console.log('studentReport studentId' + studentId)
-        this.props.history.push(`/StudentReport/${studentId}?period=m`)
+      studentReport(studentId, studentName) {
+        UserProfile.setStudentId(studentId)
+        UserProfile.setName(studentName)
+        this.props.history.push(`/StudentReport?period=m`)
       }
       deleteStudentClicked(id) {
         this.setState({ message: `Delete of student ${id} starting` })
@@ -157,7 +158,7 @@ class ListStudents extends Component {
                                     <td><button className="btn btn-warning" onClick={() => this.deleteStudentClicked(student.studentId)}>Delete</button></td>
                                     <td><button className="btn btn-success" onClick={() => this.updateStudentClicked(student.studentId)}>Update</button></td>
                                     <td><button className="btn btn-success" onClick={() => this.listHours(student.studentId, student.firstName)}>Hours</button></td>
-                                    <td><button className="btn btn-success" onClick={() => this.studentReport(student.studentId)}>Monthly Report</button></td>
+                                    <td><button className="btn btn-success" onClick={() => this.studentReport(student.studentId, student.firstName)}>Monthly Report</button></td>
 
 
                                 </tr>

@@ -19,8 +19,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.vts.vtsbackend.model.Student;
 import org.vts.vtsbackend.service.StudentService;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
-
+//@CrossOrigin(origins = { "http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000", "https://master.d3nmz8aenbwqyp.amplifyapp.com"})
 @RestController
 public class StudentController {
 

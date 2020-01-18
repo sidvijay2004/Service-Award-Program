@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.vts.vtsbackend.model.Student;
 import org.vts.vtsbackend.service.LoginService;
 
-@CrossOrigin(origins = { "http://localhost:3000"})
-//@CrossOrigin(origins = "https://master.d3nmz8aenbwqyp.amplifyapp.com/")
-
+//@CrossOrigin(origins = { "http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000", "https://master.d3nmz8aenbwqyp.amplifyapp.com"})
 @RestController
 public class LoginController {
 	

@@ -8,8 +8,8 @@ import org.vts.vtsbackend.service.ReportService;
 import java.sql.SQLException;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000"})
-
+//@CrossOrigin(origins = { "http://localhost:3000"})
+@CrossOrigin(origins = {"http://localhost:3000", "https://master.d3nmz8aenbwqyp.amplifyapp.com"})
 @RestController
 public class ReportController {
 
