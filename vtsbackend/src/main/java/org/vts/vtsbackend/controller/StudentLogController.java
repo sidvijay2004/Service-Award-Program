@@ -13,9 +13,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
+
 @RestController
 public class StudentLogController {
-
 
     @Autowired
     private StudentLogService studentLogService;

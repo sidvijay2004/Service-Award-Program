@@ -50,11 +50,15 @@ class StudentLogin extends Component {
 
               UserProfile.setName(response.data.firstName + " " + response.data.lastName);
               UserProfile.setLoginType('student');
+              UserProfile.setStudentId(response.data.studentId);
+
 
               console.log('userprofile.getName' + UserProfile.getName())
               console.log('userprofile.getLoginType' + UserProfile.getLoginType())
+              console.log('userprofile.getStudentId' + UserProfile.getStudentId())
+
             //  console.log('userprofile.isLoggedIn' + UserProfile.isLoggedIn())
-              this.props.history.push(`/ListStudentLogs/${response.data.studentId}`)
+              this.props.history.push(`/ListStudentLogs`)
 
 
           }).catch(() => {

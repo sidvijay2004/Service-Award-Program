@@ -15,19 +15,19 @@ class StudentLogService {
     }
 
     getStudentLog(id) {
-      return axios.get(`${BACKEND_HOST}/studentLogs/${id}`);
+        return axios.get(`${BACKEND_HOST}/studentLogs/${id}`);
     }
 
     deleteStudentLog(id) {
-    return axios.delete(`${BACKEND_HOST}/studentLogs/${id}`);
-  }
-  updateStudentLog(id, studentLog) {
-      return axios.put(`${BACKEND_HOST}/studentLogs/${id}`, studentLog);
-  }
+        return axios.delete(`${BACKEND_HOST}/studentLogs/${id}`);
+    }
+    updateStudentLog(id, studentLog) {
+        return axios.put(`${BACKEND_HOST}/studentLogs/${id}`, studentLog);
+    }
 
-  createStudentLog(studentLog) {
-      return axios.post(`${BACKEND_HOST}/studentLogs/`, studentLog);
-  }
+    createStudentLog(studentLog) {
+        return axios.post(`${BACKEND_HOST}/studentLogs/`, studentLog);
+    }
 
 }
 

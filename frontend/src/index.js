@@ -30,13 +30,12 @@ const routing = (
       <Route path="/Login" exact component={Login} />
       <Route path="/StudentLogin" exact component={StudentLogin} />
       <Route path="/ListStudents" exact component={ListStudents} />
-      <Route path="/ListStudentLogs/:id" exact component={ListStudentLogs} />
+      <Route path="/ListStudentLogs" exact component={ListStudentLogs} />
       <Route path="/Students/:id" component={StudentComponent} />
       <Route path="/studentLogs/:id/:studentId" component={StudentLogComponent} />
       <Route path="/StudentReport/:studentId" component={StudentReport} />
       // <Route path="/StudentReport/:studentId?period=w" component={StudentReport} />
       <Route path="/getStudentTotalHours" component={ServiceAward} />
-
 
 
   </Switch>

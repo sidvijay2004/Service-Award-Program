@@ -20,6 +20,7 @@ import org.vts.vtsbackend.model.Student;
 import org.vts.vtsbackend.service.StudentService;
 
 @CrossOrigin(origins = {"http://localhost:3000"})
+
 @RestController
 public class StudentController {
 

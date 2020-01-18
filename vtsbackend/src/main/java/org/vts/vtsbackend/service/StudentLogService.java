@@ -42,7 +42,6 @@ public class StudentLogService {
 
 
 
-
 				studentLogs.add(studentLog);
 			}
 		} catch (SQLException e) {

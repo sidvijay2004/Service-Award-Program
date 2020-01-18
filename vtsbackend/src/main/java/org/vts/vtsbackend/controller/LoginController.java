@@ -8,6 +8,8 @@ import org.vts.vtsbackend.model.Student;
 import org.vts.vtsbackend.service.LoginService;
 
 @CrossOrigin(origins = { "http://localhost:3000"})
+//@CrossOrigin(origins = "https://master.d3nmz8aenbwqyp.amplifyapp.com/")
+
 @RestController
 public class LoginController {
 	
@@ -18,6 +20,8 @@ public class LoginController {
   @GetMapping("/login")
   public boolean validate (String username, String password) throws Exception {
 	  try {
+		  System.out.println("Util Date=" + new java.util.Date());
+//		  System.out.println("SQL Date=" + new java.sql.Date());
 		return loginService.isValidLogin(username, password);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block

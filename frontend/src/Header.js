@@ -5,16 +5,24 @@ import UserProfile from './UserProfile';
 function Header() {
 
   let button;
+  let homeLink;
+
 console.log("inside UserProfile.getLoginType="+UserProfile.getLoginType())
 if (UserProfile.getLoginType() === "student" || UserProfile.getLoginType() === "admin") {
   button =   <NavLink activeClassName="active" to="/"> Logout </NavLink>
 }
+if (UserProfile.getLoginType() === "student") {
+  homeLink =   <NavLink activeClassName="active" to="/ListStudentLogs" > Student Home </NavLink>
+}
+else if (UserProfile.getLoginType() === "admin") {
+  homeLink =   <NavLink activeClassName="active" to="/ListStudents"> Advisor Home </NavLink>
+}
+
+
   return (
 
     <nav>
-      <NavLink exact activeClassName="active" to="/">
-        Home
-      </NavLink>
+      {homeLink}
       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
       {button}
       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

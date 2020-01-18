@@ -4,6 +4,7 @@ import StudentService from '../service/StudentService';
 import ReportService from '../service/ReportService';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Header from "../Header";
+import UserProfile from '../UserProfile';
 
 
 // const ReactTable = window.ReactTable.default;
@@ -79,8 +80,10 @@ class ListStudents extends Component {
       this.props.history.push(`/students/${id}`)
       }
 
-    listHours(id) {
-        this.props.history.push(`/ListStudentLogs/${id}`)
+    listHours(id, studentName) {
+        UserProfile.setStudentId(id)
+        UserProfile.setName(studentName)
+        this.props.history.push(`/ListStudentLogs`)
         }
 
     handleSearchChange(event) {
@@ -153,7 +156,7 @@ class ListStudents extends Component {
                                     <td>{student.grade}</td>
                                     <td><button className="btn btn-warning" onClick={() => this.deleteStudentClicked(student.studentId)}>Delete</button></td>
                                     <td><button className="btn btn-success" onClick={() => this.updateStudentClicked(student.studentId)}>Update</button></td>
-                                    <td><button className="btn btn-success" onClick={() => this.listHours(student.studentId)}>Hours</button></td>
+                                    <td><button className="btn btn-success" onClick={() => this.listHours(student.studentId, student.firstName)}>Hours</button></td>
                                     <td><button className="btn btn-success" onClick={() => this.studentReport(student.studentId)}>Monthly Report</button></td>
 
 

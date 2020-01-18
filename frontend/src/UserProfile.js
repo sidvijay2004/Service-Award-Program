@@ -1,22 +1,31 @@
 var UserProfile = (function() {
   var full_name = "";
+  var studentId = "";
   var loginType = "";
 
   var getName = function() {
-    return full_name;    // Or pull this from cookie/localStorage
+    return full_name;    
   };
 
   var setName = function(name) {
     full_name = name;
-    // Also set this in cookie/localStorage
+    
+  };
+  var getStudentId = function() {
+    return studentId;    
+  };
+
+  var setStudentId = function(localId) {
+    studentId = localId;
+    
   };
   var getLoginType = function() {
-    return loginType;    // Or pull this from cookie/localStorage
+    return loginType;    
   };
 
   var setLoginType = function(lgType) {
     loginType = lgType;
-    // Also set this in cookie/localStorage
+    
   };
 
   var isLoggedIn = function() {
@@ -33,6 +42,8 @@ var UserProfile = (function() {
   return {
     getName: getName,
     setName: setName,
+    getStudentId: getStudentId,
+    setStudentId: setStudentId,
     getLoginType: getLoginType,
     setLoginType: setLoginType
   }

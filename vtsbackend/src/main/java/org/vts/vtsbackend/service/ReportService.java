@@ -34,10 +34,10 @@ public class ReportService {
 		Connection conn = DatabseUtil.dbConnect();
 		List<StudentReport> studentReports = new ArrayList<>();
 
-		String period = "IYYY-MM";
+		String period = "IYYY-Month";
 
 		if(type.equals("W")){
-			period = "IYYY-IW";
+			period = "IYYY-Month W";
 		}
 		String sql = "select first_name, last_name, to_char(activity_date, '" + period + "') as period, sum (logged_hours) as total_hours" +
 				" from student_log a, student b" +

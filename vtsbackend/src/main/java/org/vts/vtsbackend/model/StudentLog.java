@@ -6,6 +6,8 @@ package org.vts.vtsbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.sql.Date;
 
 
@@ -17,7 +19,13 @@ public class StudentLog {
 
 	private int id;
 	private int studentId;
+
+	@Temporal(TemporalType.DATE)
+//	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd", locale = "pt-BR", timezone = "america/sao_paulo")
+//	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy/MM/dd", timezone="EST")
+
 	private Date activityDate;
+
 	private String description;
 	private int loggedHours;
 	private String category;
