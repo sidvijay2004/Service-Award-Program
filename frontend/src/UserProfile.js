@@ -1,6 +1,7 @@
 var UserProfile = (function() {
   var full_name = "";
   var studentId = "";
+  var studentLogId = "";
   var loginType = "";
 
   var getName = function() {
@@ -17,6 +18,15 @@ var UserProfile = (function() {
 
   var setStudentId = function(localId) {
     studentId = localId;
+    
+  };
+
+  var getStudentLogId = function() {
+    return studentLogId;    
+  };
+
+  var setStudentLogId = function(localId) {
+    studentLogId = localId;
     
   };
   var getLoginType = function() {
@@ -45,7 +55,9 @@ var UserProfile = (function() {
     getStudentId: getStudentId,
     setStudentId: setStudentId,
     getLoginType: getLoginType,
-    setLoginType: setLoginType
+    setLoginType: setLoginType,
+    getStudentLogId: getStudentLogId,
+    setStudentLogId: setStudentLogId
   }
 
 })();

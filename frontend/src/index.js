@@ -31,8 +31,8 @@ const routing = (
       <Route path="/StudentLogin" exact component={StudentLogin} />
       <Route path="/ListStudents" exact component={ListStudents} />
       <Route path="/ListStudentLogs" exact component={ListStudentLogs} />
-      <Route path="/Students/:id" component={StudentComponent} />
-      <Route path="/studentLogs/:id/:studentId" component={StudentLogComponent} />
+      <Route path="/Students" component={StudentComponent} />
+      <Route path="/studentLogs" component={StudentLogComponent} />
       <Route path="/StudentReport" component={StudentReport} />
       <Route path="/getStudentTotalHours" component={ServiceAward} />
 

@@ -95,16 +95,17 @@ class ListStudentLogs extends Component {
 
     addStudentLogClicked() {
         console.log("this.state.studentId= " + this.state.studentId);
-
-        this.props.history.push(`/studentLogs/-1/${this.state.studentId}`)
+        UserProfile.setStudentLogId(-1)
+        this.props.history.push(`/studentLogs`)
     }
 
 
     updateStudentLogClicked(id) {
         console.log('update ' + id)
         console.log("this.state.studentId= " + this.state.studentId);
+        UserProfile.setStudentLogId(id)
 
-        this.props.history.push(`/studentLogs/${id}/${this.state.studentId}`)
+        this.props.history.push(`/studentLogs`)
     }
 
     gotoListStudents() {
