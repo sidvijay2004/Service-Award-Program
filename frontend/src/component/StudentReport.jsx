@@ -3,6 +3,7 @@ import ReportService from '../service/ReportService';
 import queryString from 'query-string'
 import Header from "../Header";
 import UserProfile from '../UserProfile';
+import SidebarMenu from '../SidebarMenu';
 
 class StudentReport extends Component {
 
@@ -86,8 +87,12 @@ class StudentReport extends Component {
   render() {
     return (
       <React.Fragment>
+        <p align="center">
         <Header />
+        </p>
         <hr />
+
+        <SidebarMenu/>
 
         <div className="container">
           <h3>{UserProfile.getName()}'s Report</h3>

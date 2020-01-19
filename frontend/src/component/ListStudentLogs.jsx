@@ -4,7 +4,7 @@ import StudentLogService from '../service/StudentLogService';
 import ReportService from '../service/ReportService';
 import UserProfile from '../UserProfile';
 import Header from "../Header";
-import StudentListButton from "../StudentListButton";
+import SidebarMenu from '../SidebarMenu';
 
   
 class ListStudentLogs extends Component {
@@ -115,8 +115,9 @@ class ListStudentLogs extends Component {
         return (
 
             <React.Fragment>
-                <Header />
+                <p align="center"> <Header /> </p>
                 <hr />
+                <SidebarMenu/>
 
                 <div>
                 <Doughnut

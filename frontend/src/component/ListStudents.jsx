@@ -5,6 +5,7 @@ import ReportService from '../service/ReportService';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Header from "../Header";
 import UserProfile from '../UserProfile';
+import SidebarMenu from '../SidebarMenu';
 
 
 // const ReactTable = window.ReactTable.default;
@@ -104,16 +105,17 @@ class ListStudents extends Component {
     render() {
         return (
           <React.Fragment>
-          <Header />
+          <p align="center"> <Header /> </p>
           <hr />
 
+          <SidebarMenu/>
             <div className="container">
+            <p align="center">
                 <h3>Student List</h3>
+            </p>
+
+
                 {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
-
-
-
-
                 <form onSubmit={this.handleSubmit}>
                 <label>
                   Search:

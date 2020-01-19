@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import StudentLogService from '../service/StudentLogService';
 import Header from "../Header";
+import SidebarMenu from '../SidebarMenu';
 
 
 class StudentLogComponent extends Component {
@@ -112,8 +113,13 @@ class StudentLogComponent extends Component {
         
     return (
       <React.Fragment>
+
+      <p align="center">
       <Header />
+      </p>
       <hr />
+
+      <SidebarMenu/>
 
         <div>
             <h3>StudentLog</h3>

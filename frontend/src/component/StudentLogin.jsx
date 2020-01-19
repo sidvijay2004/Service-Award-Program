@@ -72,11 +72,7 @@ class StudentLogin extends Component {
 
   render() {
     let { username, password } = this.state
-    return (
-      <React.Fragment>
-      <Header />
-      <hr />
-      
+    return (    
       <div>
           <h3>Login Info</h3>
 
@@ -116,7 +112,6 @@ class StudentLogin extends Component {
 
           </div>
       </div>
-      </React.Fragment>
       // </div>
     )
 

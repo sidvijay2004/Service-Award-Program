@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ListStudents from './ListStudents';
 import LoginService from '../service/LoginService';
 import UserProfile from '../UserProfile';
-import Header from "../Header";
 
 
 class Login extends Component {

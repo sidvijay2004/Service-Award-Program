@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReportService from '../service/ReportService';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Header from "../Header";
+import SidebarMenu from '../SidebarMenu';
 
 
 class ServiceAward extends Component {
@@ -48,8 +49,14 @@ class ServiceAward extends Component {
 render() {
     return (
       <React.Fragment>
+      <p align="center">
       <Header />
+      </p>
+      
       <hr />
+
+      <SidebarMenu/>
+
 
         <div className="container">
             <h3>Student Report</h3>

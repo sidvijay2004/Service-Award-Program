@@ -23,7 +23,7 @@ const routing = (
 
 <Router>
 <>
-   <h1>Service Award Program</h1>
+  <p align="center">  <h1>Service Award Program</h1> </p>
 
   <Switch>
       <Route path="/" exact component={StartPage} />
