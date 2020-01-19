@@ -73,6 +73,48 @@ public class ReportService {
 		return studentReports;
 	}
 
+
+	public List<StudentReport> getCategoryRpt(int studentId) throws SQLException {
+		PreparedStatement st = null;
+		Connection conn = DatabseUtil.dbConnect();
+		List<StudentReport> studentReports = new ArrayList<>();
+
+		String sql = "select category, sum (logged_hours) as total_hours" +
+				" from student_log " +
+				" where student_id = ?" +
+				" group by category" +
+				" order by 1,2";
+
+		try {
+			st = conn.prepareStatement(sql);
+			st.setInt(1, studentId);
+
+			st = conn.prepareStatement(sql);
+			st.setInt(1, studentId);
+			ResultSet rs = st.executeQuery();
+
+			String label = "";
+			String  value = "";
+			while (rs.next()) {
+				System.out.println(rs.getString("category"));
+				System.out.println(rs.getInt("total_hours"));
+
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (st != null) {
+				st.close();
+			}
+			conn.close();
+		}
+
+
+		return studentReports;
+	}
+
 	public List<StudentReport> getStudentTotalHours(String awardLevel) throws SQLException {
 		PreparedStatement st = null;
 		Connection conn = DatabseUtil.dbConnect();

@@ -35,5 +35,10 @@ public class ReportController {
         return reportService.getStudentTotalHours(awardLevel);
     }
 
+    @GetMapping("/getCategoryRpt")
+    public List<StudentReport> getCategoryRpt(int studentId) throws SQLException {
+        return reportService.getCategoryRpt(studentId);
+    }
+
 
 }
