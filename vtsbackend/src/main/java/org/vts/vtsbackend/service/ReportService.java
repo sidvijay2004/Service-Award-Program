@@ -2,6 +2,7 @@ package org.vts.vtsbackend.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.vts.vtsbackend.model.ChartData;
 import org.vts.vtsbackend.model.StudentReport;
 import org.vts.vtsbackend.util.DatabseUtil;
 
@@ -74,30 +75,43 @@ public class ReportService {
 	}
 
 
-	public List<StudentReport> getCategoryRpt(int studentId) throws SQLException {
+	public List<ChartData> getChartData(String rptType, int studentId) throws SQLException {
 		PreparedStatement st = null;
 		Connection conn = DatabseUtil.dbConnect();
-		List<StudentReport> studentReports = new ArrayList<>();
+		List<ChartData> chartDataReport = new ArrayList<>();
 
-		String sql = "select category, sum (logged_hours) as total_hours" +
-				" from student_log " +
-				" where student_id = ?" +
-				" group by category" +
-				" order by 1,2";
+		String sql = "";
+
+		if(rptType.equals("stdctg")){
+					 sql = "select category as label, sum (logged_hours) as value" +
+					" from student_log " +
+					" where student_id = ?" +
+					" group by category" +
+					" order by 1,2";
+		}
+		else if(rptType.equals("gradeCount")){
+			sql = "select grade as label, count (*) as value" +
+					" from student" +
+					" group by grade" +
+					" order by 1,2";
+		}
+
 
 		try {
 			st = conn.prepareStatement(sql);
-			st.setInt(1, studentId);
+			if(rptType.equals("stdctg")) {
+				st.setInt(1, studentId);
+			}
 
-			st = conn.prepareStatement(sql);
-			st.setInt(1, studentId);
 			ResultSet rs = st.executeQuery();
 
-			String label = "";
-			String  value = "";
 			while (rs.next()) {
-				System.out.println(rs.getString("category"));
-				System.out.println(rs.getInt("total_hours"));
+				ChartData chartData = new ChartData();
+				chartData.setLabelData(rs.getString("label"));
+				chartData.setValueData(rs.getInt("value"));
+				System.out.print("chartData " + chartData);
+				chartDataReport.add(chartData);
+
 
 			}
 		} catch (SQLException e) {
@@ -112,7 +126,7 @@ public class ReportService {
 		}
 
 
-		return studentReports;
+		return chartDataReport;
 	}
 
 	public List<StudentReport> getStudentTotalHours(String awardLevel) throws SQLException {
@@ -130,11 +144,11 @@ public class ReportService {
 			st = conn.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
-				System.out.print("Column 1 returned ");
 				StudentReport studentReport = new StudentReport();
 				studentReport.setFirstName(rs.getString("first_name"));
 				studentReport.setLastName(rs.getString("last_name"));
 				studentReport.setTotalHours(rs.getInt("total_hours"));
+				System.out.print("Column 1 returned ");
 
 				if((studentReport.getAwardLevel()).equals(awardLevel) || awardLevel.equals("all")){
 					studentReports.add(studentReport);

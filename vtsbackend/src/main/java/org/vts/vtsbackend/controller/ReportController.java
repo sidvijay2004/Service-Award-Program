@@ -2,6 +2,7 @@ package org.vts.vtsbackend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.vts.vtsbackend.model.ChartData;
 import org.vts.vtsbackend.model.StudentReport;
 import org.vts.vtsbackend.service.ReportService;
 
@@ -35,9 +36,11 @@ public class ReportController {
         return reportService.getStudentTotalHours(awardLevel);
     }
 
-    @GetMapping("/getCategoryRpt")
-    public List<StudentReport> getCategoryRpt(int studentId) throws SQLException {
-        return reportService.getCategoryRpt(studentId);
+    @GetMapping("/getChartData")
+    public List<ChartData> getChartData(String rptType, int studentId) throws SQLException {
+        System.out.println("rpt: " + rptType);
+        System.out.println("studentId: " + studentId);
+        return reportService.getChartData(rptType, studentId);
     }
 
 

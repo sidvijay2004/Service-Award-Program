@@ -7,25 +7,30 @@ const BACKEND_HOST = 'http://localhost:8080'
 class ReportService {
 
 
-    getStudentMonthlyReport(studentId) {
-      console.log('getStudentMonthlyReport studentId' + studentId)
-      return axios.get(`${BACKEND_HOST}/monthlyStudentReport/${studentId}`);
-    }
+  getStudentMonthlyReport(studentId) {
+    console.log('getStudentMonthlyReport studentId' + studentId)
+    return axios.get(`${BACKEND_HOST}/monthlyStudentReport/${studentId}`);
+  }
 
-    getStudentWeeklyReport(studentId) {
-      return axios.get(`${BACKEND_HOST}/weeklyStudentReport/${studentId}`);
-    }
+  getStudentWeeklyReport(studentId) {
+    return axios.get(`${BACKEND_HOST}/weeklyStudentReport/${studentId}`);
+  }
 
-    getStudentTotalHours(awardLevel) {
-      return axios.get(`${BACKEND_HOST}/getStudentTotalHours/`, {
-                  params: {
-                    awardLevel: awardLevel
-                      }
-                    });
-    }
-
-
-
+  getStudentTotalHours(awardLevel) {
+    return axios.get(`${BACKEND_HOST}/getStudentTotalHours/`, {
+      params: {
+        awardLevel: awardLevel
+      }
+    });
+  }
+  getChartData(rptType, studentId) {
+    return axios.get(`${BACKEND_HOST}/getChartData`, {
+      params: {
+        rptType: rptType,
+        studentId: studentId
+      }
+    });
+  }
 }
 
 export default new ReportService()

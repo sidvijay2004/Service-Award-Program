@@ -1,29 +1,30 @@
 import React, { Component } from 'react';
-import {Pie, Doughnut} from 'react-chartjs-2';
+import { Pie, Doughnut } from 'react-chartjs-2';
 import StudentLogService from '../service/StudentLogService';
 import ReportService from '../service/ReportService';
 import UserProfile from '../UserProfile';
 import Header from "../Header";
 import SidebarMenu from '../SidebarMenu';
+import DonutChart from './DonutChart';
 
-  
 class ListStudentLogs extends Component {
-    
+
     constructor(props) {
 
         console.log("Inside List StudentLogs Construct");
 
         super(props)
         this.state = {
-            //studentId: this.props.match.params.id,
             studentId: UserProfile.getStudentId(),
             studentLogs: [],
             totHours: 0,
             message: null,
+            datalabel: [],
+            datavalue: [],
+            data: null,
             chartData: null
 
         }
-        console.log("1/18 studentId: " + this.state.studentId)
 
         this.deleteStudentLogClicked = this.deleteStudentLogClicked.bind(this)
         this.updateStudentLogClicked = this.updateStudentLogClicked.bind(this)
@@ -36,38 +37,30 @@ class ListStudentLogs extends Component {
 
     componentDidMount() {
         this.refreshStudentLogs();
+        this.dataChart()
+
     }
 
-    dataChart(){
-        this.state.chartData = {
-            labels: ['January', 'February', 'March',
-                     'April' ],
-            datasets: [
-              {
-                label: 'Rainfall',
-                backgroundColor: [
-                  '#B21F00',
-                  '#C9DE00',
-                  '#2FDE00',
-                  '#00A6B4',
-                  '#6800B4'
-                ],
-                hoverBackgroundColor: [
-                '#501800',
-                '#4B5000',
-                '#175000',
-                '#003350',
-                '#35014F'
-                ],
-                data: [65, 59, 80, 81]
-              }
-            ]
-          }    }
+    dataChart() {
+        ReportService.getChartData("stdctg", this.state.studentId)
+            .then(response => {
+                this.setState({ 
+                    datalabel:  response.data.map(function(e) {
+                        return e.labelData
+                    }),
+                    datavalue: response.data.map(function(e) {
+                        return e.valueData
+                    })
+                })
+            })  
+
+    }
+
 
     refreshStudentLogs() {
         console.log("Iside refresh stud");
         console.log("this.state.studentId= " + this.state.studentId);
-        
+
         StudentLogService.getAllStudentLogsByStudentId(this.state.studentId)
             .then(
                 response => {
@@ -76,7 +69,7 @@ class ListStudentLogs extends Component {
 
                 }
             )
-            this.dataChart() 
+        
     }
     deleteStudentLogClicked(id) {
         this.setState({ message: `Delete of studentLog ${id} starting` })
@@ -111,31 +104,21 @@ class ListStudentLogs extends Component {
     gotoListStudents() {
         this.props.history.push(`/ListStudents`)
     }
+ 
 
     render() {
+        let { datalabel, datavalue, chartData } = this.state
+        console.log("this.state.label" + this.state.datalabel)
+        console.log("this.state.datavalue" + this.state.datavalue)
+        // this.dataChart()
         return (
 
             <React.Fragment>
                 <p align="center"> <Header /> </p>
                 <hr />
-                <SidebarMenu/>
+                <SidebarMenu />
 
-                <div>
-                <Doughnut
-                data={this.state.chartData}
-                options={{
-                    title:{
-                    display:true,
-                    text:'Hours by Category',
-                    fontSize:20
-                    },
-                    legend:{
-                    display:true,
-                    position:'right'
-                    }
-                }}
-                />
-      </div>
+                <DonutChart title = "Category Chart" datalabel = {this.state.datalabel} datavalue = {this.state.datavalue}/>
 
                 <div className="container">
                     <h3>{UserProfile.getName()}'s Activity List</h3>
@@ -144,7 +127,7 @@ class ListStudentLogs extends Component {
                     <div className="container">
                         <table border="3">
                             <thead>
-                                <tr>    
+                                <tr>
                                     <th>Activity Date</th>
                                     <th>Description</th>
                                     <th>Logged Hours</th>
@@ -174,13 +157,13 @@ class ListStudentLogs extends Component {
                             </tbody>
 
                         </table>
-                            
-                            <div>
 
-                                <b>Total Hours = {this.state.totHours} </b>
+                        <div>
 
-                            </div>
-                
+                            <b>Total Hours = {this.state.totHours} </b>
+
+                        </div>
+
                         <div className="row">
                             <button className="btn btn-success" onClick={this.addStudentLogClicked}>Add</button>
 
