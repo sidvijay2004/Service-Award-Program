@@ -15,6 +15,7 @@ import StudentLogin from './component/StudentLogin';
 import StudentReport from './component/StudentReport';
 import ServiceAward from './component/ServiceAward';
 import Header from "./Header";
+import ReportTemplate from "./component/ReportTemplate";
 
 //const BACKEND_HOST = 'http://localhost:8080'
 
@@ -35,6 +36,7 @@ const routing = (
       <Route path="/studentLogs" component={StudentLogComponent} />
       <Route path="/StudentReport" component={StudentReport} />
       <Route path="/getStudentTotalHours" component={ServiceAward} />
+      <Route path="/ReportTemplate" component={ReportTemplate} />
 
   </Switch>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { bubble  as Menu } from 'react-burger-menu';
+import { bubble as Menu } from 'react-burger-menu';
 import "./SidebarMenu.css";
 
 function SidebarMenu() {
@@ -18,17 +18,19 @@ function SidebarMenu() {
         Student Login
       </a>
 
-      <a className="menu-item" href="/react">
-        React
+      <a className="menu-item" href="/ReportTemplate?rptType=ageCount">
+        Age Count Report
+      </a>
+      <a className="menu-item" href="/ReportTemplate?rptType=ageHours">
+        Age Hours Report
+      </a>
+      <a className="menu-item" href="/ReportTemplate?rptType=gradeCount">
+        Grade Count Report
+      </a>
+      <a className="menu-item" href="/ReportTemplate?rptType=gradeHours">
+        Grade Hours Report
       </a>
 
-      <a className="menu-item" href="/vue">
-        Vue
-      </a>
-
-      <a className="menu-item" href="/node">
-        Node
-      </a>
     </Menu>
 
 

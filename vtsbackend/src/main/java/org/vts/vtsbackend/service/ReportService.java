@@ -87,13 +87,33 @@ public class ReportService {
 					" from student_log " +
 					" where student_id = ?" +
 					" group by category" +
-					" order by 1,2";
+					" order by 1";
 		}
 		else if(rptType.equals("gradeCount")){
 			sql = "select grade as label, count (*) as value" +
 					" from student" +
 					" group by grade" +
-					" order by 1,2";
+					" order by 1";
+		}
+		else if(rptType.equals("ageCount")){
+			sql = "select age as label, count (*) as value" +
+					" from student" +
+					" group by age" +
+					" order by 1";
+		}
+		else if(rptType.equals("gradeHours")){
+			sql = "select grade as label, sum (logged_hours) as value" +
+					" from student_log a, student b" +
+					" where a.student_id = b.id" +
+					" group by grade" +
+					" order by 1";
+		}
+		else if(rptType.equals("ageHours")){
+			sql = "select age as label, sum (logged_hours) as value" +
+					" from student_log a, student b" +
+					" where a.student_id = b.id" +
+					" group by age" +
+					" order by 1";
 		}
 
 

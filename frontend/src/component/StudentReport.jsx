@@ -12,7 +12,7 @@ class StudentReport extends Component {
     super(props)
 
     const values = queryString.parse(this.props.location.search)
-    console.log(values.period)
+    console.log("zzz" + values.period)
     this.state = {
       studentReports: [],
       studentId: UserProfile.getStudentId(),
