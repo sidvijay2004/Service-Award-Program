@@ -31,29 +31,11 @@ class ListStudentLogs extends Component {
         this.addStudentLogClicked = this.addStudentLogClicked.bind(this)
         this.refreshStudentLogs = this.refreshStudentLogs.bind(this)
         this.gotoListStudents = this.gotoListStudents.bind(this)
-        this.dataChart = this.dataChart.bind(this)
 
     }
 
     componentDidMount() {
         this.refreshStudentLogs();
-        this.dataChart()
-
-    }
-
-    dataChart() {
-        ReportService.getChartData("stdctg", this.state.studentId)
-            .then(response => {
-                this.setState({ 
-                    datalabel:  response.data.map(function(e) {
-                        return e.labelData
-                    }),
-                    datavalue: response.data.map(function(e) {
-                        return e.valueData
-                    })
-                })
-            })  
-
     }
 
 
@@ -118,7 +100,7 @@ class ListStudentLogs extends Component {
                 <hr />
                 <SidebarMenu />
 
-                <DonutChart title = "Category Chart" datalabel = {this.state.datalabel} datavalue = {this.state.datavalue}/>
+                {/* <DonutChart title = "Category Chart" datalabel = {this.state.datalabel} datavalue = {this.state.datavalue}/> */}
 
                 <div className="container">
                     <h3>{UserProfile.getName()}'s Activity List</h3>

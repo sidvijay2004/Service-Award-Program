@@ -89,6 +89,12 @@ public class ReportService {
 					" group by category" +
 					" order by 1";
 		}
+		else if(rptType.equals("allctg")){
+			sql = "select category as label, sum (logged_hours) as value" +
+					" from student_log " +
+					" group by category" +
+					" order by 1";
+		}
 		else if(rptType.equals("gradeCount")){
 			sql = "select grade as label, count (*) as value" +
 					" from student" +

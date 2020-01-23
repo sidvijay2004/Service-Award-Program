@@ -31,28 +31,11 @@ class ListStudents extends Component {
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.studAwardClicked = this.studAwardClicked.bind(this)
     this.studentReport = this.studentReport.bind(this)
-    this.dataChart = this.dataChart.bind(this)
 
   }
 
   componentDidMount() {
     this.refreshStudents();
-    this.dataChart()
-  }
-
-  dataChart() {
-    ReportService.getChartData("gradeCount", 0)
-        .then(response => {
-            this.setState({ 
-                datalabel:  response.data.map(function(e) {
-                    return e.labelData
-                }),
-                datavalue: response.data.map(function(e) {
-                    return e.valueData
-                })
-            })
-        })  
-
   }
 
   refreshStudents() {
@@ -130,8 +113,6 @@ class ListStudents extends Component {
         <hr />
 
         <SidebarMenu />
-
-        <DonutChart title = "Grade Student Count Chart" datalabel = {this.state.datalabel} datavalue = {this.state.datavalue}/>
 
         <div className="container">
           <p align="center">

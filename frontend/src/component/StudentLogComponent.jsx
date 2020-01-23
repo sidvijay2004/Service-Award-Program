@@ -23,6 +23,7 @@ class StudentLogComponent extends Component {
     console.log("studentId: " + this.state.studentId)
     this.onSubmit = this.onSubmit.bind(this)
     this.validate = this.validate.bind(this)
+    this.handleCtgChange = this.handleCtgChange.bind(this)
   }
 
   componentDidMount() {
@@ -103,6 +104,11 @@ class StudentLogComponent extends Component {
   }
 
 
+  handleCtgChange(event) {
+    this.setState({ category: event.target.value });
+  }
+
+
   render() {
     let { id, studentId, activityDate, description, loggedHours, category } = this.state
 
@@ -163,9 +169,24 @@ class StudentLogComponent extends Component {
                       <Field className="form-control" type="text" name="loggedHours" />
                     </fieldset>
                     <fieldset className="form-group">
-                      <label>Category of Service: </label>
+                      <label>Category of Service:  &nbsp; &nbsp;
+
+
+                    <select value={this.state.category} onChange={this.handleCtgChange}>
+                          <option value="Education">Education</option>
+                          <option value="Environment">Environment</option>
+                          <option value="Humanity">Humanity</option>
+                          <option value="Religion">Religion</option>
+
+                        </select>
+
+                      </label>
+
+                      <br/>
+                      <label>Please enter if your category is not in the list: </label>
                       <Field className="form-control" type="text" name="category" />
                     </fieldset>
+
                     <button className="btn btn-success" type="submit">Save</button>
 
                   </Form>

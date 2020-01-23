@@ -210,7 +210,7 @@ class StudentComponent extends Component {
                     <fieldset className="form-group">
                       <label>Grade:
 
-                                      <select value={this.state.grade} onChange={this.handleGradeChange}>
+                          <select value={this.state.grade} onChange={this.handleGradeChange}>
                           <option value="9">9th Grade</option>
                           <option value="10">10th Grade</option>
                           <option value="11">11th Grade</option>

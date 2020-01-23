@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Pie, Doughnut } from 'react-chartjs-2';
+import { Pie, Doughnut, Bar} from 'react-chartjs-2';
 
 
 class DonutChart extends Component {
@@ -42,10 +42,30 @@ class DonutChart extends Component {
 
             <React.Fragment>
 
+                {/* <div>
+                    <Bar 
+                        data={chartData}
+                        options={{
+                            // responsive: true,
+                            // maintainAspectRatio: true,
+                            title: {
+                                display: true,
+                                text: this.props.title,
+                                fontSize: 20
+                            },
+                            legend: {
+                                display: true,
+                                position: 'right'
+                            }
+                        }}
+                    />
+                </div> */}
                 <div>
                     <Doughnut
                         data={chartData}
                         options={{
+                            responsive: true,
+                            maintainAspectRatio: true,
                             title: {
                                 display: true,
                                 text: this.props.title,

@@ -31,6 +31,9 @@ class ReportTemplate extends Component {
     }
     else if (values.rptType == "ageHours") {
       title = "Age Hours "
+    }  
+    else if (values.rptType == "allctg") {
+      title = "Hours Per Category (all students) "
     }
 
 
