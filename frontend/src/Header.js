@@ -9,7 +9,7 @@ function Header() {
 
 console.log("inside UserProfile.getLoginType="+UserProfile.getLoginType())
 if (UserProfile.getLoginType() === "student" || UserProfile.getLoginType() === "admin") {
-  button =   <NavLink activeClassName="active" to="/"> Logout </NavLink>
+  button =   <NavLink activeClassName="active" onClick={() => UserProfile.removeCookies()} to="/"> Logout </NavLink>
 }
 if (UserProfile.getLoginType() === "student") {
   homeLink =   <NavLink activeClassName="active" to="/ListStudentLogs" > Student Home </NavLink>

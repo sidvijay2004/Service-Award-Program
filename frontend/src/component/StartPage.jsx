@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import StudentLogin from './StudentLogin';
 import Login from './Login';
+import UserProfile from '../UserProfile';
 
 class StartPage extends Component {
 
@@ -15,7 +16,6 @@ class StartPage extends Component {
       }
 
       componentDidMount() {
-
         }
 
         adLogin() {

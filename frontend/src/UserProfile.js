@@ -1,47 +1,70 @@
+import Cookies from 'universal-cookie';
+
 var UserProfile = (function() {
-  var full_name = "";
-  var studentId = "";
-  var studentLogId = "";
-  var loginType = "";
+  const cookies = new Cookies();
+
+  const ADMIN = "admin"
+  const STUDENT = "student"
+  
 
   var getName = function() {
-    return full_name;    
+    return cookies.get('full_name');    
   };
 
   var setName = function(name) {
-    full_name = name;
+    cookies.set('full_name', name, { path: '/' });
     
   };
   var getStudentId = function() {
-    return studentId;    
+    return cookies.get('studentId');    
   };
 
-  var setStudentId = function(localId) {
-    studentId = localId;
+  var setStudentId = function(studentId) {
+    cookies.set('studentId', studentId, { path: '/' });
     
   };
 
   var getStudentLogId = function() {
-    return studentLogId;    
+    return cookies.get('studentLogId');    
   };
 
-  var setStudentLogId = function(localId) {
-    studentLogId = localId;
+  var setStudentLogId = function(studentLogId) {
+    cookies.set('studentLogId', studentLogId, { path: '/' });
     
   };
   var getLoginType = function() {
-    return loginType;    
+    return cookies.get('loginType');    
   };
 
   var setLoginType = function(lgType) {
-    loginType = lgType;
+    cookies.set('loginType', lgType, { path: '/' });
     
+  };
+  var removeCookies = function() {
+    cookies.remove('loginType');
+    cookies.remove('studentLogId');
+    cookies.remove('studentId');
+    cookies.remove('full_name');
+    
+  };
+
+  var isStudent = function() {
+    if(this.getLoginType() ===STUDENT){
+      return true;
+    }
+      return false;
+  };
+
+  var isAdmin = function() {
+    if(this.getLoginType() === ADMIN){
+      return true;
+    }
+      return false;
   };
 
   var isLoggedIn = function() {
     console.log('z1')
-    if(loginType === "student"){
-      console.log('z2')
+    if(this.getLoginType() ===STUDENT || this.getLoginType() === ADMIN){
       return true;
     }
     else{
@@ -49,6 +72,13 @@ var UserProfile = (function() {
       return false;
     }
   };
+  var checkSecurity = function() {
+    if(!this.isLoggedIn()){
+      this.props.history.push(`/`)
+    }
+
+  };
+
   return {
     getName: getName,
     setName: setName,
@@ -57,7 +87,13 @@ var UserProfile = (function() {
     getLoginType: getLoginType,
     setLoginType: setLoginType,
     getStudentLogId: getStudentLogId,
-    setStudentLogId: setStudentLogId
+    setStudentLogId: setStudentLogId,
+    removeCookies: removeCookies,
+    checkSecurity: checkSecurity,
+    isLoggedIn: isLoggedIn,
+    isStudent: isStudent,
+    isAdmin: isAdmin
+    
   }
 
 })();

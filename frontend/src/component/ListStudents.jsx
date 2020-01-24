@@ -35,6 +35,7 @@ class ListStudents extends Component {
   }
 
   componentDidMount() {
+    UserProfile.checkSecurity();
     this.refreshStudents();
   }
 

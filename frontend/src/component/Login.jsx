@@ -6,7 +6,6 @@ import ListStudents from './ListStudents';
 import LoginService from '../service/LoginService';
 import UserProfile from '../UserProfile';
 
-
 class Login extends Component {
       constructor(props) {
             super(props)
@@ -56,6 +55,8 @@ class Login extends Component {
             .then((data) => {
               UserProfile.setName("Admin");
               UserProfile.setLoginType('admin');
+
+
             this.props.history.push('/ListStudents')
           }).catch(() => {
                 this.setState({ isInvalidLogin: true })
