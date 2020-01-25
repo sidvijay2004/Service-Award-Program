@@ -29,7 +29,10 @@ class StudentComponent extends Component {
 
   componentDidMount() {
 
-    console.log(this.state.id)
+    // Security Check
+    if (!UserProfile.isLoggedIn()) {
+      this.props.history.push(`/AccessDenied`)
+    }
 
     if (this.state.id == -1) {
       return

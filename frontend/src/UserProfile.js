@@ -72,12 +72,7 @@ var UserProfile = (function() {
       return false;
     }
   };
-  var checkSecurity = function() {
-    if(!this.isLoggedIn()){
-      this.props.history.push(`/`)
-    }
 
-  };
 
   return {
     getName: getName,
@@ -89,7 +84,6 @@ var UserProfile = (function() {
     getStudentLogId: getStudentLogId,
     setStudentLogId: setStudentLogId,
     removeCookies: removeCookies,
-    checkSecurity: checkSecurity,
     isLoggedIn: isLoggedIn,
     isStudent: isStudent,
     isAdmin: isAdmin

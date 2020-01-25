@@ -28,8 +28,10 @@ class StudentLogComponent extends Component {
 
   componentDidMount() {
 
-    console.log(this.state.id)
-
+    // Security Check
+    if (!UserProfile.isLoggedIn()) {
+      this.props.history.push(`/AccessDenied`)
+    }
     if (this.state.id == -1) {
       return
     }
@@ -182,7 +184,7 @@ class StudentLogComponent extends Component {
 
                       </label>
 
-                      <br/>
+                      <br />
                       <label>Please enter if your category is not in the list: </label>
                       <Field className="form-control" type="text" name="category" />
                     </fieldset>

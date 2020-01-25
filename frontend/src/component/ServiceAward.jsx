@@ -3,6 +3,8 @@ import ReportService from '../service/ReportService';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import Header from "../Header";
 import SidebarMenu from '../SidebarMenu';
+import UserProfile from '../UserProfile';
+
 
 
 class ServiceAward extends Component {
@@ -24,6 +26,10 @@ class ServiceAward extends Component {
   }
 
   componentDidMount() {
+          // Security Check
+          if(!UserProfile.isLoggedIn() || !UserProfile.isAdmin()){
+            this.props.history.push(`/AccessDenied`)
+          }
       this.refreshStudentReport(this.state.awardLevel);
   }
 

@@ -35,6 +35,10 @@ class ListStudentLogs extends Component {
     }
 
     componentDidMount() {
+        // Security Check
+        if (!UserProfile.isLoggedIn()) {
+            this.props.history.push(`/AccessDenied`)
+        }
         this.refreshStudentLogs();
     }
 
@@ -51,7 +55,7 @@ class ListStudentLogs extends Component {
 
                 }
             )
-        
+
     }
     deleteStudentLogClicked(id) {
         this.setState({ message: `Delete of studentLog ${id} starting` })
@@ -86,7 +90,7 @@ class ListStudentLogs extends Component {
     gotoListStudents() {
         this.props.history.push(`/ListStudents`)
     }
- 
+
 
     render() {
         let { datalabel, datavalue, chartData } = this.state

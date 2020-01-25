@@ -33,4 +33,5 @@ class ReportService {
   }
 }
 
+
 export default new ReportService()

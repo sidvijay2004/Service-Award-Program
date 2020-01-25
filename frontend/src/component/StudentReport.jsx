@@ -27,7 +27,10 @@ class StudentReport extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount')
+    // Security Check
+    if (!UserProfile.isLoggedIn()) {
+      this.props.history.push(`/AccessDenied`)
+    } 
     this.refreshStudentReport();
   }
 
@@ -88,17 +91,17 @@ class StudentReport extends Component {
     return (
       <React.Fragment>
         <p align="center">
-        <Header />
+          <Header />
         </p>
         <hr />
 
-        <SidebarMenu/>
+        <SidebarMenu />
 
         <div className="container">
           <h3>{UserProfile.getName()}'s Report</h3>
           {this.state.message && <div class="alert alert-success">{this.state.message}</div>}
           <div hidden>
-          {this.state.totHours =  0}
+            {this.state.totHours = 0}
           </div>
 
           <div>
