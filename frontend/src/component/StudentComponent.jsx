@@ -107,7 +107,12 @@ class StudentComponent extends Component {
 
 
   gotoListStudents() {
-    this.props.history.push(`/ListStudents`)
+    if(UserProfile.isStudent()){
+      this.props.history.push(`/ListStudentLogs`)
+    }
+    else if(UserProfile.isAdvisor()){
+      this.props.history.push(`/ListStudents`)
+    }
   }
 
   onSubmit(values) {
@@ -130,13 +135,19 @@ class StudentComponent extends Component {
 
       StudentService.createStudent(student)
         .then(() => this.props.history.push('/ListStudents'))
-    } else {
+    } else if(UserProfile.isAdvisor())
+     {
 
       console.log("id: " + this.state.id);
       console.log("Student id = " + student.id);
 
       StudentService.updateStudent(this.state.id, student)
         .then(() => this.props.history.push('/ListStudents'))
+    }
+    else{
+      StudentService.updateStudent(this.state.id, student)
+        .then(() => this.props.history.push('/ListStudentLogs'))
+
     }
 
     console.log(values);

@@ -8,13 +8,13 @@ function Header() {
   let homeLink;
 
 console.log("inside UserProfile.getLoginType="+UserProfile.getLoginType())
-if (UserProfile.getLoginType() === "student" || UserProfile.getLoginType() === "admin") {
+if (UserProfile.isStudent() || UserProfile.isAdvisor()) {
   button =   <NavLink activeClassName="active" onClick={() => UserProfile.removeCookies()} to="/"> Logout </NavLink>
 }
-if (UserProfile.getLoginType() === "student") {
+if (UserProfile.isStudent()) {
   homeLink =   <NavLink activeClassName="active" to="/ListStudentLogs" > Student Home </NavLink>
 }
-else if (UserProfile.getLoginType() === "admin") {
+else if (UserProfile.isAdvisor()) {
   homeLink =   <NavLink activeClassName="active" to="/ListStudents"> Advisor Home </NavLink>
 }
 

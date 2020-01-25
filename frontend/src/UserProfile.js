@@ -3,10 +3,12 @@ import Cookies from 'universal-cookie';
 var UserProfile = (function() {
   const cookies = new Cookies();
 
-  const ADMIN = "admin"
+  const ADVISOR = "advisor"
   const STUDENT = "student"
   
-
+  var getBackendHost = function() {
+    return 'http://' + window.location.hostname + ':8080';    
+  };
   var getName = function() {
     return cookies.get('full_name');    
   };
@@ -35,7 +37,14 @@ var UserProfile = (function() {
   var getLoginType = function() {
     return cookies.get('loginType');    
   };
-
+  var setStudentLogin = function() {
+    setLoginType(STUDENT);
+    
+  };
+  var setAdvisorLogin = function() {
+    setLoginType(ADVISOR);
+    
+  };
   var setLoginType = function(lgType) {
     cookies.set('loginType', lgType, { path: '/' });
     
@@ -55,8 +64,8 @@ var UserProfile = (function() {
       return false;
   };
 
-  var isAdmin = function() {
-    if(this.getLoginType() === ADMIN){
+  var isAdvisor = function() {
+    if(this.getLoginType() === ADVISOR){
       return true;
     }
       return false;
@@ -64,7 +73,7 @@ var UserProfile = (function() {
 
   var isLoggedIn = function() {
     console.log('z1')
-    if(this.getLoginType() ===STUDENT || this.getLoginType() === ADMIN){
+    if(this.getLoginType() ===STUDENT || this.getLoginType() === ADVISOR){
       return true;
     }
     else{
@@ -75,6 +84,7 @@ var UserProfile = (function() {
 
 
   return {
+    getBackendHost: getBackendHost,
     getName: getName,
     setName: setName,
     getStudentId: getStudentId,
@@ -82,11 +92,15 @@ var UserProfile = (function() {
     getLoginType: getLoginType,
     setLoginType: setLoginType,
     getStudentLogId: getStudentLogId,
+    setStudentLogin: setStudentLogin,
+    setAdvisorLogin: setAdvisorLogin,
     setStudentLogId: setStudentLogId,
     removeCookies: removeCookies,
     isLoggedIn: isLoggedIn,
     isStudent: isStudent,
-    isAdmin: isAdmin
+    isAdvisor: isAdvisor
+
+    
     
   }
 

@@ -8,7 +8,8 @@ import org.vts.vtsbackend.model.Student;
 import org.vts.vtsbackend.service.LoginService;
 
 //@CrossOrigin(origins = { "http://localhost:3000"})
-@CrossOrigin(origins = {"http://localhost:3000", "https://master.d3nmz8aenbwqyp.amplifyapp.com"})
+//@CrossOrigin(origins = { "*})
+@CrossOrigin(origins = {"http://localhost:3000", "https://0.0.0.0:3000"})
 @RestController
 public class LoginController {
 	

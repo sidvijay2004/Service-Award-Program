@@ -54,7 +54,7 @@ class Login extends Component {
             .then(response => response.data)
             .then((data) => {
               UserProfile.setName("Admin");
-              UserProfile.setLoginType('admin');
+              UserProfile.setAdvisorLogin();
 
 
             this.props.history.push('/ListStudents')

@@ -49,7 +49,7 @@ class StudentLogin extends Component {
               console.log('response.data.id:' + response.data.studentId)
 
               UserProfile.setName(response.data.firstName + " " + response.data.lastName);
-              UserProfile.setLoginType('student');
+              UserProfile.setStudentLogin();
               UserProfile.setStudentId(response.data.studentId);
 
 

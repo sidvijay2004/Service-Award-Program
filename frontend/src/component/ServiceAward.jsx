@@ -27,7 +27,7 @@ class ServiceAward extends Component {
 
   componentDidMount() {
           // Security Check
-          if(!UserProfile.isLoggedIn() || !UserProfile.isAdmin()){
+          if(!UserProfile.isLoggedIn() || !UserProfile.isAdvisor()){
             this.props.history.push(`/AccessDenied`)
           }
       this.refreshStudentReport(this.state.awardLevel);

@@ -31,6 +31,7 @@ class ListStudentLogs extends Component {
         this.addStudentLogClicked = this.addStudentLogClicked.bind(this)
         this.refreshStudentLogs = this.refreshStudentLogs.bind(this)
         this.gotoListStudents = this.gotoListStudents.bind(this)
+        this.updateStudentProfile = this.updateStudentProfile.bind(this)
 
     }
 
@@ -89,6 +90,12 @@ class ListStudentLogs extends Component {
 
     gotoListStudents() {
         this.props.history.push(`/ListStudents`)
+    }    
+    
+    updateStudentProfile() {
+        UserProfile.setStudentId(this.state.studentId)
+        UserProfile.setStudentLogin()
+        this.props.history.push(`/students`)
     }
 
 
@@ -152,6 +159,12 @@ class ListStudentLogs extends Component {
 
                         <div className="row">
                             <button className="btn btn-success" onClick={this.addStudentLogClicked}>Add</button>
+
+                        </div>
+
+                        <div>
+                            
+                            <button className="btn btn-success" onClick={this.updateStudentProfile}>Modify Profile</button>
 
                         </div>
 

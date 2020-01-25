@@ -37,7 +37,7 @@
 
     componentDidMount() {
       // Security Check
-        if(!UserProfile.isLoggedIn() || !UserProfile.isAdmin()){
+        if(!UserProfile.isLoggedIn() || !UserProfile.isAdvisor()){
           this.props.history.push(`/AccessDenied`)
         }
     
