@@ -157,14 +157,14 @@ class ListStudentLogs extends Component {
 
                         </div>
 
-                        <div className="row">
-                            <button className="btn btn-success" onClick={this.addStudentLogClicked}>Add</button>
-
-                        </div>
 
                         <div>
-                            
-                            <button className="btn btn-success" onClick={this.updateStudentProfile}>Modify Profile</button>
+                        <p align="center"> 
+                        <button className="btn btn-success" onClick={this.addStudentLogClicked}>Add</button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button className="btn btn-success" onClick={this.updateStudentProfile}>Modify Profile</button>
+                        </p>
+
 
                         </div>
 

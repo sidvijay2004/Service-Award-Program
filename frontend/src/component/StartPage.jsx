@@ -34,15 +34,18 @@ class StartPage extends Component {
     return (
       //<div>
       <div>
-          <h3>Select Type of Login:</h3>
-          {UserProfile.getBackendHost()}
           <div className="container">
               <Formik>
                   {
                       (props) => (
                           <Form>
+                              <p align="center"> 
+
                               <button className="btn btn-success" onClick={() => this.studLogin()}>Student Login</button>
+                              &nbsp;&nbsp;
                               <button className="btn btn-success" onClick={() => this.adLogin()}>Advisor Login</button>
+
+                              </p>
                           </Form>
                       )
                   }

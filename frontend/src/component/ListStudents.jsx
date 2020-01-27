@@ -184,12 +184,12 @@
               </div>
 
 
-              <div className="row">
+              <p align="center"> 
                 <button className="btn btn-success" onClick={this.addStudentClicked}>Add</button>
-              </div>
-              <div className="row">
+                &nbsp;&nbsp;&nbsp;
                 <button className="btn btn-success" onClick={this.studAwardClicked}>Student Award Report</button>
-              </div>
+                </p>
+
 
             </div>
           </div>
