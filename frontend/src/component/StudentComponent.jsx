@@ -174,6 +174,14 @@ class StudentComponent extends Component {
         <div>
           <h3>Student</h3>
 
+          <a href={"mailto:" + this.state.email + "?cc=vijayjayaram@gmail.com&subject=FBLA Service Award Login Info&body=" + 
+          "Username: " + this.state.email + 
+          " or " + this.state.studentNum + 
+          "%0D%0A Password: " + this.state.password}
+          
+          >email</a>
+
+
           <div className="container">
             <Formik
               initialValues={{ firstName, lastName, studentNum, email, age, grade, password, id }}

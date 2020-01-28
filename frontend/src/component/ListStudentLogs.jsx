@@ -103,6 +103,7 @@ class ListStudentLogs extends Component {
         let { datalabel, datavalue, chartData } = this.state
         console.log("this.state.label" + this.state.datalabel)
         console.log("this.state.datavalue" + this.state.datavalue)
+        this.state.totHours = 0
         // this.dataChart()
         return (
 
