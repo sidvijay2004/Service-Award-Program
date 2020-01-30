@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import Login from './component/Login';
+import Login from './component/AdvisorLogin';
 import AdminHomePage from './component/AdminHomePage';
 
 

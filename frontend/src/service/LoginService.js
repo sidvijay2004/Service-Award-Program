@@ -10,8 +10,8 @@ const BACKEND_HOST =  UserProfile.getBackendHost()
 class LoginService {
 
 
-  isValidLogin(username, password) {
-      return axios.get(`${BACKEND_HOST}/login/`, {
+  isValidAdvisorLogin(username, password) {
+      return axios.get(`${BACKEND_HOST}/advisorLogin/`, {
                   params: {
                     username: username,
                     password: password

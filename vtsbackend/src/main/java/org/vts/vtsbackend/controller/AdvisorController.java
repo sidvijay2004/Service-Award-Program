@@ -24,9 +24,9 @@ public class AdvisorController {
     @Autowired
     private AdvisorService advisorService;
 
-    @GetMapping("/advisor")
+    @GetMapping("/advisor/{id}")
     public Advisor getAdvisor(@PathVariable int id) throws SQLException {
-        Advisor advisor =  AdvisorService.findById(id);
+        Advisor advisor =  advisorService.findById(id);
         return advisor;
 
     }

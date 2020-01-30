@@ -6,7 +6,7 @@ import ListStudents from './ListStudents';
 import LoginService from '../service/LoginService';
 import UserProfile from '../UserProfile';
 
-class Login extends Component {
+class AdvisorLogin extends Component {
       constructor(props) {
             super(props)
 
@@ -50,7 +50,7 @@ class Login extends Component {
           let password = values.password;
 
 
-          LoginService.isValidLogin(username, password)
+          LoginService.isValidAdvisorLogin(username, password)
             .then(response => response.data)
             .then((data) => {
               UserProfile.setName("Admin");
@@ -119,4 +119,4 @@ class Login extends Component {
   }
 }
 
-export default Login
+export default AdvisorLogin

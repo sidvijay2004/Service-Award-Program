@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Redirect } from 'react-router-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import StudentLogin from './StudentLogin';
-import Login from './Login';
+// import StudentLogin from './StudentLogin';
+// import AdvisorLogin from './AdvisorLogin';
 import UserProfile from '../UserProfile';
 
 class StartPage extends Component {
@@ -19,7 +19,7 @@ class StartPage extends Component {
         }
 
         adLogin() {
-          this.props.history.push('/Login')
+          this.props.history.push('/AdvisorLogin')
 
         }
 
