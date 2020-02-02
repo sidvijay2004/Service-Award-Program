@@ -176,6 +176,7 @@ class StudentComponent extends Component {
 
           <p align="center">  <h3>Student</h3> </p>
 
+          {isAdvisor ?(
           <p align="right">
           <h6>
 
@@ -194,10 +195,7 @@ class StudentComponent extends Component {
             &nbsp;
             </div>
           )
-
         }
-
-
 
           <div className="container">
             <Formik

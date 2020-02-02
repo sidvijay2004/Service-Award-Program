@@ -118,14 +118,11 @@ class AdvisorLogin extends Component {
                               </fieldset>
 
                               <button className="btn btn-success" type="Submit">Submit</button>
-                              &nbsp;&nbsp;&nbsp;
-                              <button className="btn btn-success" onClick={this.gotoStart}>Back</button>
                           </Form>
                       )
                   }
               </Formik>
               <br/><br/><br/><br/><br/><br/><br/><br/>
-              
 
 
           </div>

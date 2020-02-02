@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Pie, Doughnut, Bar} from 'react-chartjs-2';
+// import 'chartjs-plugin-datalabels';
 
 
 class DonutChart extends Component {
@@ -69,6 +70,20 @@ class DonutChart extends Component {
                     <Doughnut
                         data={chartData}
                         options={{
+                            // plugins: {
+                            //     datalabels: {
+                            //        display: true,
+                            //        color: 'white',
+                            //        labels: {
+                            //            title: {
+                            //                font: {
+                            //                    size: 30,
+                            //                    weight: 'bold'
+                            //                }
+                            //            }
+                            //        }
+                            //     }
+                            //  },
                             responsive: true,
                             maintainAspectRatio: true,
                             title: {

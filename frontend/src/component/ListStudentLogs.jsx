@@ -94,7 +94,6 @@ class ListStudentLogs extends Component {
     
     updateStudentProfile() {
         UserProfile.setStudentId(this.state.studentId)
-        UserProfile.setStudentLogin()
         this.props.history.push(`/students`)
     }
 

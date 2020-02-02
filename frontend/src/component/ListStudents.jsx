@@ -194,7 +194,7 @@
                 &nbsp;&nbsp;&nbsp;
                 <button className="btn btn-success" onClick={this.studAwardClicked}>Student Award Report</button>
                 &nbsp;&nbsp;&nbsp;
-                <button className="btn btn-success" onClick={this.updateAdvisorProfile}>Modify Profile</button>
+                <button className="btn btn-success" onClick={this.updateAdvisorProfile}>Modify Advisor Profile</button>
                 </p>
 
 
