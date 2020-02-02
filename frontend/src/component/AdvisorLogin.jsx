@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import ListStudents from './ListStudents';
 import LoginService from '../service/LoginService';
 import UserProfile from '../UserProfile';
+import Header from "../Header";
+
 
 class AdvisorLogin extends Component {
       constructor(props) {
@@ -18,6 +20,7 @@ class AdvisorLogin extends Component {
             }
             this.onSubmit = this.onSubmit.bind(this)
             this.validate = this.validate.bind(this)
+            this.gotoStart = this.gotoStart.bind(this)
       }
 
 
@@ -40,6 +43,10 @@ class AdvisorLogin extends Component {
           }
 
           return errors
+        }
+
+        gotoStart() {
+          this.props.history.push(`/`)
         }
 
   onSubmit(values) {
@@ -71,7 +78,12 @@ class AdvisorLogin extends Component {
     let { username, password } = this.state
 
     return (
-      //<div>
+      <React.Fragment>
+      <p align="center">
+        <Header />
+      </p>
+      <hr />
+
       <div>
           <h1>Login Info</h1>
 
@@ -106,15 +118,23 @@ class AdvisorLogin extends Component {
                               </fieldset>
 
                               <button className="btn btn-success" type="Submit">Submit</button>
+                              &nbsp;&nbsp;&nbsp;
+                              <button className="btn btn-success" onClick={this.gotoStart}>Back</button>
                           </Form>
                       )
                   }
               </Formik>
+              <br/><br/><br/><br/><br/><br/><br/><br/>
+              
+
 
           </div>
       </div>
 
-      // </div>
+
+
+      </React.Fragment>
+
     )
 
   }

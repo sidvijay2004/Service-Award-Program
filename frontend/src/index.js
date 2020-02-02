@@ -16,6 +16,8 @@ import StudentLogin from './component/StudentLogin';
 import StudentReport from './component/StudentReport';
 import ServiceAward from './component/ServiceAward';
 import AccessDenied from "./component/AccessDenied";
+import HelpPage from "./component/HelpPage";
+import Contact from "./component/Contact";
 import Header from "./Header";
 import ReportTemplate from "./component/ReportTemplate";
 
@@ -41,6 +43,8 @@ const routing = (
       <Route path="/getStudentTotalHours" component={ServiceAward} />
       <Route path="/ReportTemplate" component={ReportTemplate} />
       <Route path="/AccessDenied" component={AccessDenied} />
+      <Route path="/help" component={HelpPage} />
+      <Route path="/Contact" component={Contact} />
 
   </Switch>
 

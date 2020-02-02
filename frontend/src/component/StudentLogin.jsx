@@ -20,6 +20,7 @@ class StudentLogin extends Component {
             }
             this.onSubmit = this.onSubmit.bind(this)
             this.validate = this.validate.bind(this)
+            this.gotoStart = this.gotoStart.bind(this)
       }
         componentDidMount() {
 
@@ -35,6 +36,11 @@ class StudentLogin extends Component {
           }
           return errors
         }
+
+        gotoStart() {
+          this.props.history.push(`/`)
+        }
+
 
   onSubmit(values) {
     let errors = {}
@@ -73,6 +79,12 @@ class StudentLogin extends Component {
   render() {
     let { username, password } = this.state
     return (    
+      <React.Fragment>
+      <p align="center">
+        <Header />
+      </p>
+      <hr />
+
       <div>
           <h3>Login Info</h3>
 
@@ -105,14 +117,21 @@ class StudentLogin extends Component {
                               </fieldset>
 
                               <button className="btn btn-success" type="Submit">Submit</button>
+                              &nbsp;&nbsp;&nbsp;
+                              <button className="btn btn-success" onClick={this.gotoStart}>Back</button>
                           </Form>
                       )
                   }
               </Formik>
+              <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
 
           </div>
       </div>
-      // </div>
+
+
+  </React.Fragment>
+
     )
 
   }

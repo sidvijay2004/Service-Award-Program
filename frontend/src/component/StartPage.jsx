@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 // import StudentLogin from './StudentLogin';
 // import AdvisorLogin from './AdvisorLogin';
 import UserProfile from '../UserProfile';
+import Header from "../Header";
+
 
 class StartPage extends Component {
 
@@ -33,7 +35,13 @@ class StartPage extends Component {
 
     return (
       //<div>
-      <div>
+      <React.Fragment>
+        <p align="center">
+          <Header />
+        </p>
+        <hr />
+     
+        <div>
           <div className="container">
               <Formik>
                   {
@@ -46,6 +54,8 @@ class StartPage extends Component {
                               <button className="btn btn-success" onClick={() => this.adLogin()}>Advisor Login</button>
 
                               </p>
+                              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
                           </Form>
                       )
                   }
@@ -54,7 +64,8 @@ class StartPage extends Component {
           </div>
       </div>
 
-      // </div>
+      </React.Fragment>
+
     )
 
   }

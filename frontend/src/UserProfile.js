@@ -61,6 +61,8 @@ var UserProfile = (function() {
     cookies.remove('loginType');
     cookies.remove('studentLogId');
     cookies.remove('studentId');
+    cookies.remove('advisorId');
+    cookies.remove('email');
     cookies.remove('full_name');
     
   };

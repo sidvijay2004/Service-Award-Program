@@ -22,6 +22,7 @@ public class LoginController {
   public Advisor isValidAdvisorLogin (String username, String password) throws Exception {
 	  try {
 		  System.out.println("Util Date=" + new java.util.Date());
+		  System.out.println("Password = " + password + " username = " + username);
 
 		Advisor advisor = loginService.isValidAdvisorLogin(username, password);
 		  if(advisor == null){

@@ -161,6 +161,7 @@ class StudentComponent extends Component {
     let { firstName, lastName, studentNum, email, age, grade, password, id } = this.state
 
     console.log("render state Last Name:" + this.state.lastName);
+    const isAdvisor = UserProfile.isAdvisor();
 
     return (
       <React.Fragment>
@@ -176,7 +177,6 @@ class StudentComponent extends Component {
           <p align="center">  <h3>Student</h3> </p>
 
           <p align="right">
-        
           <h6>
 
           <a href={"mailto:" + this.state.email + "?cc=" + UserProfile.getEmail() + "&subject=FBLA Service Award Login Info&body=" + 
@@ -188,6 +188,15 @@ class StudentComponent extends Component {
 
           </h6>
           </p>
+
+          ):(
+            <div>
+            &nbsp;
+            </div>
+          )
+
+        }
+
 
 
           <div className="container">

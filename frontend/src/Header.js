@@ -9,7 +9,7 @@ function Header() {
 
 console.log("inside UserProfile.getLoginType="+UserProfile.getLoginType())
 if (UserProfile.isStudent() || UserProfile.isAdvisor()) {
-  button =   <NavLink activeClassName="active" onClick={() => UserProfile.removeCookies()} to="/"> Logout </NavLink>
+  button =   <NavLink activeClassName="active" onClick={() => UserProfile.removeCookies()} to="/"> Logout &nbsp; &nbsp; </NavLink>
 }
 if (UserProfile.isStudent()) {
   homeLink =   <NavLink activeClassName="active" to="/ListStudentLogs" > Student Home </NavLink>
@@ -17,19 +17,26 @@ if (UserProfile.isStudent()) {
 else if (UserProfile.isAdvisor()) {
   homeLink =   <NavLink activeClassName="active" to="/ListStudents"> Advisor Home </NavLink>
 }
+else {
+  homeLink =   <NavLink activeClassName="active" to="/"> Home </NavLink>
+}
 
 
   return (
 
     <nav>
       {homeLink}
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      {button}
-      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      <NavLink activeClassName="active" to="/contact">
+      &nbsp; &nbsp; 
+      {button}       
+      <NavLink activeClassName="active" to="/help">
         Help
       </NavLink>
+      &nbsp; &nbsp; 
+      <NavLink activeClassName="active" to="/contact">
+        Contact
+      </NavLink>
     </nav>
+
   );
 }
 

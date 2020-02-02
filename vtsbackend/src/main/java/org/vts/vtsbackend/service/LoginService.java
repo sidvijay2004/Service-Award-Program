@@ -38,8 +38,8 @@ public class LoginService {
             st = conn.prepareStatement("select * " +
                     "from advisor " +
                     "where upper(email) = ? and password = ?");
-            st.setString(1, id.toUpperCase());
-            st.setString(2, password);
+            st.setString(1, id.toUpperCase().trim());
+            st.setString(2, password.trim());
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 System.out.print("Column 1 returned ");
@@ -79,9 +79,9 @@ public class LoginService {
             st = conn.prepareStatement("select * " +
                     "from student " +
                     "where (upper(email) = ? or upper(student_num) = ?) and password = ?");
-            st.setString(1, id.toUpperCase());
-            st.setString(2, id.toUpperCase());
-            st.setString(3, password);
+            st.setString(1, id.toUpperCase().trim());
+            st.setString(2, id.toUpperCase().trim());
+            st.setString(3, password.trim());
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 System.out.print("Column 1 returned ");
