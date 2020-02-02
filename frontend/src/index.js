@@ -8,6 +8,7 @@ import * as serviceWorker from './serviceWorker';
 import ListStudents from './component/ListStudents';
 import ListStudentLogs from './component/ListStudentLogs';
 import StudentComponent from './component/StudentComponent';
+import AdvisorComponent from './component/AdvisorComponent';
 import StudentLogComponent from './component/StudentLogComponent';
 import AdvisorLogin from './component/AdvisorLogin';
 import StartPage from './component/StartPage';
@@ -34,6 +35,7 @@ const routing = (
       <Route path="/ListStudents" exact component={ListStudents} />
       <Route path="/ListStudentLogs" exact component={ListStudentLogs} />
       <Route path="/Students" component={StudentComponent} />
+      <Route path="/advisor" component={AdvisorComponent} />
       <Route path="/studentLogs" component={StudentLogComponent} />
       <Route path="/StudentReport" component={StudentReport} />
       <Route path="/getStudentTotalHours" component={ServiceAward} />
@@ -42,9 +44,14 @@ const routing = (
 
   </Switch>
 
+  <p align="center">  <h7>  © 2020, Future Business Leaders of America - Sid Vijay, Inc. or its affiliates. All rights reserved.
+    </h7> </p>
+
   </>
 
   </Router>
+
+
 )
 
 ReactDOM.render(routing, document.getElementById('root'));

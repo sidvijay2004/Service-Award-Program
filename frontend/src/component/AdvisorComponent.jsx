@@ -1,27 +1,25 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import StudentService from '../service/StudentService';
+import AdvisorService from '../service/AdvisorService';
 import Header from "../Header";
 import SidebarMenu from '../SidebarMenu';
 import UserProfile from '../UserProfile';
 
 
-class StudentComponent extends Component {
+class AdvisorComponent extends Component {
 
   constructor(props) {
     super(props)
 
     this.state = {
-      id: UserProfile.getStudentId(),
+      id: UserProfile.getAdvisorId(),
       firstName: '',
       lastName: '',
-      studentNum: '',
+      phoneNumber: '',
       email: '',
-      age: '',
-      grade: '9'
+      password: ''
     }
     this.handleChange = this.handleChange.bind(this)
-    this.handleGradeChange = this.handleGradeChange.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.validate = this.validate.bind(this)
     this.gotoListStudents = this.gotoListStudents.bind(this)
@@ -30,7 +28,7 @@ class StudentComponent extends Component {
   componentDidMount() {
 
     // Security Check
-    if (!UserProfile.isLoggedIn()) {
+    if (!UserProfile.isLoggedIn() || UserProfile.isStudent()) {
       this.props.history.push(`/AccessDenied`)
     }
 
@@ -38,18 +36,15 @@ class StudentComponent extends Component {
       return
     }
 
-    StudentService.getStudent(this.state.id)
+    AdvisorService.getAdvisor(this.state.id)
       .then(response => this.setState({
         firstName: response.data.firstName,
         lastName: response.data.lastName,
-        studentNum: response.data.studentNum,
+        phoneNumber: response.data.phoneNumber,
         email: response.data.email,
-        age: response.data.age,
-        grade: response.data.grade,
         password: response.data.password
 
       }))
-    console.log("this state Last Name:" + this.state.lastName);
 
   }
 
@@ -66,26 +61,17 @@ class StudentComponent extends Component {
 
       errors.lastName = 'Please enter last name'
     }
-    if ((values.studentNum == "")) {
+    if ((values.phoneNumber == "")) {
 
-      errors.studentNum = 'Please enter student number'
+      errors.phoneNumber = 'Please enter phone number'
     }
     if ((values.email == "")) {
 
       errors.email = 'Please enter email'
     }
-    if ((values.age == "")) {
-      console.log("Inside age loop:" + values.age);
+    if ((values.password == "")) {
 
-      errors.age = 'Please enter age'
-    }
-
-    console.log("Checking age:" + values.age);
-
-    if ((values.age * 1 == values.age) && ((values.age < 12) || (values.age > 22))) {
-      console.log("2 Checking age:" + values.age);
-
-      errors.age = 'Enter an age between 12 and 22'
+      errors.password = 'Please enter a password'
     }
 
     return errors
@@ -99,68 +85,31 @@ class StudentComponent extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   }
 
-  handleGradeChange(event) {
-    console.log("Before Last Name:" + this.state.lastName);
-    this.setState({ grade: event.target.value });
-    console.log("event.target.value" + event.target.value);
-  }
-
 
   gotoListStudents() {
-    if(UserProfile.isStudent()){
-      this.props.history.push(`/ListStudentLogs`)
-    }
-    else if(UserProfile.isAdvisor()){
       this.props.history.push(`/ListStudents`)
-    }
   }
 
   onSubmit(values) {
 
-    let student = {
+    let advisor = {
       id: this.state.id,
       firstName: values.firstName,
       lastName: values.lastName,
-      studentNum: values.studentNum,
+      phoneNumber: values.phoneNumber,
       email: values.email,
-      age: values.age,
-      grade: values.grade,
       password: values.password
 
-
     }
 
-    if (this.state.id === -1) {
-      console.log("id = -1");
-
-      StudentService.createStudent(student)
+      AdvisorService.updateAdvisor(this.state.id, advisor)
         .then(() => this.props.history.push('/ListStudents'))
-    } else if(UserProfile.isAdvisor())
-     {
-
-      console.log("id: " + this.state.id);
-      console.log("Student id = " + student.id);
-
-      StudentService.updateStudent(this.state.id, student)
-        .then(() => this.props.history.push('/ListStudents'))
-    }
-    else{
-      StudentService.updateStudent(this.state.id, student)
-        .then(() => this.props.history.push('/ListStudentLogs'))
-
-    }
-
-    console.log(values);
-
-
 
   }
 
 
   render() {
-    let { firstName, lastName, studentNum, email, age, grade, password, id } = this.state
-
-    console.log("render state Last Name:" + this.state.lastName);
+    let { firstName, lastName, phoneNumber, email, password, id } = this.state
 
     return (
       <React.Fragment>
@@ -173,26 +122,12 @@ class StudentComponent extends Component {
 
         <div>
 
-          <p align="center">  <h3>Student</h3> </p>
-
-          <p align="right">
-        
-          <h6>
-
-          <a href={"mailto:" + this.state.email + "?cc=" + UserProfile.getEmail() + "&subject=FBLA Service Award Login Info&body=" + 
-          "Username: " + this.state.email + 
-          " or " + this.state.studentNum + 
-          "%0D%0A Password: " + this.state.password}
-          
-          >Email to Student</a>
-
-          </h6>
-          </p>
+          <p align="center">  <h3>Advisor Profile</h3> </p>
 
 
           <div className="container">
             <Formik
-              initialValues={{ firstName, lastName, studentNum, email, age, grade, password, id }}
+              initialValues={{ firstName, lastName, phoneNumber, email, password, id }}
               onSubmit={this.onSubmit}
               validateOnChange={false}
               validateOnBlur={false}
@@ -207,11 +142,11 @@ class StudentComponent extends Component {
                       className="alert alert-warning" />
                     <ErrorMessage name="lastName" component="div"
                       className="alert alert-warning" />
-                    <ErrorMessage name="studentNum" component="div"
+                    <ErrorMessage name="phoneNumber" component="div"
                       className="alert alert-warning" />
                     <ErrorMessage name="email" component="div"
                       className="alert alert-warning" />
-                    <ErrorMessage name="age" component="div"
+                    <ErrorMessage name="password" component="div"
                       className="alert alert-warning" />
 
                     <fieldset className="form-group">
@@ -226,29 +161,12 @@ class StudentComponent extends Component {
                       <Field className="form-control" type="text" name="lastName" onChange={this.handleChange} />
                     </fieldset>
                     <fieldset className="form-group">
-                      <label>Student Number: </label>
-                      <Field className="form-control" type="text" name="studentNum" onChange={this.handleChange} />
+                      <label>Phone Number: </label>
+                      <Field className="form-control" type="text" name="phoneNumber" onChange={this.handleChange} />
                     </fieldset>
                     <fieldset className="form-group">
                       <label>Email: </label>
                       <Field className="form-control" type="email" name="email" onChange={this.handleChange} />
-                    </fieldset>
-                    <fieldset className="form-group">
-                      <label>Age: </label>
-                      <Field className="form-control" type="text" name="age" onChange={this.handleChange} />
-                    </fieldset>
-                    <fieldset className="form-group">
-                      <label>Grade:
-
-                          <select value={this.state.grade} onChange={this.handleGradeChange}>
-                          <option value="9">9th Grade</option>
-                          <option value="10">10th Grade</option>
-                          <option value="11">11th Grade</option>
-                          <option value="12">12th Grade</option>
-                        </select>
-
-                      </label>
-
                     </fieldset>
                     <fieldset className="form-group">
                       <label>Password: </label>
@@ -272,4 +190,4 @@ class StudentComponent extends Component {
 
 }
 
-export default StudentComponent
+export default AdvisorComponent

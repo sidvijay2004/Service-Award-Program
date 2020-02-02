@@ -15,8 +15,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 //@CrossOrigin(origins = { "http://localhost:3000"})
-//@CrossOrigin(origins = { "*"})
-@CrossOrigin(origins = {"http://localhost:3000", "https://0.0.0.0:3000"})
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = {"http://localhost:3000", "http://10.0.0.13:3000"})
 @RestController
 public class AdvisorController {
 

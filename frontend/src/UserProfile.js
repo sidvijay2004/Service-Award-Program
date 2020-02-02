@@ -25,11 +25,19 @@ var UserProfile = (function() {
     cookies.set('studentId', studentId, { path: '/' });
     
   };
+  var getAdvisorId = function() {
+    return cookies.get('advisorId');    
+  };
+
+  var setAdvisorId = function(advisorId) {
+    cookies.set('advisorId', advisorId, { path: '/' });
+    
+  };
 
   var getStudentLogId = function() {
     return cookies.get('studentLogId');    
   };
-
+  
   var setStudentLogId = function(studentLogId) {
     cookies.set('studentLogId', studentLogId, { path: '/' });
     
@@ -81,6 +89,15 @@ var UserProfile = (function() {
       return false;
     }
   };
+  
+  var getEmail = function() {
+    return cookies.get('email');    
+  };
+  
+  var setEmail = function(email) {
+    cookies.set('email', email, { path: '/' });
+    
+  };
 
 
   return {
@@ -89,6 +106,8 @@ var UserProfile = (function() {
     setName: setName,
     getStudentId: getStudentId,
     setStudentId: setStudentId,
+    getAdvisorId: getAdvisorId,
+    setAdvisorId: setAdvisorId,
     getLoginType: getLoginType,
     setLoginType: setLoginType,
     getStudentLogId: getStudentLogId,
@@ -98,10 +117,10 @@ var UserProfile = (function() {
     removeCookies: removeCookies,
     isLoggedIn: isLoggedIn,
     isStudent: isStudent,
-    isAdvisor: isAdvisor
+    isAdvisor: isAdvisor,
+    getEmail: getEmail,
+    setEmail: setEmail
 
-    
-    
   }
 
 })();

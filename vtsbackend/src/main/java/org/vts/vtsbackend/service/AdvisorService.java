@@ -20,16 +20,13 @@ public class AdvisorService {
 
 	public Advisor updateAdvisor(Advisor advisor) throws SQLException {
 
-		String SQL = "CREATE TABLE advisor(" +
-				"   id serial PRIMARY KEY," +
-				"   first_name VARCHAR (50) NOT NULL," +
-				"   last_name VARCHAR (50) NOT NULL," +
-				"   phone_number VARCHAR (50) NOT NULL," +
-				"   email VARCHAR (355) UNIQUE NOT NULL," +
-				"   password VARCHAR (50) NOT NULL," +
-				"   last_login TIMESTAMP";
-
-
+		String SQL = "UPDATE advisor "
+				+ "SET first_name = ? "
+				+ ",last_name = ? "
+				+ ",phone_number = ? "
+				+ ", email = ? "
+				+ ", password = ? "
+				+ "WHERE id = ?";
 
 		int affectedrows = 0;
 
@@ -43,8 +40,7 @@ public class AdvisorService {
 			pstmt.setString(3, advisor.getPhoneNumber());
 			pstmt.setString(4, advisor.getEmail());
 			pstmt.setString(5, advisor.getPassword());
-			pstmt.setString(6, advisor.getPassword());
-			pstmt.setDate(7, advisor.getActivityDate());
+			pstmt.setInt(6, advisor.getId());
 
 
 			affectedrows = pstmt.executeUpdate();

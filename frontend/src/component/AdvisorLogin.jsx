@@ -55,7 +55,8 @@ class AdvisorLogin extends Component {
             .then((data) => {
               UserProfile.setName("Admin");
               UserProfile.setAdvisorLogin();
-
+              UserProfile.setAdvisorId(data.id);
+              UserProfile.setEmail(data.email);
 
             this.props.history.push('/ListStudents')
           }).catch(() => {

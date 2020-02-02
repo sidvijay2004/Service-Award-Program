@@ -1,6 +1,7 @@
   import React, { Component } from 'react';
   import { useTable, useFilters, userGlobaalFilter } from 'react-table';
   import StudentService from '../service/StudentService';
+  import AdvisorService from '../service/AdvisorService';
   import ReportService from '../service/ReportService';
   import { Formik, Form, Field, ErrorMessage } from 'formik';
   import Header from "../Header";
@@ -32,6 +33,7 @@
       this.handleSearchChange = this.handleSearchChange.bind(this)
       this.studAwardClicked = this.studAwardClicked.bind(this)
       this.studentReport = this.studentReport.bind(this)
+      this.updateAdvisorProfile = this.updateAdvisorProfile.bind(this)
 
     }
 
@@ -111,6 +113,9 @@
         )
 
     }
+    updateAdvisorProfile() {
+      this.props.history.push(`/advisor`)
+  }
 
     render() {
       return (
@@ -188,6 +193,8 @@
                 <button className="btn btn-success" onClick={this.addStudentClicked}>Add</button>
                 &nbsp;&nbsp;&nbsp;
                 <button className="btn btn-success" onClick={this.studAwardClicked}>Student Award Report</button>
+                &nbsp;&nbsp;&nbsp;
+                <button className="btn btn-success" onClick={this.updateAdvisorProfile}>Modify Profile</button>
                 </p>
 
 

@@ -37,8 +37,8 @@ public class LoginService {
         try {
             st = conn.prepareStatement("select * " +
                     "from advisor " +
-                    "where email = ? and password = ?");
-            st.setString(1, id);
+                    "where upper(email) = ? and password = ?");
+            st.setString(1, id.toUpperCase());
             st.setString(2, password);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
@@ -78,9 +78,9 @@ public class LoginService {
         try {
             st = conn.prepareStatement("select * " +
                     "from student " +
-                    "where (email = ? or student_num = ?) and password = ?");
-            st.setString(1, id);
-            st.setString(2, id);
+                    "where (upper(email) = ? or upper(student_num) = ?) and password = ?");
+            st.setString(1, id.toUpperCase());
+            st.setString(2, id.toUpperCase());
             st.setString(3, password);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
