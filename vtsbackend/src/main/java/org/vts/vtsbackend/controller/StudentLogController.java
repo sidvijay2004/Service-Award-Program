@@ -50,7 +50,7 @@ public class StudentLogController {
     @GetMapping("/studentLogs/{id}")
     public StudentLog getStudentLog(@PathVariable int id) throws SQLException {
         System.out.println("Inside getStudentLog method id: " + id);
-        StudentLog studentLog =  studentLogService.findById(id);
+        StudentLog studentLog = studentLogService.findById(id);
         System.out.println("Lastname in studentLog class " + studentLog);
         return studentLog;
 
@@ -58,7 +58,7 @@ public class StudentLogController {
 
     @PutMapping("/studentLogs/{id}")
     public ResponseEntity<StudentLog> updateStudentLog(@PathVariable int id,
-                                                 @RequestBody StudentLog studentLog) throws SQLException {
+                                                       @RequestBody StudentLog studentLog) throws SQLException {
 
         studentLog.setId(id);
 

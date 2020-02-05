@@ -14,23 +14,24 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages={"org.vts"})
+@ComponentScan(basePackages = {"org.vts"})
 public class VtsbackendApplication {
-	@Value("${spring.cross.origin}")
-	private String crossOrigin = "";
+    @Value("${spring.cross.origin}")
+    private String crossOrigin = "";
 
-	public static void main(String[] args) {
-		SpringApplication.run(VtsbackendApplication.class, args);
-	}
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurerAdapter() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				System.out.println("zzzzz crossOrigin="+crossOrigin);
-				registry.addMapping("/*").allowedOrigins(crossOrigin);
-			}
-		};
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(VtsbackendApplication.class, args);
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurerAdapter() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                System.out.println("zzzzz crossOrigin=" + crossOrigin);
+                registry.addMapping("/*").allowedOrigins(crossOrigin);
+            }
+        };
+    }
 
 }

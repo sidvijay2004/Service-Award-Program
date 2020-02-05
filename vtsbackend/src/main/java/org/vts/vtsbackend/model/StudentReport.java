@@ -1,10 +1,8 @@
 /**
- * 
+ *
  */
 package org.vts.vtsbackend.model;
 
-
-import java.sql.Date;
 
 /**
  * @author sidVijay
@@ -13,83 +11,82 @@ import java.sql.Date;
 public class StudentReport {
 
 
-	private String firstName;
-	private String lastName;
-	private String period;
-	private int totalHours;
-	private String awardLevel = "none";
-	public static String CSA_ACHIEVEMENT = "CSA Achievement";
-	public static String CSA_SERVICE = "CSA Service";
-	public static String CSA_COMMUNITY = "CSA Community";
+    public static String CSA_ACHIEVEMENT = "CSA Achievement";
+    public static String CSA_SERVICE = "CSA Service";
+    public static String CSA_COMMUNITY = "CSA Community";
+    private String firstName;
+    private String lastName;
+    private String period;
+    private int totalHours;
+    private String awardLevel = "none";
 
-	public StudentReport(String firstName, String lastName, String period, int totalHours, String awardLevel) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.period = period;
-		this.totalHours = totalHours;
-		this.awardLevel = awardLevel;
-	}
-	public StudentReport(){
-		super();
-	}
+    public StudentReport(String firstName, String lastName, String period, int totalHours, String awardLevel) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.period = period;
+        this.totalHours = totalHours;
+        this.awardLevel = awardLevel;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public StudentReport() {
+        super();
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getPeriod() {
-		return period;
-	}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public void setPeriod(String period) {
-		this.period = period;
-	}
+    public String getPeriod() {
+        return period;
+    }
 
-	public int getTotalHours() {
-		return totalHours;
-	}
+    public void setPeriod(String period) {
+        this.period = period;
+    }
 
-	public void setTotalHours(int totalHours) {
-		this.totalHours = totalHours;
-		if(totalHours >= 500){
-			awardLevel = CSA_ACHIEVEMENT;
-		}
-		else if(totalHours >= 200){
-			awardLevel = CSA_SERVICE;
-		}
-		else if(totalHours >= 50){
-			awardLevel = CSA_COMMUNITY;
-		}
-	}
+    public int getTotalHours() {
+        return totalHours;
+    }
 
-	public String getAwardLevel() {
-		return awardLevel;
-	}
+    public void setTotalHours(int totalHours) {
+        this.totalHours = totalHours;
+        if (totalHours >= 500) {
+            awardLevel = CSA_ACHIEVEMENT;
+        } else if (totalHours >= 200) {
+            awardLevel = CSA_SERVICE;
+        } else if (totalHours >= 50) {
+            awardLevel = CSA_COMMUNITY;
+        }
+    }
 
-	public void setAwardLevel(String awardLevel) {
-		this.awardLevel = awardLevel;
-	}
+    public String getAwardLevel() {
+        return awardLevel;
+    }
 
-	@Override
-	public String toString() {
-		return "StudentReport{" +
-				"firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", period='" + period + '\'' +
-				", totalHours=" + totalHours +
-				", awardLevel='" + awardLevel + '\'' +
-				'}';
-	}
+    public void setAwardLevel(String awardLevel) {
+        this.awardLevel = awardLevel;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentReport{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", period='" + period + '\'' +
+                ", totalHours=" + totalHours +
+                ", awardLevel='" + awardLevel + '\'' +
+                '}';
+    }
 }

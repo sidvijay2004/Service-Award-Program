@@ -1,123 +1,118 @@
 package org.vts.vtsbackend.service;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vts.vtsbackend.model.Student;
 import org.vts.vtsbackend.util.DatabseUtil;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class StudentService {
 
-	private static List<Student> students = new ArrayList<>();
-	private static int idCounter = 0;
+    private static List<Student> students = new ArrayList<>();
+    private static int idCounter = 0;
 
-	@Autowired
-	private DatabseUtil DatabseUtil;
+    @Autowired
+    private DatabseUtil DatabseUtil;
 
-	public List<Student> findAll() throws SQLException {
-		PreparedStatement st = null;
-		Connection conn = DatabseUtil.dbConnect();
-		List<Student> students = new ArrayList<>();
+    private static java.sql.Timestamp getCurrentTimeStamp() {
 
+        java.util.Date today = new java.util.Date();
+        return new java.sql.Timestamp(today.getTime());
 
-		try {
-			st = conn.prepareStatement("SELECT * FROM student order by first_name");
+    }
 
-
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				System.out.print("Column 1 returned ");
-				Student student = new Student();
-				student.setStudentId(rs.getInt("id"));
-				student.setFirstName(rs.getString("first_name"));
-				student.setLastName(rs.getString("last_name"));
-				student.setStudentNum(rs.getString("student_num"));
-				student.setEmail(rs.getString("email"));
-				student.setPassword(rs.getString("password"));
-				student.setAge(rs.getInt("age"));
-				student.setGrade(rs.getInt("grade"));
+    public List<Student> findAll() throws SQLException {
+        PreparedStatement st = null;
+        Connection conn = DatabseUtil.dbConnect();
+        List<Student> students = new ArrayList<>();
 
 
-				students.add(student);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if (st != null) {
-				st.close();
-			}
-			conn.close();
-		}
+        try {
+            st = conn.prepareStatement("SELECT * FROM student order by first_name");
 
 
-		return students;
-	}
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                System.out.print("Column 1 returned ");
+                Student student = new Student();
+                student.setStudentId(rs.getInt("id"));
+                student.setFirstName(rs.getString("first_name"));
+                student.setLastName(rs.getString("last_name"));
+                student.setStudentNum(rs.getString("student_num"));
+                student.setEmail(rs.getString("email"));
+                student.setPassword(rs.getString("password"));
+                student.setAge(rs.getInt("age"));
+                student.setGrade(rs.getInt("grade"));
 
-	public Student save(Student student) throws SQLException {
 
-		System.out.println(student);
+                students.add(student);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (st != null) {
+                st.close();
+            }
+            conn.close();
+        }
 
-		if (student.getStudentId() == -1 || student.getStudentId() == 0) {
-			System.out.println("Inside if condit");
 
-			insertStudent(student);
+        return students;
+    }
+
+    public Student save(Student student) throws SQLException {
+
+        System.out.println(student);
+
+        if (student.getStudentId() == -1 || student.getStudentId() == 0) {
+            System.out.println("Inside if condit");
+
+            insertStudent(student);
 
 
-		} else {
+        } else {
 
-			System.out.println("Inside else condit");
+            System.out.println("Inside else condit");
 
-			updateStudent(student);
+            updateStudent(student);
 
-		}
-		return student;
-	}
+        }
+        return student;
+    }
 
-	private static java.sql.Timestamp getCurrentTimeStamp() {
+    public void insertStudent(Student student) throws SQLException {
+        String SQL = "INSERT INTO student(first_name,last_name,student_num ,email,password,age,grade,created_on,last_login) "
+                + "VALUES(?,?,?,?,?,?,?,?,?)";
 
-		java.util.Date today = new java.util.Date();
-		return new java.sql.Timestamp(today.getTime());
+        // long id = 0;
 
-	}
+        try (
+                Connection conn = DatabseUtil.dbConnect();
+                PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
 
-	public void insertStudent(Student student) throws SQLException {
-		String SQL = "INSERT INTO student(first_name,last_name,student_num ,email,password,age,grade,created_on,last_login) "
-				+ "VALUES(?,?,?,?,?,?,?,?,?)";
+            pstmt.setString(1, student.getFirstName());
+            pstmt.setString(2, student.getLastName());
+            pstmt.setString(3, student.getStudentNum());
+            pstmt.setString(4, student.getEmail());
+            pstmt.setString(5, student.getPassword());
+            pstmt.setLong(6, student.getAge());
+            pstmt.setLong(7, student.getGrade());
+            pstmt.setTimestamp(8, getCurrentTimeStamp());
+            pstmt.setTimestamp(9, getCurrentTimeStamp());
 
-		// long id = 0;
+            int affectedRows = pstmt.executeUpdate();
+            // check the affected rows
+            if (affectedRows > 0) {
 
-		try (
-				Connection conn = DatabseUtil.dbConnect();
-			 PreparedStatement pstmt = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS)) {
+                System.out.println("Row added");
 
-			pstmt.setString(1, student.getFirstName());
-			pstmt.setString(2, student.getLastName());
-			pstmt.setString(3, student.getStudentNum());
-			pstmt.setString(4, student.getEmail());
-			pstmt.setString(5, student.getPassword());
-			pstmt.setLong(6, student.getAge());
-			pstmt.setLong(7, student.getGrade());
-			pstmt.setTimestamp(8, getCurrentTimeStamp());
-			pstmt.setTimestamp(9, getCurrentTimeStamp());
-
-			int affectedRows = pstmt.executeUpdate();
-			// check the affected rows
-			if (affectedRows > 0) {
-
-				System.out.println("Row added");
-
-				// get the ID back
+                // get the ID back
 //              try (ResultSet rs = pstmt.getGeneratedKeys()) {
 //                  if (rs.next()) {
 //                      id = rs.getLong(1);
@@ -126,75 +121,75 @@ public class StudentService {
 //                  System.out.println(ex.getMessage());
 //              }
 
-			}
-		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());
-			throw ex;
-		}
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            throw ex;
+        }
 
-	}
-
-
-	public int updateStudent(Student student) throws SQLException {
-
-		String SQL = "UPDATE student "
-				+ "SET first_name = ? "
-				+ ",last_name = ? "
-				+ ",student_num = ? "
-				+ ", email = ? "
-				+ ", age = ? "
-				+ ", grade = ? "
-				+ ", password = ? "
-				+ "WHERE id = ?";
+    }
 
 
-		int affectedrows = 0;
+    public int updateStudent(Student student) throws SQLException {
 
-		try (
-				Connection conn = DatabseUtil.dbConnect();
-				PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-
-
-			pstmt.setString(1, student.getFirstName());
-			pstmt.setString(2, student.getLastName());
-			pstmt.setString(3, student.getStudentNum());
-			pstmt.setString(4, student.getEmail());
-			pstmt.setLong(5, student.getAge());
-			pstmt.setLong(6, student.getGrade());
-			pstmt.setString(7, student.getPassword());
-			pstmt.setInt(8, student.getStudentId());
+        String SQL = "UPDATE student "
+                + "SET first_name = ? "
+                + ",last_name = ? "
+                + ",student_num = ? "
+                + ", email = ? "
+                + ", age = ? "
+                + ", grade = ? "
+                + ", password = ? "
+                + "WHERE id = ?";
 
 
-			affectedrows = pstmt.executeUpdate();
+        int affectedrows = 0;
 
-		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());
-			throw ex;
-		}
-		return affectedrows;
-	}
-
-	public int deleteById(int id) throws SQLException {
-		String SQL = "DELETE FROM student WHERE id = ?";
-
-		int affectedrows = 0;
-
-		try (
-				Connection conn = DatabseUtil.dbConnect();
-			 PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-
-			pstmt.setInt(1, id);
-
-			affectedrows = pstmt.executeUpdate();
-
-		} catch (SQLException ex) {
-			System.out.println(ex.getMessage());
-			throw ex;
-		}
+        try (
+                Connection conn = DatabseUtil.dbConnect();
+                PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
 
-		return affectedrows;
-	}
+            pstmt.setString(1, student.getFirstName());
+            pstmt.setString(2, student.getLastName());
+            pstmt.setString(3, student.getStudentNum());
+            pstmt.setString(4, student.getEmail());
+            pstmt.setLong(5, student.getAge());
+            pstmt.setLong(6, student.getGrade());
+            pstmt.setString(7, student.getPassword());
+            pstmt.setInt(8, student.getStudentId());
+
+
+            affectedrows = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            throw ex;
+        }
+        return affectedrows;
+    }
+
+    public int deleteById(int id) throws SQLException {
+        String SQL = "DELETE FROM student WHERE id = ?";
+
+        int affectedrows = 0;
+
+        try (
+                Connection conn = DatabseUtil.dbConnect();
+                PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+
+            pstmt.setInt(1, id);
+
+            affectedrows = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            throw ex;
+        }
+
+
+        return affectedrows;
+    }
 
 //	public Student deleteById(int id) {
 //		Student student = findById(id);
@@ -209,109 +204,109 @@ public class StudentService {
 //		return null;
 //	}
 
-	public Student findById(int id) throws SQLException {
-		PreparedStatement st = null;
-		Connection conn = DatabseUtil.dbConnect();
+    public Student findById(int id) throws SQLException {
+        PreparedStatement st = null;
+        Connection conn = DatabseUtil.dbConnect();
 
 
-		try {
-			st = conn.prepareStatement("SELECT * FROM student where id = ?");
-			st.setInt(1, id);
+        try {
+            st = conn.prepareStatement("SELECT * FROM student where id = ?");
+            st.setInt(1, id);
 
 
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				System.out.print("Column 1 returned ");
-				Student student = new Student();
-				student.setStudentId(rs.getInt("id"));
-				student.setFirstName(rs.getString("first_name"));
-				student.setLastName(rs.getString("last_name"));
-				student.setStudentNum(rs.getString("student_num"));
-				student.setEmail(rs.getString("email"));
-				student.setPassword(rs.getString("password"));
-				student.setAge(rs.getInt("age"));
-				student.setGrade(rs.getInt("grade"));
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                System.out.print("Column 1 returned ");
+                Student student = new Student();
+                student.setStudentId(rs.getInt("id"));
+                student.setFirstName(rs.getString("first_name"));
+                student.setLastName(rs.getString("last_name"));
+                student.setStudentNum(rs.getString("student_num"));
+                student.setEmail(rs.getString("email"));
+                student.setPassword(rs.getString("password"));
+                student.setAge(rs.getInt("age"));
+                student.setGrade(rs.getInt("grade"));
 
-				return student;
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if (st != null) {
-				st.close();
-			}
-			conn.close();
-		}
-
-
-		return null;
-
-	}
-
-	public List<Student> search(String searchText) throws SQLException {
-		PreparedStatement st = null;
-		Connection conn = DatabseUtil.dbConnect();
-		List<Student> students = new ArrayList<>();
-
-		int searchInt = -1;
-
-		if (searchText != null) {
-			try {
-				searchInt = Integer.parseInt(searchText);
-
-			} catch (NumberFormatException nfe){
-
-			}
-		}
-
-		try {
-
-			st = conn.prepareStatement("SELECT *" +
-					" FROM student" +
-					" WHERE" +
-					" LOWER(first_name) like LOWER(?) or" +
-					" LOWER(last_name) like LOWER(?) or" +
-					" LOWER(email) like LOWER(?) or" +
-					" age = ? or" +
-					" grade = ? " +
-					" ORDER BY first_name,last_name "
-			);
-
-			st.setString(1, "%" + searchText + "%" );
-			st.setString(2, "%" + searchText + "%" );
-			st.setString(3, "%" + searchText + "%" );
-			st.setInt(4, searchInt);
-			st.setInt(5, searchInt);
-
-			ResultSet rs = st.executeQuery();
-			while (rs.next()) {
-				System.out.print("Column 1 returned ");
-				Student student = new Student();
-				student.setStudentId(rs.getInt("id"));
-				student.setFirstName(rs.getString("first_name"));
-				student.setLastName(rs.getString("last_name"));
-				student.setStudentNum(rs.getString("student_num"));
-				student.setEmail(rs.getString("email"));
-				student.setAge(rs.getInt("age"));
-				student.setGrade(rs.getInt("grade"));
-
-				System.out.println("Inside search Student = " + student);
-				students.add(student);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if (st != null) {
-				st.close();
-			}
-			conn.close();
-		}
+                return student;
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (st != null) {
+                st.close();
+            }
+            conn.close();
+        }
 
 
-		return students;
-	}
+        return null;
+
+    }
+
+    public List<Student> search(String searchText) throws SQLException {
+        PreparedStatement st = null;
+        Connection conn = DatabseUtil.dbConnect();
+        List<Student> students = new ArrayList<>();
+
+        int searchInt = -1;
+
+        if (searchText != null) {
+            try {
+                searchInt = Integer.parseInt(searchText);
+
+            } catch (NumberFormatException nfe) {
+
+            }
+        }
+
+        try {
+
+            st = conn.prepareStatement("SELECT *" +
+                    " FROM student" +
+                    " WHERE" +
+                    " LOWER(first_name) like LOWER(?) or" +
+                    " LOWER(last_name) like LOWER(?) or" +
+                    " LOWER(email) like LOWER(?) or" +
+                    " age = ? or" +
+                    " grade = ? " +
+                    " ORDER BY first_name,last_name "
+            );
+
+            st.setString(1, "%" + searchText + "%");
+            st.setString(2, "%" + searchText + "%");
+            st.setString(3, "%" + searchText + "%");
+            st.setInt(4, searchInt);
+            st.setInt(5, searchInt);
+
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                System.out.print("Column 1 returned ");
+                Student student = new Student();
+                student.setStudentId(rs.getInt("id"));
+                student.setFirstName(rs.getString("first_name"));
+                student.setLastName(rs.getString("last_name"));
+                student.setStudentNum(rs.getString("student_num"));
+                student.setEmail(rs.getString("email"));
+                student.setAge(rs.getInt("age"));
+                student.setGrade(rs.getInt("grade"));
+
+                System.out.println("Inside search Student = " + student);
+                students.add(student);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (st != null) {
+                st.close();
+            }
+            conn.close();
+        }
+
+
+        return students;
+    }
 }

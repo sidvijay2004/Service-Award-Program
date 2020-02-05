@@ -1,23 +1,16 @@
 package org.vts.vtsbackend.controller;
 
-import java.net.URI;
-import java.sql.SQLException;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.vts.vtsbackend.model.Student;
 import org.vts.vtsbackend.service.StudentService;
+
+import java.net.URI;
+import java.sql.SQLException;
+import java.util.List;
 
 //@CrossOrigin(origins = { "http://localhost:3000"})
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -37,7 +30,7 @@ public class StudentController {
 
     @GetMapping("/searchStudents")
     public List<Student> searchStudents(String searchText) throws SQLException {
-        System.out.println("Inside searchStudents searchStudents: " + searchText );
+        System.out.println("Inside searchStudents searchStudents: " + searchText);
         return studentService.search(searchText);
     }
 
@@ -57,7 +50,7 @@ public class StudentController {
     @GetMapping("/students/{id}")
     public Student getStudent(@PathVariable int id) throws SQLException {
         System.out.println("Inside getStudent method id: " + id);
-        Student student =  studentService.findById(id);
+        Student student = studentService.findById(id);
         System.out.println("Lastname in student class " + student);
         return student;
 

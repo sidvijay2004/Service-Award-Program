@@ -1,17 +1,15 @@
 package org.vts.vtsbackend.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.vts.vtsbackend.model.Advisor;
+import org.vts.vtsbackend.model.Student;
+import org.vts.vtsbackend.util.DatabseUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.vts.vtsbackend.model.Student;
-import org.vts.vtsbackend.model.Advisor;
-import org.vts.vtsbackend.util.DatabseUtil;
 
 @Service
 public class LoginService {
@@ -73,7 +71,7 @@ public class LoginService {
         PreparedStatement st = null;
         Connection conn = DatabseUtil.dbConnect();
 
-		System.out.println("Inside student login id:" + id);
+        System.out.println("Inside student login id:" + id);
 
         try {
             st = conn.prepareStatement("select * " +

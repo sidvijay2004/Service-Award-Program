@@ -183,7 +183,8 @@ class StudentComponent extends Component {
           <a href={"mailto:" + this.state.email + "?cc=" + UserProfile.getEmail() + "&subject=FBLA Service Award Login Info&body=" + 
           "Username: " + this.state.email + 
           " or " + this.state.studentNum + 
-          "%0D%0A Password: " + this.state.password}
+          "%0D%0A Password: " + this.state.password + 
+          "%0D%0A" + "%0D%0A" + 'http://' + window.location.hostname + ':3000'}
           
           >Email to Student</a>
 
