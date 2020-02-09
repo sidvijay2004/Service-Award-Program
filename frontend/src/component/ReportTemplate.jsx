@@ -9,6 +9,13 @@ import SidebarMenu from '../SidebarMenu';
 import DonutChart from './DonutChart';
 import queryString from 'query-string'
 
+/**
+ * Renders this component to display chart information
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
+
 // const ReactTable = window.ReactTable.default;
 
 

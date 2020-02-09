@@ -7,6 +7,12 @@ import LoginService from '../service/LoginService';
 import UserProfile from '../UserProfile';
 import Header from "../Header";
 
+/**
+ * Renders this component when user tries to login as an advisor
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 class AdvisorLogin extends Component {
       constructor(props) {

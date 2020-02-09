@@ -2,6 +2,13 @@ import React from 'react';
 import { bubble as Menu } from 'react-burger-menu';
 import "./SidebarMenu.css";
 
+/**
+ * Used to display the sidebar for report information
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
+
 function goToReportTemp(e){
   console.log('hi')
 }

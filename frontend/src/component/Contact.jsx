@@ -2,6 +2,12 @@
   import UserProfile from '../UserProfile';
   import Header from "../Header";
 
+  /**
+ * Renders this component when the user looks for contact information
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
   class Contact extends Component {
 

@@ -7,6 +7,12 @@ import LoginService from '../service/LoginService';
 import UserProfile from '../UserProfile';
 import Header from "../Header";
 
+/**
+ * Renders this component when user wants to login as a student
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 class StudentLogin extends Component {
       constructor(props) {
@@ -117,7 +123,6 @@ class StudentLogin extends Component {
                               </fieldset>
 
                               <button className="btn btn-success" type="Submit">Submit</button>
-
                           </Form>
                       )
                   }

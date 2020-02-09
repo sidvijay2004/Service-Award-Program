@@ -11,6 +11,13 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+/**
+ * This is the framework component to handle Spring component
+ *
+ * @author  Siddharth Vijayasankar
+ * @version 1.0
+ */
+
 @SpringBootApplication
 @Configuration
 @EnableAutoConfiguration

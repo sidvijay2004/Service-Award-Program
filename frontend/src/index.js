@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import {Link} from 'react-router-dom'
-
 import './App.css';
 import * as serviceWorker from './serviceWorker';
 import ListStudents from './component/ListStudents';
@@ -20,6 +19,13 @@ import HelpPage from "./component/HelpPage";
 import Contact from "./component/Contact";
 import Header from "./Header";
 import ReportTemplate from "./component/ReportTemplate";
+
+/**
+ * Used to link one page to another
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 //const BACKEND_HOST = 'http://localhost:8080'
 

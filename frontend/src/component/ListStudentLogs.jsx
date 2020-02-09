@@ -7,6 +7,13 @@ import Header from "../Header";
 import SidebarMenu from '../SidebarMenu';
 import DonutChart from './DonutChart';
 
+/**
+ * Renders this component when accessing service log for students
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
+
 class ListStudentLogs extends Component {
 
     constructor(props) {
@@ -93,7 +100,7 @@ class ListStudentLogs extends Component {
     }    
     
     updateStudentProfile() {
-        UserProfile.setStudentId(this.state.studentId)
+        UserProfile.setStudentId(this.state.studentId)  
         this.props.history.push(`/students`)
     }
 

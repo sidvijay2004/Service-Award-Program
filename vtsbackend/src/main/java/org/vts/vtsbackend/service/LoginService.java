@@ -11,6 +11,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This is the service for Login logic by accessing the backend database
+ *
+ * @author  Siddharth Vijayasankar
+ * @version 1.0
+ */
+
 @Service
 public class LoginService {
 

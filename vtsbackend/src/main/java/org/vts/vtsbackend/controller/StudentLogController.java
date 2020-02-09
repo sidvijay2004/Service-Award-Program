@@ -12,6 +12,13 @@ import java.net.URI;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * This program exposes the backend to the frontend for StudentLog information
+ *
+ * @author  Siddharth Vijayasankar
+ * @version 1.0
+ */
+
 //@CrossOrigin(origins = { "http://localhost:3000"})
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 //@CrossOrigin(origins = {"http://localhost:3000", "http://10.0.0.13:3000"})

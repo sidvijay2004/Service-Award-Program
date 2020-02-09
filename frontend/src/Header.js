@@ -2,6 +2,13 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import UserProfile from './UserProfile';
 
+ /**
+ * Used to display the header
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
+
 function Header() {
 
   let button;

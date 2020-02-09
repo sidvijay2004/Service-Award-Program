@@ -10,6 +10,12 @@
   import SidebarMenu from '../SidebarMenu';
   import DonutChart from './DonutChart';
 
+  /**
+ * Renders this component when advisor logs in
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 
   // const ReactTable = window.ReactTable.default;

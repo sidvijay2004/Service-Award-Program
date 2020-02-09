@@ -1,5 +1,12 @@
 import Cookies from 'universal-cookie';
 
+/**
+ * Used to verify security and to monitor which login type is in use
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
+
 var UserProfile = (function() {
   const cookies = new Cookies();
 

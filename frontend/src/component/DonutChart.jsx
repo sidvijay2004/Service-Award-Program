@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { Pie, Doughnut, Bar} from 'react-chartjs-2';
 // import 'chartjs-plugin-datalabels';
 
+/**
+ * Renders this component when displaying charts
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 class DonutChart extends Component {
 

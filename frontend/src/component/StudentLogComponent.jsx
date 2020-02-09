@@ -5,6 +5,12 @@ import Header from "../Header";
 import SidebarMenu from '../SidebarMenu';
 import UserProfile from '../UserProfile';
 
+/**
+ * Renders this component when user want to access or edit their service hour credentials
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 class StudentLogComponent extends Component {
 

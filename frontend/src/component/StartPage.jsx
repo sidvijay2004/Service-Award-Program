@@ -7,6 +7,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import UserProfile from '../UserProfile';
 import Header from "../Header";
 
+/**
+ * Renders this component before the user logs in
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 class StartPage extends Component {
 

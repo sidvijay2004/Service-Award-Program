@@ -5,9 +5,12 @@ package org.vts.vtsbackend.model;
 
 
 /**
- * @author sidVijay
+ * This is the model for chart object and attributes
  *
+ * @author  Siddharth Vijayasankar
+ * @version 1.0
  */
+
 public class ChartData {
 
 

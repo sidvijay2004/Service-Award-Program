@@ -5,6 +5,13 @@ import Header from "../Header";
 import UserProfile from '../UserProfile';
 import SidebarMenu from '../SidebarMenu';
 
+/**
+ * Renders this component when advisor wants to access weekly and monthly information about a specific student
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
+
 class StudentReport extends Component {
 
   constructor(props) {

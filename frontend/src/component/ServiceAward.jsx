@@ -5,7 +5,12 @@ import Header from "../Header";
 import SidebarMenu from '../SidebarMenu';
 import UserProfile from '../UserProfile';
 
-
+/**
+ * Renders this component to display service award information
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 class ServiceAward extends Component {
 

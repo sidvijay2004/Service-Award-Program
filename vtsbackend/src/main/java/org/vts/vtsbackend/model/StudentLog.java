@@ -10,8 +10,10 @@ import java.sql.Date;
 
 
 /**
- * @author sidVijay
+ * This is the model for student log object and attributes
  *
+ * @author  Siddharth Vijayasankar
+ * @version 1.0
  */
 public class StudentLog {
 

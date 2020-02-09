@@ -5,6 +5,12 @@ import Header from "../Header";
 import SidebarMenu from '../SidebarMenu';
 import UserProfile from '../UserProfile';
 
+/**
+ * Renders this component to see or edit information about specific student
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 class StudentComponent extends Component {
 

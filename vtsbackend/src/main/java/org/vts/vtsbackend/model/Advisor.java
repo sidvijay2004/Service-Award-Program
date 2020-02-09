@@ -6,9 +6,12 @@ package org.vts.vtsbackend.model;
 import java.sql.Date;
 
 /**
- * @author sidVijay
+ * This is the model for advisor object and attributes
  *
+ * @author  Siddharth Vijayasankar
+ * @version 1.0
  */
+
 public class Advisor {
 
 

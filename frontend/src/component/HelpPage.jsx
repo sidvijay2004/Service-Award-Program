@@ -1,6 +1,12 @@
   import React, { Component } from 'react';
   import Header from "../Header";
   
+  /**
+ * Renders this component when user tries to access the help page
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
   class HelpPage extends Component {
 

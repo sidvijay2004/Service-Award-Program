@@ -1,5 +1,11 @@
   import React, { Component } from 'react';
   
+/**
+ * Renders this component when user does not have access
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
   
 
   class AccessDenied extends Component {

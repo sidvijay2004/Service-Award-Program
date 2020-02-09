@@ -12,6 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the service for Advisor logic by accessing the backend database
+ *
+ * @author  Siddharth Vijayasankar
+ * @version 1.0
+ */
+
 @Service
 public class AdvisorService {
 

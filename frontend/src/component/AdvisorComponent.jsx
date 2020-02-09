@@ -5,6 +5,12 @@ import Header from "../Header";
 import SidebarMenu from '../SidebarMenu';
 import UserProfile from '../UserProfile';
 
+/**
+ * Renders this component after user has logged in as an advisor and want to see or edit their credentials
+ *
+ * author  Siddharth Vijayasankar
+ * version 1.0
+ */
 
 class AdvisorComponent extends Component {
 
