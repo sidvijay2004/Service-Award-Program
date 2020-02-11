@@ -12,10 +12,8 @@ Application Screen Recording:
 The following contains a desktop and a mobile version
 https://photos.app.goo.gl/P3ej1rfb73PswbFaA
 
-# Architecture:
 
-https://docs.google.com/presentation/d/1MUicjJjl7VeNNfs1RWunsHJW9NuKvuqkdVKxoZQHFFU/edit
-
+# Architecture Diagram 1:
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/Architecture-1.png)
 
 
@@ -23,7 +21,7 @@ https://docs.google.com/presentation/d/1MUicjJjl7VeNNfs1RWunsHJW9NuKvuqkdVKxoZQH
 
 
 
-
+# Architecture Diagram 2:
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/Architecture-2.png)
 
 
