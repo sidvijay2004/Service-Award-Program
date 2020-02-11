@@ -16,8 +16,8 @@ Architecture:
 
 https://docs.google.com/presentation/d/1MUicjJjl7VeNNfs1RWunsHJW9NuKvuqkdVKxoZQHFFU/edit
 
-![alt text]{https://github.com/sidvijay2004/Service-Award-Program/blob/master/Architecture-1.png}
-![alt text]{https://github.com/sidvijay2004/Service-Award-Program/blob/master/Architecture-2.png}
+![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/Architecture-1.png)
+![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/Architecture-2.png)
 
 
 
