@@ -67,6 +67,11 @@ npm install chartjs-plugin-datalabels --save
 Change directory to frontend and execute the following commands:
 npm start
 
+# Database: PostgreSQL:
+Download the following based on your eOS and install.
+https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+Used PGAdmin backup feature to take a backup of the entire database wiht table and data.
 
 # Program Description: 
 
