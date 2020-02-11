@@ -76,3 +76,14 @@ Used PGAdmin backup feature to take a backup of the entire database wiht table a
 # Program Description: 
 
 https://docs.google.com/document/d/1KA38pUP-bXuAG-TcEuwKJhKqWoZhT_-TbjJ64ZWWEXU/edit?usp=sharing
+
+# A Few Screenshots of the Project:
+![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/CategoryBarChart.png)
+
+![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/CategoryPieChart.png)
+![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/GradeHoursPieChart.png)
+![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/VolunteerHours.png)
+![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/HoursTable.png)
+![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/StudentList.png)
+
+
