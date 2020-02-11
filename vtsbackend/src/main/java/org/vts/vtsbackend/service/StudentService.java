@@ -31,6 +31,8 @@ public class StudentService {
         return new java.sql.Timestamp(today.getTime());
 
     }
+    // gets time for calendar features
+
 
     public List<Student> findAll() throws SQLException {
         PreparedStatement st = null;
@@ -68,10 +70,10 @@ public class StudentService {
             }
             conn.close();
         }
-
-
         return students;
     }
+    // gets information for all students from backend database
+
 
     public Student save(Student student) throws SQLException {
 
@@ -92,6 +94,8 @@ public class StudentService {
         }
         return student;
     }
+    // determines whether to update or create a new student
+
 
     public void insertStudent(Student student) throws SQLException {
         String SQL = "INSERT INTO student(first_name,last_name,student_num ,email,password,age,grade,created_on,last_login) "
@@ -135,6 +139,8 @@ public class StudentService {
         }
 
     }
+    // inserts a new student from method above
+
 
 
     public int updateStudent(Student student) throws SQLException {
@@ -175,6 +181,8 @@ public class StudentService {
         }
         return affectedrows;
     }
+    // updates a student
+
 
     public int deleteById(int id) throws SQLException {
         String SQL = "DELETE FROM student WHERE id = ?";
@@ -197,6 +205,8 @@ public class StudentService {
 
         return affectedrows;
     }
+    // deletes student information for a specific student
+
 
 //	public Student deleteById(int id) {
 //		Student student = findById(id);
@@ -251,6 +261,8 @@ public class StudentService {
         return null;
 
     }
+    // finds a specific student based on their id
+
 
     public List<Student> search(String searchText) throws SQLException {
         PreparedStatement st = null;
@@ -316,4 +328,6 @@ public class StudentService {
 
         return students;
     }
+    // uses student information for search feature
+
 }

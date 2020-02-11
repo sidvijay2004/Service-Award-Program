@@ -72,6 +72,8 @@ public class LoginService {
         return null;
 
     }
+    // gets user login and validates with backend database for advisors
+
 
 
     public Student isValidStudentLogin(String id, String password) throws SQLException {
@@ -116,5 +118,7 @@ public class LoginService {
         return null;
 
     }
+    // gets user login and validates with backend database for students
+
 
 }

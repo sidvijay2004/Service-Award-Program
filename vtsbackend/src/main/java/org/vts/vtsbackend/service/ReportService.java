@@ -33,12 +33,14 @@ public class ReportService {
 
         return getStudentReports(studentId, "M");
     }
+    // gets information from backend database to display monthly reports
 
     public List<StudentReport> getWeeklyStudentReport(int studentId) throws SQLException {
         System.out.println("SstudentId = " + studentId);
 
         return getStudentReports(studentId, "W");
     }
+    // gets information from backend database to display weekly reports
 
 
     private List<StudentReport> getStudentReports(int studentId, String type) throws SQLException {
@@ -84,6 +86,8 @@ public class ReportService {
 
         return studentReports;
     }
+    // From the information from methods above, gives either weekly or monthly report information
+
 
 
     public List<ChartData> getChartData(String rptType, int studentId) throws SQLException {
@@ -160,6 +164,8 @@ public class ReportService {
 
         return chartDataReport;
     }
+    // gets information from backend database to display information for different charts
+
 
     public List<StudentReport> getStudentTotalHours(String awardLevel) throws SQLException {
         PreparedStatement st = null;
@@ -200,5 +206,6 @@ public class ReportService {
         }
         return studentReports;
     }
+    // gets information from backend database to display service award program information
 
 }

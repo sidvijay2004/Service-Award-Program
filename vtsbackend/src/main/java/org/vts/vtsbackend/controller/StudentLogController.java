@@ -33,13 +33,14 @@ public class StudentLogController {
         System.out.println("Inside Get All studentLogs method");
         return studentLogService.findAll();
     }
+    // gets all the hours information for every student
 
     @GetMapping("/ListStudentLogs/{studentId}")
     public List<StudentLog> getAllStudentLogs(@PathVariable int studentId) throws SQLException {
         System.out.println("Inside Get All getAllStudentLogs method");
         return studentLogService.findByStudentId(studentId);
     }
-
+    // gets all the hours information for a specific student
 
     @DeleteMapping("/studentLogs/{id}")
     public ResponseEntity<Void> deleteStudentLog(@PathVariable int id) throws SQLException {
@@ -53,6 +54,8 @@ public class StudentLogController {
 
         return ResponseEntity.notFound().build();
     }
+    // deletes a student hours entry
+
 
     @GetMapping("/studentLogs/{id}")
     public StudentLog getStudentLog(@PathVariable int id) throws SQLException {
@@ -62,23 +65,21 @@ public class StudentLogController {
         return studentLog;
 
     }
+    // gets a specific hours entry for a student
 
     @PutMapping("/studentLogs/{id}")
     public ResponseEntity<StudentLog> updateStudentLog(@PathVariable int id,
                                                        @RequestBody StudentLog studentLog) throws SQLException {
 
         studentLog.setId(id);
-
         System.out.println("Inside Put method");
-
         System.out.println("ID:" + id);
         System.out.println("StudentLog:" + studentLog);
-
-
         StudentLog studentLogUpdated = studentLogService.save(studentLog);
 
         return new ResponseEntity<StudentLog>(studentLogUpdated, HttpStatus.OK);
     }
+    // updates a student hours entry
 
     @PostMapping("/studentLogs")
     public ResponseEntity<Void> createStudentLog(@RequestBody StudentLog studentLog) throws SQLException {
@@ -96,4 +97,6 @@ public class StudentLogController {
 
         return ResponseEntity.created(uri).build();
     }
+    // creates a student hours entry
+
 }

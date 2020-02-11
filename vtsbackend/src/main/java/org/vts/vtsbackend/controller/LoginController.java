@@ -37,6 +37,7 @@ public class LoginController {
             throw e;
         }
     }
+    // validates information from frontend to advisor credentials
 
     @GetMapping("/studentLogin")
     public Student validateStudent(String username, String password) throws Exception {
@@ -53,4 +54,6 @@ public class LoginController {
             throw e;
         }
     }
+    // validates information from frontend to student credentials
+
 }

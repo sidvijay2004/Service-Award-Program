@@ -61,6 +61,7 @@ public class AdvisorService {
         }
         return advisor;
     }
+    // connects with controller to update advisor credentials
 
 
     public Advisor findById(int id) throws SQLException {
@@ -98,11 +99,9 @@ public class AdvisorService {
             }
             conn.close();
         }
-
-
         return null;
 
     }
-
+    // connects with controller to get advisor credentials
 
 }

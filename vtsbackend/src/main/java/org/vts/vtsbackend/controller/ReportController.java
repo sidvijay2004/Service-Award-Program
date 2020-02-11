@@ -30,21 +30,25 @@ public class ReportController {
     public List<StudentReport> getStudentMonthlyReport(@PathVariable int studentId) throws SQLException {
         return reportService.getMonthlyStudentReport(studentId);
     }
+    // information for monthly report for each student
 
     @GetMapping("/weeklyStudentReport/{studentId}")
     public List<StudentReport> getStudentWeeklyReport(@PathVariable int studentId) throws SQLException {
         return reportService.getWeeklyStudentReport(studentId);
     }
+    // information for weekly report for each student
 
     @GetMapping("/getStudentTotalHours")
     public List<StudentReport> getStudentTotalHours(String awardLevel) throws SQLException {
         return reportService.getStudentTotalHours(awardLevel);
     }
+    // information for total hours for each student
 
     @GetMapping("/getChartData")
     public List<ChartData> getChartData(String rptType, int studentId) throws SQLException {
         return reportService.getChartData(rptType, studentId);
     }
+    // information for charts and graphs for each student
 
 
 }

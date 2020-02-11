@@ -26,6 +26,7 @@ public class AdvisorController {
         Advisor advisor = advisorService.findById(id);
         return advisor;
     }
+    // gets advisor information from the frontend
 
     @PutMapping("/advisor/{id}")
     public ResponseEntity<Advisor> updateAdvisor(@PathVariable int id,
@@ -34,5 +35,6 @@ public class AdvisorController {
         Advisor advisorUpdated = advisorService.updateAdvisor(advisor);
         return new ResponseEntity<Advisor>(advisorUpdated, HttpStatus.OK);
     }
+    //     updates advisor information from frontend
 
 }

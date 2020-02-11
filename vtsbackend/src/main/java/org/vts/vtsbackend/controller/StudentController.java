@@ -34,12 +34,14 @@ public class StudentController {
         System.out.println("Inside Get All students method");
         return studentService.findAll();
     }
+    // gets information for every student
 
     @GetMapping("/searchStudents")
     public List<Student> searchStudents(String searchText) throws SQLException {
         System.out.println("Inside searchStudents searchStudents: " + searchText);
         return studentService.search(searchText);
     }
+    // information for search feature of program for student information
 
     @DeleteMapping("/students/{id}")
     public ResponseEntity<Void> deleteStudent(@PathVariable int id) throws SQLException {
@@ -53,6 +55,7 @@ public class StudentController {
 
         return ResponseEntity.notFound().build();
     }
+    // information for deleting students from list
 
     @GetMapping("/students/{id}")
     public Student getStudent(@PathVariable int id) throws SQLException {
@@ -60,25 +63,21 @@ public class StudentController {
         Student student = studentService.findById(id);
         System.out.println("Lastname in student class " + student);
         return student;
-
     }
+    // information for receiving information about specific student
 
     @PutMapping("/students/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable int id,
                                                  @RequestBody Student student) throws SQLException {
-
         student.setStudentId(id);
-
         System.out.println("Inside Put method");
-
         System.out.println("ID:" + id);
         System.out.println("Student:" + student);
-
-
         Student studentUpdated = studentService.save(student);
 
         return new ResponseEntity<Student>(studentUpdated, HttpStatus.OK);
     }
+    // information for updating information about a specific student
 
     @PostMapping("/students")
     public ResponseEntity<Void> createStudent(@RequestBody Student student) throws SQLException {
@@ -96,4 +95,5 @@ public class StudentController {
 
         return ResponseEntity.created(uri).build();
     }
+    // information for creating a student
 }

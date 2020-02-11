@@ -28,6 +28,7 @@ public class StudentLogService {
         java.util.Date today = new java.util.Date();
         return new java.sql.Timestamp(today.getTime());
     }
+    // gets time for calendar features
 
     public List<StudentLog> findByStudentId(int studentId) throws SQLException {
         PreparedStatement st = null;
@@ -68,6 +69,8 @@ public class StudentLogService {
 
         return studentLogs;
     }
+    // gets information from backend database to give specific student information
+
 
     public List<StudentLog> findAll() throws SQLException {
         PreparedStatement st = null;
@@ -99,6 +102,8 @@ public class StudentLogService {
         }
         return studentLogs;
     }
+    // gets information from backend database to give all student hours entry information
+
 
     public StudentLog save(StudentLog studentLog) throws SQLException {
         if (studentLog.getId() == -1 || studentLog.getId() == 0) {
@@ -112,6 +117,8 @@ public class StudentLogService {
         }
         return studentLog;
     }
+    // gets information and either updates or saves information for hours entry
+
 
     public void insertStudentLog(StudentLog studentLog) throws SQLException {
 
@@ -141,6 +148,8 @@ public class StudentLogService {
         }
 
     }
+    // gets information from method above and adds new hours entry for student
+
 
 
     public int updateStudentLog(StudentLog studentLog) throws SQLException {
@@ -195,6 +204,8 @@ public class StudentLogService {
 
         return affectedrows;
     }
+    // gets information from methods above and updates a hours entry for student
+
 
     public StudentLog findById(int id) throws SQLException {
         PreparedStatement st = null;
@@ -231,9 +242,8 @@ public class StudentLogService {
             }
             conn.close();
         }
-
-
         return null;
-
     }
+    // gets information and gives a specific hours entry for a student
+
 }
