@@ -87,15 +87,12 @@ https://docs.google.com/document/d/1KA38pUP-bXuAG-TcEuwKJhKqWoZhT_-TbjJ64ZWWEXU/
 
 # Report for Different Categories
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/CategoryBarChart.png)
+&nbsp;
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/CategoryPieChart.png)
 
 # Reports for Grades
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/GradeHoursPieChart.png)
 
-# Report for Age
-![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/VolunteerHours.png)
-
-![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/VolunteerHours.png)
 
 
 
