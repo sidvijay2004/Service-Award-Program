@@ -81,14 +81,17 @@ https://docs.google.com/document/d/1KA38pUP-bXuAG-TcEuwKJhKqWoZhT_-TbjJ64ZWWEXU/
 
 # Advisor's Homepage
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/StudentList.png)
+&nbsp;
 
 # Example Student's Homepage
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/HoursTable.png)
+&nbsp;
 
 # Report for Different Categories
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/CategoryBarChart.png)
 &nbsp;
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/CategoryPieChart.png)
+&nbsp;
 
 # Reports for Grades
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/GradeHoursPieChart.png)
