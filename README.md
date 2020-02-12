@@ -79,7 +79,7 @@ https://docs.google.com/document/d/1KA38pUP-bXuAG-TcEuwKJhKqWoZhT_-TbjJ64ZWWEXU/
 
 # A Few Screenshots of the Project:
 
-# Student List
+# Advisor's Homepage
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/StudentList.png)
 
 # Example Student's Homepage
@@ -92,6 +92,7 @@ https://docs.google.com/document/d/1KA38pUP-bXuAG-TcEuwKJhKqWoZhT_-TbjJ64ZWWEXU/
 # Reports for Grades
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/GradeHoursPieChart.png)
 
+# Report for Age
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/VolunteerHours.png)
 
 
