@@ -12,6 +12,9 @@ Application Screen Recording:
 The following contains a desktop and a mobile version
 https://photos.app.goo.gl/P3ej1rfb73PswbFaA
 
+Application Hours Log:
+https://docs.google.com/spreadsheets/d/1LoAq26L5FFyWD0oxq2PLtfhdYQhIN7aowy2t4DEocVo/edit?usp=sharing
+
 
 # Architecture Diagram 1:
 ![alt text](https://github.com/sidvijay2004/Service-Award-Program/blob/master/Architecture-1.png)
